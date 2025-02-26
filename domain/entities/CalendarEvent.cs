@@ -2,15 +2,22 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SequentialGuid;
 using NotifiTime_API.domain.Enum;
 
 namespace NotifiTime_API.domain.entities
 {
     public class CalendarEvent : ICalendarEvent
     {
-        public ICalendarEvent addSuportedPlatform(SuportedPlatform newSuportedPlatform)
-        {
-            throw new NotImplementedException();
+        private readonly Guid id;
+        private string name;
+        private DateTime dateTime;
+        private List<SuportedPlatform> suportedPlatformList;
+        private string message;
+        private TimeIteration timeIteration;
+
+        public CalendarEvent(){
+            id = SequentialGuidGenerator.Instance.NewGuid();
         }
 
         public DateTime getDateTime()
@@ -64,6 +71,11 @@ namespace NotifiTime_API.domain.entities
         }
 
         public ICalendarEvent setTimeIteration(TimeIteration newTimeIteration)
+        {
+            throw new NotImplementedException();
+        }
+
+        public ICalendarEvent addSuportedPlatform(SuportedPlatform newSuportedPlatform)
         {
             throw new NotImplementedException();
         }

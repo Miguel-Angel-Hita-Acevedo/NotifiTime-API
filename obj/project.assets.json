@@ -33,6 +33,19 @@
           "build/Microsoft.VisualStudio.Azure.Containers.Tools.Targets.targets": {}
         }
       },
+      "SequentialGuid/4.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/SequentialGuid.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net8.0/SequentialGuid.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.6.2": {
         "type": "package",
         "dependencies": {
@@ -425,6 +438,29 @@
         "tools/zh-Hant/Microsoft.VisualStudio.Containers.Tools.Tasks.resources.dll"
       ]
     },
+    "SequentialGuid/4.0.6": {
+      "sha512": "8n9ZXiNNlkfQZiWf4mDKBxJ9W/aNSeuhpjR8gaE8bkEWse+Eub1GZx5KBAp3MzWPOU0gVdZXPAQ8PuvVF5mLEw==",
+      "type": "package",
+      "path": "sequentialguid/4.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE.txt",
+        "README.md",
+        "lib/net462/SequentialGuid.dll",
+        "lib/net462/SequentialGuid.xml",
+        "lib/net8.0/SequentialGuid.dll",
+        "lib/net8.0/SequentialGuid.xml",
+        "lib/net9.0/SequentialGuid.dll",
+        "lib/net9.0/SequentialGuid.xml",
+        "lib/netstandard2.0/SequentialGuid.dll",
+        "lib/netstandard2.0/SequentialGuid.xml",
+        "lib/netstandard2.1/SequentialGuid.dll",
+        "lib/netstandard2.1/SequentialGuid.xml",
+        "sequentialguid.4.0.6.nupkg.sha512",
+        "sequentialguid.nuspec"
+      ]
+    },
     "Swashbuckle.AspNetCore/6.6.2": {
       "sha512": "+NB4UYVYN6AhDSjW0IJAd1AGD8V33gemFNLPaxKTtPkHB+HaKAKf9MGAEUPivEWvqeQfcKIw8lJaHq6LHljRuw==",
       "type": "package",
@@ -531,6 +567,7 @@
   "projectFileDependencyGroups": {
     "net8.0": [
       "Microsoft.VisualStudio.Azure.Containers.Tools.Targets >= 1.21.0",
+      "SequentialGuid >= 4.0.6",
       "Swashbuckle.AspNetCore >= 6.6.2"
     ]
   },
@@ -587,6 +624,10 @@
           "Microsoft.VisualStudio.Azure.Containers.Tools.Targets": {
             "target": "Package",
             "version": "[1.21.0, )"
+          },
+          "SequentialGuid": {
+            "target": "Package",
+            "version": "[4.0.6, )"
           },
           "Swashbuckle.AspNetCore": {
             "target": "Package",

@@ -2,12 +2,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using SequentialGuid;
 using NotifiTime_API.domain.Enum;
 
 namespace NotifiTime_API.domain.entities
 {
     public class CalendarNotifiTime : ICalendarNotifiTime
     {
+        private Guid id;
+        private string name;
+
+        public CalendarNotifiTime(){
+            id = SequentialGuidGenerator.Instance.NewGuid();
+        }
+
         public ICalendarEvent createEvent(DateTime date, string name, TimeIteration timeIteration)
         {
             throw new NotImplementedException();
