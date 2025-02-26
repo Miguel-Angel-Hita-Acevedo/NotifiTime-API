@@ -6,12 +6,12 @@ using NotifiTime_API.domain.Enum;
 
 namespace NotifiTime_API.domain.entities
 {
-    public interface ICalendar
+    public interface ICalendarNotifiTime
     {
         // atributos
         public Guid getId();
         public string getName();
-        public ICalendar setName(string newName);
+        public ICalendarNotifiTime setName(string newName);
 
         // conexión base de datos
         public void loadCalendarData(Guid id);
