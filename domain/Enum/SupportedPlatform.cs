@@ -1,6 +1,6 @@
 namespace NotifiTime_API.domain.Enum
 {
-    public enum SuportedPlatform
+    public enum SupportedPlatform
     {
         Mail
     }

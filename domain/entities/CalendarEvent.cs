@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SequentialGuid;
 using NotifiTime_API.domain.Enum;
+using System.Runtime.Versioning;
 
 namespace NotifiTime_API.domain.entities
 {
@@ -12,7 +13,7 @@ namespace NotifiTime_API.domain.entities
         private readonly Guid id;
         private string name;
         private DateTime dateTime;
-        private List<SuportedPlatform> suportedPlatformList;
+        private List<SupportedPlatform> supportedPlatformList;
         private string message;
         private TimeIteration timeIteration;
 
@@ -22,62 +23,68 @@ namespace NotifiTime_API.domain.entities
 
         public DateTime getDateTime()
         {
-            throw new NotImplementedException();
+            return dateTime;
         }
 
         public Guid getId()
         {
-            throw new NotImplementedException();
+            return id;
         }
 
         public string getMessage()
         {
-            throw new NotImplementedException();
+            return message;
         }
 
         public string getName()
         {
-            throw new NotImplementedException();
+            return name;
         }
 
-        public List<SuportedPlatform> getSuportedPlatformList()
+        public List<SupportedPlatform> getSupportedPlatformList()
         {
-            throw new NotImplementedException();
+            return supportedPlatformList;
         }
 
         public TimeIteration getTimeIteration()
         {
-            throw new NotImplementedException();
+            return timeIteration;
         }
 
         public ICalendarEvent setDateTime(DateTime newDateTime)
         {
-            throw new NotImplementedException();
+            dateTime = newDateTime;
+            return this;
         }
 
         public ICalendarEvent setMessage(string newMessage)
         {
-            throw new NotImplementedException();
+            message = newMessage;
+            return this;
         }
 
         public ICalendarEvent setName(string newName)
         {
-            throw new NotImplementedException();
+            name = newName;
+            return this;
         }
 
-        public ICalendarEvent setSuportedPlatformList(List<SuportedPlatform> suportedPlatformList)
+        public ICalendarEvent setSupportedPlatformList(List<SupportedPlatform> newSupportedPlatformList)
         {
-            throw new NotImplementedException();
+            supportedPlatformList = newSupportedPlatformList;
+            return this;
         }
 
         public ICalendarEvent setTimeIteration(TimeIteration newTimeIteration)
         {
-            throw new NotImplementedException();
+            timeIteration = newTimeIteration;
+            return this;
         }
 
-        public ICalendarEvent addSuportedPlatform(SuportedPlatform newSuportedPlatform)
+        public ICalendarEvent addSupportedPlatform(SupportedPlatform newSupportedPlatform)
         {
-            throw new NotImplementedException();
+            supportedPlatformList.Add(newSupportedPlatform);
+            return this;
         }
     }
 }

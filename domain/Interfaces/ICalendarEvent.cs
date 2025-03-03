@@ -13,13 +13,13 @@ namespace NotifiTime_API.domain.entities
         public string getName();
         public DateTime getDateTime();
         public TimeIteration getTimeIteration();
-        public List<SuportedPlatform> getSuportedPlatformList();
+        public List<SupportedPlatform> getSupportedPlatformList();
         public string getMessage();
         public ICalendarEvent setName(string newName);
         public ICalendarEvent setDateTime(DateTime newDateTime);
         public ICalendarEvent setTimeIteration(TimeIteration newTimeIteration);
-        public ICalendarEvent setSuportedPlatformList(List<SuportedPlatform> suportedPlatformList);
-        public ICalendarEvent addSuportedPlatform(SuportedPlatform newSuportedPlatform);
+        public ICalendarEvent setSupportedPlatformList(List<SupportedPlatform> supportedPlatformList);
+        public ICalendarEvent addSupportedPlatform(SupportedPlatform newSupportedPlatform);
         public ICalendarEvent setMessage(string newMessage);
     }
 }

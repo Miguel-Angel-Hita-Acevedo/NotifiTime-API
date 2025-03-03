@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NotifiTime-API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9f5de8e1c98fd8d72ca22d42aafc4295d04d3b6c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+37a291c14406bc83140b136a7ce329ce38498c21")]
 [assembly: System.Reflection.AssemblyProductAttribute("NotifiTime-API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NotifiTime-API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
