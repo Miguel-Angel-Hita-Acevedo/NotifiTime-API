@@ -11,22 +11,41 @@ namespace NotifiTime_API.domain.entities
     {
         private Guid id;
         private string name;
+        private Dictionary<Guid, CalendarEvent> calendarEventDictionary;
 
-        public CalendarNotifiTime(){
+        public CalendarNotifiTime(string name)
+        {
+            this.name = name;
+            calendarEventDictionary = new Dictionary<Guid, CalendarEvent>();
             id = SequentialGuidGenerator.Instance.NewGuid();
         }
 
         public ICalendarEvent createEvent(DateTime date, string name, TimeIteration timeIteration)
         {
-            throw new NotImplementedException();
+            CalendarEvent calendarEvent = new CalendarEvent();
+            calendarEvent.setDateTime(date).setName(name).setTimeIteration(timeIteration);
+            return calendarEvent;
         }
 
-        public ICalendarEvent deleteEventById(int id)
+        public bool deleteEventById(Guid id)
         {
-            throw new NotImplementedException();
+            bool exist = false;
+            try 
+            {
+                exist = calendarEventDictionary.ContainsKey(id);
+                if(exist)
+                {
+                    calendarEventDictionary.Remove(id);
+                }
+            } 
+            catch (Exception e)
+            {
+                exist = calendarEventDictionary.ContainsKey(id);
+            }
+            return !exist;
         }
 
-        public ICalendarEvent getEventById(int id)
+        public ICalendarEvent getEventById(Guid id)
         {
             throw new NotImplementedException();
         }

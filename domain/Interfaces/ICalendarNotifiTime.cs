@@ -18,8 +18,8 @@ namespace NotifiTime_API.domain.entities
 
         // uso normal de la aplicación
         public ICalendarEvent createEvent(DateTime date, string name, TimeIteration timeIteration);
-        public ICalendarEvent getEventById(int id);
-        public ICalendarEvent deleteEventById(int id);
+        public ICalendarEvent getEventById(Guid id);
         public ICalendarEvent[] sortEventsByDate(DateTime fromDate, DateTime toDate);
+        public bool deleteEventById(Guid id);
     }
 }
