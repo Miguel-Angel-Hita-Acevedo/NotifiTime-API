@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using SequentialGuid;
 using NotifiTime_API.domain.Enum;
+using System.Collections.Immutable;
 
 namespace NotifiTime_API.domain.entities
 {
@@ -18,6 +19,14 @@ namespace NotifiTime_API.domain.entities
             this.name = name;
             calendarEventDictionary = new Dictionary<Guid, CalendarEvent>();
             id = SequentialGuidGenerator.Instance.NewGuid();
+        }
+        
+        
+        public CalendarNotifiTime(Guid id, string name, Dictionary<Guid, CalendarEvent> calendarEventDictionary)
+        {
+            this.id = id;
+            this.name = name;
+            this.calendarEventDictionary = calendarEventDictionary;
         }
 
         public ICalendarEvent createEvent(DateTime date, string name, TimeIteration timeIteration)
@@ -47,32 +56,38 @@ namespace NotifiTime_API.domain.entities
 
         public ICalendarEvent getEventById(Guid id)
         {
-            throw new NotImplementedException();
+            CalendarEvent calendarEventFound = null;
+            try
+            {
+                calendarEventDictionary.TryGetValue(id, out calendarEventFound);
+            } catch (ArgumentNullException exc) {}
+            return calendarEventFound;
         }
 
         public Guid getId()
         {
-            throw new NotImplementedException();
+            return id;
         }
 
         public string getName()
         {
-            throw new NotImplementedException();
-        }
-
-        public void loadCalendarData(Guid id)
-        {
-            throw new NotImplementedException();
+            return name;
         }
 
         public ICalendarNotifiTime setName(string newName)
         {
-            throw new NotImplementedException();
+            name = newName;
+            return this;
         }
 
         public ICalendarEvent[] sortEventsByDate(DateTime fromDate, DateTime toDate)
         {
-            throw new NotImplementedException();
+            ICalendarEvent[] calendarEventDictionaryAsArray = calendarEventDictionary.Values.ToArray();
+            ICalendarEvent[] sortedCalendarEventsByDate = calendarEventDictionaryAsArray.Where
+            (
+                currentCalendarEvent => currentCalendarEvent.getDateTime() >= fromDate && currentCalendarEvent.getDateTime() <= toDate
+            ).ToArray();
+            return sortedCalendarEventsByDate;
         }
     }
 }

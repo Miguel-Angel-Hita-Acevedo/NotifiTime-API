@@ -12,11 +12,6 @@ namespace NotifiTime_API.domain.entities
         public Guid getId();
         public string getName();
         public ICalendarNotifiTime setName(string newName);
-
-        // conexión base de datos
-        public void loadCalendarData(Guid id);
-
-        // uso normal de la aplicación
         public ICalendarEvent createEvent(DateTime date, string name, TimeIteration timeIteration);
         public ICalendarEvent getEventById(Guid id);
         public ICalendarEvent[] sortEventsByDate(DateTime fromDate, DateTime toDate);
