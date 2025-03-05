@@ -13,7 +13,10 @@ namespace NotifiTime_API.domain.entities
         private Guid id;
         private string name;
         private Dictionary<Guid, CalendarEvent> calendarEventDictionary;
-
+        
+        /// <summary>
+        /// When user creates an empty calendar from an app connected to this api
+        /// </summary>
         public CalendarNotifiTime(string name)
         {
             this.name = name;
@@ -21,7 +24,9 @@ namespace NotifiTime_API.domain.entities
             id = SequentialGuidGenerator.Instance.NewGuid();
         }
         
-        
+        /// <summary>
+        /// To load data from database, currently not implemented but thought to implement user separate
+        /// </summary>
         public CalendarNotifiTime(Guid id, string name, Dictionary<Guid, CalendarEvent> calendarEventDictionary)
         {
             this.id = id;
