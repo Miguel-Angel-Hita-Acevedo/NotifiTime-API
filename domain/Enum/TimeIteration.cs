@@ -5,6 +5,7 @@ namespace NotifiTime_API.domain.Enum
         Annually,
         Monthly,
         Weekly,
-        Daily
+        Daily,
+        None
     }
 }

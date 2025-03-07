@@ -38,6 +38,7 @@ namespace NotifiTime_API.domain.entities
         {
             CalendarEvent calendarEvent = new CalendarEvent();
             calendarEvent.setDateTime(date).setName(name).setTimeIteration(timeIteration);
+            calendarEventDictionary.TryAdd(calendarEvent.getId(), calendarEvent);
             return calendarEvent;
         }
 
