@@ -95,5 +95,10 @@ namespace NotifiTime_API.domain.entities
             ).ToArray();
             return sortedCalendarEventsByDate;
         }
+        
+        public int calendarEventsLength()
+        {
+            return calendarEventDictionary.ToArray().Length;
+        }
     }
 }
