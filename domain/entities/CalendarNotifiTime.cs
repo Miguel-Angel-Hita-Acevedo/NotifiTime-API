@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using SequentialGuid;
 using NotifiTime_API.domain.Enum;
 using System.Collections.Immutable;
+using System.Runtime.InteropServices;
 
 namespace NotifiTime_API.domain.entities
 {
@@ -86,13 +87,23 @@ namespace NotifiTime_API.domain.entities
             return this;
         }
 
-        public ICalendarEvent[] sortEventsByDate(DateTime fromDate, DateTime toDate)
+        public ICalendarEvent[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
         {
-            ICalendarEvent[] calendarEventDictionaryAsArray = calendarEventDictionary.Values.ToArray();
-            ICalendarEvent[] sortedCalendarEventsByDate = calendarEventDictionaryAsArray.Where
+            List<ICalendarEvent> calendarEventDictionaryAsList = calendarEventDictionary.Values.ToList<ICalendarEvent>();
+            ICalendarEvent[] sortedCalendarEventsByDate;
+            
+            calendarEventDictionaryAsList = calendarEventDictionaryAsList.Where
             (
                 currentCalendarEvent => currentCalendarEvent.getDateTime() >= fromDate && currentCalendarEvent.getDateTime() <= toDate
-            ).ToArray();
+            ).ToList();
+            
+            calendarEventDictionaryAsList.Sort((ICalendarEvent oneEvent, ICalendarEvent otherEvent) => otherEvent.getDateTime().CompareTo(oneEvent.getDateTime()));
+            sortedCalendarEventsByDate = calendarEventDictionaryAsList.ToArray();
+            
+            if (ascending)
+            {
+                Array.Reverse(sortedCalendarEventsByDate);
+            }
             return sortedCalendarEventsByDate;
         }
         

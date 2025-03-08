@@ -60,5 +60,140 @@ namespace NotifiTime_API.Test
             
             Assert.True(testCalendar.calendarEventsLength() == 2);
         }
+    
+        [Fact]
+        public void createEventsOnCalendarAndCheckIfDeletedIsCorrect()
+        {
+            CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
+            
+            testCalendar.createEvent(
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                "Test event 1",
+                TimeIteration.None
+            );
+            
+            ICalendarEvent testEvent = testCalendar.createEvent(
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                "Test event 2",
+                TimeIteration.None
+            );
+            
+            testCalendar.createEvent(
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                "Test event 3",
+                TimeIteration.None
+            );
+            
+            if(testCalendar.getEventById(testEvent.getId()) != null)
+            {
+                testCalendar.deleteEventById(testEvent.getId());
+                Assert.Null(testCalendar.getEventById(testEvent.getId()));
+            }else
+            {
+                Assert.True(false);
+            }
+        }
+        
+        [Fact]
+        public void sortEventsByDateDescending()
+        {
+            CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
+            
+            testCalendar.createEvent(
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                "Test event 1",
+                TimeIteration.None
+            );
+            
+            testCalendar.createEvent(
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                "Test event 2",
+                TimeIteration.None
+            );
+            
+            testCalendar.createEvent(
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                "Test event 3",
+                TimeIteration.None
+            );
+            
+            ICalendarEvent[] testEventSortedArray = testCalendar.sortEventsByDate(
+                new DateTime(1,1,1),
+                new DateTime(9999,1,1),
+                false
+                );
+            
+            Assert.True(
+                testEventSortedArray[0].getDateTime() > testEventSortedArray[1].getDateTime() &&
+                testEventSortedArray[1].getDateTime() > testEventSortedArray[2].getDateTime()
+                );
+        }
+        
+        [Fact]
+        public void sortEventsByDateAscending()
+        {
+            CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
+            
+            testCalendar.createEvent(
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                "Test event 1",
+                TimeIteration.None
+            );
+            
+            testCalendar.createEvent(
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                "Test event 2",
+                TimeIteration.None
+            );
+            
+            testCalendar.createEvent(
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                "Test event 3",
+                TimeIteration.None
+            );
+            
+            ICalendarEvent[] testEventSortedArray = testCalendar.sortEventsByDate(
+                new DateTime(1,1,1),
+                new DateTime(9999,1,1),
+                true
+                );
+            
+            Assert.True(
+                testEventSortedArray[0].getDateTime() < testEventSortedArray[1].getDateTime() &&
+                testEventSortedArray[1].getDateTime() < testEventSortedArray[2].getDateTime()
+                );
+        }
+        
+        [Fact]
+        public void sortEventsByDateWithSomeEventsOutOfRange()
+        {
+            CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
+            
+            testCalendar.createEvent(
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                "Test event 1",
+                TimeIteration.None
+            );
+            
+            testCalendar.createEvent(
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                "Test event 2",
+                TimeIteration.None
+            );
+            
+            testCalendar.createEvent(
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                "Test event 3",
+                TimeIteration.None
+            );
+            
+            ICalendarEvent[] calendarEventsTestArray = testCalendar.sortEventsByDate(
+                new DateTime(2024,1,1),
+                new DateTime(9999,1,1),
+                false
+                );
+            
+            Assert.True(calendarEventsTestArray.Length == 2);
+        }
     }
 }
