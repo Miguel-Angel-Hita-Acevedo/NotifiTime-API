@@ -16,7 +16,6 @@ namespace NotifiTime_API.domain.entities
         public ICalendarEvent getEventById(Guid id);
         public ICalendarEvent[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending);
         public bool deleteEventById(Guid id);
-        
         public int calendarEventsLength();
     }
 }
