@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using NotifiTime_API.domain.entities;
 using NotifiTime_API.domain.Enum;
 
 namespace NotifiTime_API.application.DTOs
@@ -14,6 +15,16 @@ namespace NotifiTime_API.application.DTOs
         private List<SupportedPlatform> supportedPlatformList;
         private string message;
         private TimeIteration timeIteration;
+        
+        public void toDTO(ICalendarEvent domainCalendarEvent)
+        {
+            Id = domainCalendarEvent.getId();
+            Name = domainCalendarEvent.getName();
+            DateTime = domainCalendarEvent.getDateTime();
+            SupportedPlatformList = domainCalendarEvent.getSupportedPlatformList();
+            Message = domainCalendarEvent.getMessage();
+            TimeIteration = domainCalendarEvent.getTimeIteration();
+        }
 
         public Guid Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
