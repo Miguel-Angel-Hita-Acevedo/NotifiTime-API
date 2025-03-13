@@ -12,13 +12,13 @@ namespace NotifiTime_API.application.Interfaces
     {
         public Exception updateCalendarsOfUser();
         public CalendarNotifiTimeDTO createCalendarNotifiTime(string name);
-        public CalendarNotifiTimeDTO addCalendarNotifiTime(CalendarNotifiTimeDTO newCalendarNotifiTime);
+        public Exception addCalendarNotifiTime(CalendarNotifiTimeDTO newCalendarNotifiTime);
         public CalendarNotifiTimeDTO[] getCalendarNotifiTimeArray();
         public CalendarNotifiTimeDTO[] sortCalendarNotifiTimeListByName(bool ascending);
         public CalendarNotifiTimeDTO[] sortCalendarNotifiTimeListByCreationDate(bool ascending);
         public CalendarNotifiTimeDTO findCalendarNotifiTimeById(Guid id);
         public CalendarNotifiTimeDTO[] findCalendarNotifiTimeByName(string name);
-        public CalendarEventDTO findCalendarEventByIdOnAllCalendarse(Guid eventId);
+        public CalendarEventDTO findCalendarEventByIdOnAllCalendars(Guid eventId);
         public Exception deleteCalendarNotifiTimeById(Guid id);
     }
 }
