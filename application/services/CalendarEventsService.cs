@@ -4,12 +4,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using NotifiTime_API.application.DTOs;
 using NotifiTime_API.application.Interfaces;
+using NotifiTime_API.domain.entities;
 using NotifiTime_API.domain.Enum;
 
 namespace NotifiTime_API.application.services
 {
     public class CalendarEventsService : ICalendarEventsService
     {
+        private CalendarNotifiTimeDTO calendarNotifiTimeDTO = new CalendarNotifiTimeDTO();
+        
+        public CalendarEventsService(ICalendarNotifiTime calendarNotifiTime)
+        {
+            calendarNotifiTimeDTO.toDTO(calendarNotifiTime);
+        }
+    
         public int calendarEventsLength()
         {
             throw new NotImplementedException();
