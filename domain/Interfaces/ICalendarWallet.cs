@@ -8,9 +8,9 @@ namespace NotifiTime_API.domain.Interfaces
 {
     public interface ICalendarWallet
     {
-        public Exception addCalendarNotifiTime(ICalendarNotifiTime newCalendarNotifiTime);
-        public Exception deleteCalendarNotifiTimeById(Guid id);
-        public ICalendarEvent findCalendarEventByIdOnAllCalendars(Guid eventId);
+        public bool addCalendarNotifiTime(ICalendarNotifiTime newCalendarNotifiTime);
+        public bool deleteCalendarNotifiTimeById(Guid id);
+        public ICalendarEvent[] findCalendarEventsByIdOnAllCalendars(Guid eventId);
         public ICalendarNotifiTime findCalendarNotifiTimeById(Guid id);
         public ICalendarNotifiTime[] findCalendarNotifiTimeByName(string name);
         public ICalendarNotifiTime[] getCalendarNotifiTimeArray();
