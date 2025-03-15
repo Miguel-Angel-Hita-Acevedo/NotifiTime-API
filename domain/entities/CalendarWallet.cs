@@ -64,12 +64,24 @@ namespace NotifiTime_API.domain.entities
 
         public ICalendarNotifiTime[] getCalendarNotifiTimeArray()
         {
-            throw new NotImplementedException();
+            return calendarDictionary.Values.ToArray();
         }
 
         public ICalendarNotifiTime[] sortCalendarNotifiTimeListByCreationDate(bool ascending)
         {
-            throw new NotImplementedException();
+            List<ICalendarNotifiTime> calendarDictionaryAsList = calendarDictionary.Values.ToList();
+            
+            calendarDictionaryAsList.Sort(
+                (ICalendarNotifiTime oneCalendar, ICalendarNotifiTime otherCalendar) 
+                    => otherCalendar.getCreationDate().CompareTo(oneCalendar.getCreationDate()));
+            ICalendarNotifiTime[] sortedCalendarByCreationDate = calendarDictionaryAsList.ToArray();
+            
+            if (ascending)
+            {
+                Array.Reverse(sortedCalendarByCreationDate);
+            }
+            
+            return sortedCalendarByCreationDate;
         }
 
         public ICalendarNotifiTime[] sortCalendarNotifiTimeListByName(bool ascending)

@@ -11,6 +11,7 @@ namespace NotifiTime_API.domain.entities
         // atributos
         public Guid getId();
         public string getName();
+        public DateTime getCreationDate();
         public ICalendarNotifiTime setName(string newName);
         public ICalendarEvent createEvent(DateTime date, string name, TimeIteration timeIteration);
         public ICalendarEvent getEventById(Guid id);

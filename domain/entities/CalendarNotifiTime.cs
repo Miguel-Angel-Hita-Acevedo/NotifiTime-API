@@ -13,6 +13,7 @@ namespace NotifiTime_API.domain.entities
     {
         private Guid id;
         private string name;
+        private DateTime creationDate;
         private Dictionary<Guid, CalendarEvent> calendarEventDictionary;
         
         /// <summary>
@@ -23,16 +24,18 @@ namespace NotifiTime_API.domain.entities
             this.name = name;
             calendarEventDictionary = new Dictionary<Guid, CalendarEvent>();
             id = SequentialGuidGenerator.Instance.NewGuid();
+            creationDate = DateTime.Now;
         }
         
         /// <summary>
         /// To load data from database, currently not implemented but thought to implement user separate
         /// </summary>
-        public CalendarNotifiTime(Guid id, string name, Dictionary<Guid, CalendarEvent> calendarEventDictionary)
+        public CalendarNotifiTime(Guid id, string name, Dictionary<Guid, CalendarEvent> calendarEventDictionary, DateTime creationDate)
         {
             this.id = id;
             this.name = name;
             this.calendarEventDictionary = calendarEventDictionary;
+            this.creationDate = creationDate;
         }
 
         public ICalendarEvent createEvent(DateTime date, string name, TimeIteration timeIteration)
@@ -81,6 +84,11 @@ namespace NotifiTime_API.domain.entities
             return name;
         }
 
+        public DateTime getCreationDate()
+        {
+            return creationDate;
+        }
+        
         public ICalendarNotifiTime setName(string newName)
         {
             name = newName;
