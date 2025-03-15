@@ -29,7 +29,7 @@ namespace NotifiTime_API.domain.entities
         {
             ICalendarNotifiTime[] calendarArray = calendarDictionary.Values.ToArray();
             List<ICalendarEvent> calendarEventList = new List<ICalendarEvent>();
-            ICalendarEvent tempCalendarEvent = null;
+            ICalendarEvent tempCalendarEvent;
             foreach(ICalendarNotifiTime calendarNotifiTime in calendarArray)
             {
                 tempCalendarEvent = calendarNotifiTime.getEventById(eventId);
@@ -43,12 +43,23 @@ namespace NotifiTime_API.domain.entities
 
         public ICalendarNotifiTime findCalendarNotifiTimeById(Guid id)
         {
-            throw new NotImplementedException();
+            ICalendarNotifiTime calendarFound;
+            bool found = calendarDictionary.TryGetValue(id, out calendarFound);
+            return found ? calendarFound : null;
         }
 
         public ICalendarNotifiTime[] findCalendarNotifiTimeByName(string name)
         {
-            throw new NotImplementedException();
+            ICalendarNotifiTime[] calendarArray = calendarDictionary.Values.ToArray();
+            List<ICalendarNotifiTime> calendarFoundList = new List<ICalendarNotifiTime>();
+            foreach(ICalendarNotifiTime calendarNotifiTime in calendarArray)
+            {
+                if(calendarNotifiTime.getName().Equals(name))
+                {
+                    calendarFoundList.Add(calendarNotifiTime);
+                }
+            }
+            return calendarFoundList.ToArray();
         }
 
         public ICalendarNotifiTime[] getCalendarNotifiTimeArray()
