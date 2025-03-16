@@ -16,6 +16,5 @@ namespace NotifiTime_API.domain.Interfaces
         public ICalendarNotifiTime[] getCalendarNotifiTimeArray();
         public ICalendarNotifiTime[] sortCalendarNotifiTimeListByCreationDate(bool ascending);
         public ICalendarNotifiTime[] sortCalendarNotifiTimeListByName(bool ascending);
-        public Exception updateCalendarsNotifiTime();
     }
 }

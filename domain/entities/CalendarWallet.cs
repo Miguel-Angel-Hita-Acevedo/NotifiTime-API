@@ -14,6 +14,14 @@ namespace NotifiTime_API.domain.entities
         {
             
         }
+        
+        public CalendarWallet(ICalendarNotifiTime[] newCalendarNotifiTimeArray)
+        {
+            foreach(ICalendarNotifiTime currentCalendar in newCalendarNotifiTimeArray)
+            {
+                calendarDictionary.Add(currentCalendar.getId(), currentCalendar);
+            }
+        }
     
         public bool addCalendarNotifiTime(ICalendarNotifiTime newCalendarNotifiTime)
         {
@@ -86,12 +94,19 @@ namespace NotifiTime_API.domain.entities
 
         public ICalendarNotifiTime[] sortCalendarNotifiTimeListByName(bool ascending)
         {
-            throw new NotImplementedException();
-        }
-
-        public Exception updateCalendarsNotifiTime()
-        {
-            throw new NotImplementedException();
+            List<ICalendarNotifiTime> calendarDictionaryAsList = calendarDictionary.Values.ToList();
+            
+            calendarDictionaryAsList.Sort(
+                (ICalendarNotifiTime oneCalendar, ICalendarNotifiTime otherCalendar) 
+                    => otherCalendar.getName().CompareTo(oneCalendar.getName()));
+            ICalendarNotifiTime[] sortedCalendarByCreationDate = calendarDictionaryAsList.ToArray();
+            
+            if (ascending)
+            {
+                Array.Reverse(sortedCalendarByCreationDate);
+            }
+            
+            return sortedCalendarByCreationDate;
         }
     }
 }
