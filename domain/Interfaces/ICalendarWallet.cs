@@ -10,7 +10,7 @@ namespace NotifiTime_API.domain.Interfaces
     {
         public bool addCalendarNotifiTime(ICalendarNotifiTime newCalendarNotifiTime);
         public bool deleteCalendarNotifiTimeById(Guid id);
-        public ICalendarEvent[] findCalendarEventsByIdOnAllCalendars(Guid eventId);
+        public ICalendarEvent findCalendarEventsByIdOnAllCalendars(Guid eventId);
         public ICalendarNotifiTime findCalendarNotifiTimeById(Guid id);
         public ICalendarNotifiTime[] findCalendarNotifiTimeByName(string name);
         public ICalendarNotifiTime[] getCalendarNotifiTimeArray();
