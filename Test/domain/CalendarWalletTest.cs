@@ -42,19 +42,40 @@ namespace NotifiTime_API.Test.domain
         [Fact]
         public void addCalendarNotifiTimeToDictionaryWithOneDifferentElementReturnTrue()
         {
+            ICalendarWallet calendarWallet = new CalendarWallet();
+            ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
+            ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             
+            calendarWallet.addCalendarNotifiTime(firstCalendarNotifiTime);
+            bool created = calendarWallet.addCalendarNotifiTime(secondCalendarNotifiTime);
+            
+            Assert.True(created);
         }
         
         [Fact]
         public void deleteCalendarNotifiTimeByIdThatExistsReturnTrue()
         {
+            ICalendarWallet calendarWallet = new CalendarWallet();
+            ICalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime("test calendar");
             
+            calendarWallet.addCalendarNotifiTime(calendarNotifiTime);
+            bool deleted = calendarWallet.deleteCalendarNotifiTimeById(calendarNotifiTime.getId());
+            
+            Assert.True(deleted);
         }
         
         [Fact]
         public void deleteCalendarNotifiTimeByIdThatDoesntExistsReturnFalse()
         {
+            ICalendarWallet calendarWallet = new CalendarWallet();
+            ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
+            ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             
+            calendarWallet.addCalendarNotifiTime(firstCalendarNotifiTime);
+            
+            bool deleted = calendarWallet.deleteCalendarNotifiTimeById(secondCalendarNotifiTime.getId());
+            
+            Assert.False(deleted);
         }
         
         [Fact]
