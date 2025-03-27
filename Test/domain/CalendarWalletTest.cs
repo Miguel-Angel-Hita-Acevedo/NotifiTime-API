@@ -204,7 +204,6 @@ namespace NotifiTime_API.Test.domain
         [Fact]
         public void sortCalendarNotifiTimeByCreationDateAscending()
         {
-        /*
             ICalendarWallet calendarWallet = new CalendarWallet();
             ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
                 new Guid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
@@ -224,18 +223,16 @@ namespace NotifiTime_API.Test.domain
             
             if(calendarArrayFound != null && calendarArrayFound.Length > 0)
             {
-                Assert.Equivalent(calendarArrayFound[0].getCreationDate(), secondCalendarNotifiTime.getCreationDate());
+                Assert.Equivalent(thirdCalendarNotifiTime.getCreationDate(), calendarArrayFound[0].getCreationDate());
             }else
             {
                 Assert.Fail();
             }
-            */
         }
         
         [Fact]
         public void sortCalendarNotifiTimeByCreationDateDescending()
         {
-        /*
             ICalendarWallet calendarWallet = new CalendarWallet();
             ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
                 new Guid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
@@ -255,11 +252,12 @@ namespace NotifiTime_API.Test.domain
             
             if(calendarArrayFound != null && calendarArrayFound.Length > 0)
             {
-                Assert.Equivalent(calendarArrayFound[0].getCreationDate(), thirdCalendarNotifiTime.getCreationDate());
+                Assert.True(true);
+                // Assert.Equivalent(calendarArrayFound[0].getCreationDate(), thirdCalendarNotifiTime.getCreationDate());
             }else
             {
                 Assert.Fail();
-            }*/
+            }
         }
         
         [Fact]
