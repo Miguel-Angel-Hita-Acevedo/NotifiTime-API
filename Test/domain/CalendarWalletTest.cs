@@ -206,13 +206,13 @@ namespace NotifiTime_API.Test.domain
         {
             ICalendarWallet calendarWallet = new CalendarWallet();
             ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
-                new Guid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
                 new DateTime(2004, 1, 1));
             ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime(
-                new Guid(), "second test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, CalendarEvent>(),
                 new DateTime(2006, 2, 1));
             ICalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime(
-                new Guid(), "third test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, CalendarEvent>(),
                 new DateTime(2000, 2, 2));
             
             calendarWallet.addCalendarNotifiTime(firstCalendarNotifiTime);
@@ -235,13 +235,13 @@ namespace NotifiTime_API.Test.domain
         {
             ICalendarWallet calendarWallet = new CalendarWallet();
             ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
-                new Guid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
                 new DateTime(2004, 1, 1));
             ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime(
-                new Guid(), "second test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, CalendarEvent>(),
                 new DateTime(2006, 2, 1));
             ICalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime(
-                new Guid(), "third test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, CalendarEvent>(),
                 new DateTime(2000, 2, 2));
             
             calendarWallet.addCalendarNotifiTime(firstCalendarNotifiTime);
@@ -252,8 +252,7 @@ namespace NotifiTime_API.Test.domain
             
             if(calendarArrayFound != null && calendarArrayFound.Length > 0)
             {
-                Assert.True(true);
-                // Assert.Equivalent(calendarArrayFound[0].getCreationDate(), thirdCalendarNotifiTime.getCreationDate());
+                Assert.Equivalent(calendarArrayFound[0].getCreationDate(), secondCalendarNotifiTime.getCreationDate());
             }else
             {
                 Assert.Fail();
@@ -263,13 +262,59 @@ namespace NotifiTime_API.Test.domain
         [Fact]
         public void sortCalendarNotifiTimeByNameAscending()
         {
+            ICalendarWallet calendarWallet = new CalendarWallet();
+            ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
+                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
+                new DateTime(2004, 1, 1));
+            ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime(
+                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, CalendarEvent>(),
+                new DateTime(2006, 2, 1));
+            ICalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime(
+                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, CalendarEvent>(),
+                new DateTime(2000, 2, 2));
             
+            calendarWallet.addCalendarNotifiTime(secondCalendarNotifiTime);
+            calendarWallet.addCalendarNotifiTime(thirdCalendarNotifiTime);
+            calendarWallet.addCalendarNotifiTime(firstCalendarNotifiTime);
+            
+            ICalendarNotifiTime[] calendarArrayFound = calendarWallet.sortCalendarNotifiTimeListByName(true);
+            
+            if(calendarArrayFound != null && calendarArrayFound.Length > 0)
+            {
+                Assert.Equivalent(calendarArrayFound[0].getName(), firstCalendarNotifiTime.getName());
+            }else
+            {
+                Assert.Fail();
+            }
         }
         
         [Fact]
         public void sortCalendarNotifiTimeByNameDescending()
         {
+            ICalendarWallet calendarWallet = new CalendarWallet();
+            ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
+                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
+                new DateTime(2004, 1, 1));
+            ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime(
+                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, CalendarEvent>(),
+                new DateTime(2006, 2, 1));
+            ICalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime(
+                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, CalendarEvent>(),
+                new DateTime(2000, 2, 2));
             
+            calendarWallet.addCalendarNotifiTime(firstCalendarNotifiTime);
+            calendarWallet.addCalendarNotifiTime(secondCalendarNotifiTime);
+            calendarWallet.addCalendarNotifiTime(thirdCalendarNotifiTime);
+            
+            ICalendarNotifiTime[] calendarArrayFound = calendarWallet.sortCalendarNotifiTimeListByName(false);
+            
+            if(calendarArrayFound != null && calendarArrayFound.Length > 0)
+            {
+                Assert.Equivalent(calendarArrayFound[0].getName(), thirdCalendarNotifiTime.getName());
+            }else
+            {
+                Assert.Fail();
+            }
         }
     }
 }

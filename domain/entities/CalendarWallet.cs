@@ -77,9 +77,11 @@ namespace NotifiTime_API.domain.entities
         {
             List<ICalendarNotifiTime> calendarDictionaryAsList = calendarDictionary.Values.ToList();
             
-            calendarDictionaryAsList.Sort(
+            calendarDictionaryAsList.Sort
+            (
                 (ICalendarNotifiTime oneCalendar, ICalendarNotifiTime otherCalendar) 
-                    => otherCalendar.getCreationDate().CompareTo(oneCalendar.getCreationDate()));
+                    => otherCalendar.getCreationDate().CompareTo(oneCalendar.getCreationDate())
+            );
             ICalendarNotifiTime[] sortedCalendarByCreationDate = calendarDictionaryAsList.ToArray();
             
             if (ascending)
@@ -94,9 +96,11 @@ namespace NotifiTime_API.domain.entities
         {
             List<ICalendarNotifiTime> calendarDictionaryAsList = calendarDictionary.Values.ToList();
             
-            calendarDictionaryAsList.Sort(
+            calendarDictionaryAsList.Sort
+            (
                 (ICalendarNotifiTime oneCalendar, ICalendarNotifiTime otherCalendar) 
-                    => otherCalendar.getName().CompareTo(oneCalendar.getName()));
+                    => otherCalendar.getName().CompareTo(oneCalendar.getName())
+            );
             ICalendarNotifiTime[] sortedCalendarByCreationDate = calendarDictionaryAsList.ToArray();
             
             if (ascending)
