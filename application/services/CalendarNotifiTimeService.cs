@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NotifiTime_API.application.DTOs;
 using NotifiTime_API.application.Interfaces;
+using NotifiTime_API.application.mappers;
 using NotifiTime_API.domain.entities;
 
 namespace NotifiTime_API.application.services
@@ -38,7 +39,7 @@ namespace NotifiTime_API.application.services
             try
             {
                 CalendarNotifiTimeDTO newCalendarNotifitimeDTO = new CalendarNotifiTimeDTO();
-                newCalendarNotifitimeDTO.toDTO(new CalendarNotifiTime(name));
+                CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(new CalendarNotifiTime(name));
                 calendarDictionary.Add(newCalendarNotifitimeDTO.Id, newCalendarNotifitimeDTO);
             } catch(Exception ex)
             {

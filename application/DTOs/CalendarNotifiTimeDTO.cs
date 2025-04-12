@@ -12,12 +12,6 @@ namespace NotifiTime_API.application.DTOs
         private Guid id;
         private string name;
         private Dictionary<Guid, CalendarEvent> calendarEventDictionary;
-        
-        public void toDTO(ICalendarNotifiTime domainCalendarNotifiTime)
-        {
-            Id = domainCalendarNotifiTime.getId();
-            Name = domainCalendarNotifiTime.getName();
-        }
 
         public Guid Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }

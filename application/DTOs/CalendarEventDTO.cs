@@ -16,16 +16,6 @@ namespace NotifiTime_API.application.DTOs
         private string message;
         private TimeIteration timeIteration;
         
-        public void toDTO(ICalendarEvent domainCalendarEvent)
-        {
-            Id = domainCalendarEvent.getId();
-            Name = domainCalendarEvent.getName();
-            DateTime = domainCalendarEvent.getDateTime();
-            SupportedPlatformList = domainCalendarEvent.getSupportedPlatformList();
-            Message = domainCalendarEvent.getMessage();
-            TimeIteration = domainCalendarEvent.getTimeIteration();
-        }
-
         public Guid Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public DateTime DateTime { get => dateTime; set => dateTime = value; }
