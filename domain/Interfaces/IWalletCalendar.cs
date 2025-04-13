@@ -6,7 +6,7 @@ using NotifiTime_API.domain.entities;
 
 namespace NotifiTime_API.domain.Interfaces
 {
-    public interface ICalendarWallet
+    public interface IWalletCalendar
     {
         public bool addCalendarNotifiTime(ICalendarNotifiTime newCalendarNotifiTime);
         public bool deleteCalendarNotifiTimeById(Guid id);

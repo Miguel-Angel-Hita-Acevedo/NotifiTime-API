@@ -6,16 +6,16 @@ using NotifiTime_API.domain.Interfaces;
 
 namespace NotifiTime_API.domain.entities
 {
-    public class CalendarWallet : ICalendarWallet
+    public class WalletCalendar : IWalletCalendar
     {
         public Dictionary<Guid, ICalendarNotifiTime> calendarDictionary = new Dictionary<Guid, ICalendarNotifiTime>();
         
-        public CalendarWallet()
+        public WalletCalendar()
         {
             
         }
         
-        public CalendarWallet(ICalendarNotifiTime[] newCalendarNotifiTimeArray)
+        public WalletCalendar(ICalendarNotifiTime[] newCalendarNotifiTimeArray)
         {
             foreach(ICalendarNotifiTime currentCalendar in newCalendarNotifiTimeArray)
             {

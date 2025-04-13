@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace NotifiTime_API.application.Interfaces
 {
-    public interface ICalendarWalletService
+    public interface IWalletCalendarService
     {
         
     }
