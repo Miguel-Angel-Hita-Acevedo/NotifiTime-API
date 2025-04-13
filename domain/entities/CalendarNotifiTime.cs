@@ -14,7 +14,7 @@ namespace NotifiTime_API.domain.entities
         private Guid id;
         private string name;
         private DateTime creationDate;
-        private Dictionary<Guid, CalendarEvent> calendarEventDictionary;
+        private Dictionary<Guid, EventCalendar> eventCalendarDictionary;
         
         /// <summary>
         /// When user creates an empty calendar from an app connected to this api
@@ -22,7 +22,7 @@ namespace NotifiTime_API.domain.entities
         public CalendarNotifiTime(string name)
         {
             this.name = name;
-            calendarEventDictionary = new Dictionary<Guid, CalendarEvent>();
+            eventCalendarDictionary = new Dictionary<Guid, EventCalendar>();
             id = SequentialGuidGenerator.Instance.NewGuid();
             creationDate = DateTime.Now;
         }
@@ -30,20 +30,20 @@ namespace NotifiTime_API.domain.entities
         /// <summary>
         /// To load data from database, currently not implemented but thought to implement user separate
         /// </summary>
-        public CalendarNotifiTime(Guid id, string name, Dictionary<Guid, CalendarEvent> calendarEventDictionary, DateTime creationDate)
+        public CalendarNotifiTime(Guid id, string name, Dictionary<Guid, EventCalendar> eventCalendarDictionary, DateTime creationDate)
         {
             this.id = id;
             this.name = name;
-            this.calendarEventDictionary = calendarEventDictionary;
+            this.eventCalendarDictionary = eventCalendarDictionary;
             this.creationDate = creationDate;
         }
 
-        public ICalendarEvent createEvent(DateTime date, string name, TimeIteration timeIteration)
+        public IEventCalendar createEvent(DateTime date, string name, TimeIteration timeIteration)
         {
-            CalendarEvent calendarEvent = new CalendarEvent();
-            calendarEvent.setDateTime(date).setName(name).setTimeIteration(timeIteration);
-            calendarEventDictionary.TryAdd(calendarEvent.getId(), calendarEvent);
-            return calendarEvent;
+            EventCalendar eventCalendar = new EventCalendar();
+            eventCalendar.setDateTime(date).setName(name).setTimeIteration(timeIteration);
+            eventCalendarDictionary.TryAdd(eventCalendar.getId(), eventCalendar);
+            return eventCalendar;
         }
 
         public bool deleteEventById(Guid id)
@@ -51,27 +51,27 @@ namespace NotifiTime_API.domain.entities
             bool exist = false;
             try 
             {
-                exist = calendarEventDictionary.ContainsKey(id);
+                exist = eventCalendarDictionary.ContainsKey(id);
                 if(exist)
                 {
-                    calendarEventDictionary.Remove(id);
+                    eventCalendarDictionary.Remove(id);
                 }
             } 
             catch (Exception e)
             {
-                exist = calendarEventDictionary.ContainsKey(id);
+                exist = eventCalendarDictionary.ContainsKey(id);
             }
             return !exist;
         }
 
-        public ICalendarEvent getEventById(Guid id)
+        public IEventCalendar getEventById(Guid id)
         {
-            CalendarEvent calendarEventFound = null;
+            EventCalendar eventCalendarFound = null;
             try
             {
-                calendarEventDictionary.TryGetValue(id, out calendarEventFound);
+                eventCalendarDictionary.TryGetValue(id, out eventCalendarFound);
             } catch (ArgumentNullException exc) {}
-            return calendarEventFound;
+            return eventCalendarFound;
         }
 
         public Guid getId()
@@ -95,29 +95,29 @@ namespace NotifiTime_API.domain.entities
             return this;
         }
 
-        public ICalendarEvent[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
+        public IEventCalendar[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
         {
-            List<ICalendarEvent> calendarEventDictionaryAsList = calendarEventDictionary.Values.ToList<ICalendarEvent>();
-            ICalendarEvent[] sortedCalendarEventsByDate;
+            List<IEventCalendar> eventCalendarDictionaryAsList = eventCalendarDictionary.Values.ToList<IEventCalendar>();
+            IEventCalendar[] sortedEventsCalendarByDate;
             
-            calendarEventDictionaryAsList = calendarEventDictionaryAsList.Where
+            eventCalendarDictionaryAsList = eventCalendarDictionaryAsList.Where
             (
-                currentCalendarEvent => currentCalendarEvent.getDateTime() >= fromDate && currentCalendarEvent.getDateTime() <= toDate
+                currentEventCalendar => currentEventCalendar.getDateTime() >= fromDate && currentEventCalendar.getDateTime() <= toDate
             ).ToList();
             
-            calendarEventDictionaryAsList.Sort((ICalendarEvent oneEvent, ICalendarEvent otherEvent) => otherEvent.getDateTime().CompareTo(oneEvent.getDateTime()));
-            sortedCalendarEventsByDate = calendarEventDictionaryAsList.ToArray();
+            eventCalendarDictionaryAsList.Sort((IEventCalendar oneEvent, IEventCalendar otherEvent) => otherEvent.getDateTime().CompareTo(oneEvent.getDateTime()));
+            sortedEventsCalendarByDate = eventCalendarDictionaryAsList.ToArray();
             
             if (ascending)
             {
-                Array.Reverse(sortedCalendarEventsByDate);
+                Array.Reverse(sortedEventsCalendarByDate);
             }
-            return sortedCalendarEventsByDate;
+            return sortedEventsCalendarByDate;
         }
         
-        public int calendarEventsLength()
+        public int eventsCalendarLength()
         {
-            return calendarEventDictionary.ToArray().Length;
+            return eventCalendarDictionary.ToArray().Length;
         }
     }
 }

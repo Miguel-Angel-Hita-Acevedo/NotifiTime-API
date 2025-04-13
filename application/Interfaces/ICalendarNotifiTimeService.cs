@@ -18,7 +18,7 @@ namespace NotifiTime_API.application.Interfaces
         public CalendarNotifiTimeDTO[] sortCalendarNotifiTimeListByCreationDate(bool ascending);
         public CalendarNotifiTimeDTO findCalendarNotifiTimeById(Guid id);
         public CalendarNotifiTimeDTO[] findCalendarNotifiTimeByName(string name);
-        public CalendarEventDTO findCalendarEventByIdOnAllCalendars(Guid eventId);
+        public EventCalendarDTO findEventCalendarByIdOnAllCalendars(Guid eventId);
         public Exception deleteCalendarNotifiTimeById(Guid id);
     }
 }

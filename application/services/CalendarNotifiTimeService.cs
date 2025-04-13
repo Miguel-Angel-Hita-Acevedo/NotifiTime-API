@@ -64,9 +64,9 @@ namespace NotifiTime_API.application.services
         }
 
 // PENDIENTE DE TERMINAR CALENDAR EVENTSSERVICE
-        public CalendarEventDTO findCalendarEventByIdOnAllCalendars(Guid eventId)
+        public EventCalendarDTO findEventCalendarByIdOnAllCalendars(Guid eventId)
         {
-            List<CalendarEventDTO> calendarsEventFound = new List<CalendarEventDTO>();
+            List<EventCalendarDTO> calendarsEventFound = new List<EventCalendarDTO>();
             CalendarNotifiTimeDTO[] calendarsNotifiTimeArray = calendarDictionary.Values.ToArray();
             foreach(CalendarNotifiTimeDTO currentCalendar in calendarsNotifiTimeArray)
             {

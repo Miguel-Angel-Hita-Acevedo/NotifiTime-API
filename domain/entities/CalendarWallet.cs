@@ -33,18 +33,18 @@ namespace NotifiTime_API.domain.entities
             return calendarDictionary.Remove(id);
         }
 
-        public ICalendarEvent findCalendarEventsByIdOnAllCalendars(Guid eventId)
+        public IEventCalendar findEventsCalendarByIdOnAllCalendars(Guid eventId)
         {
             ICalendarNotifiTime[] calendarArray = calendarDictionary.Values.ToArray();
-            List<ICalendarEvent> calendarEventList = new List<ICalendarEvent>();
-            ICalendarEvent tempCalendarEvent = null;
+            List<IEventCalendar> eventCalendarList = new List<IEventCalendar>();
+            IEventCalendar tempEventCalendar = null;
             int position = 0;
-            while (position < calendarArray.Length && tempCalendarEvent == null)
+            while (position < calendarArray.Length && tempEventCalendar == null)
             {
-                tempCalendarEvent = calendarArray[position].getEventById(eventId);
+                tempEventCalendar = calendarArray[position].getEventById(eventId);
                 position ++;
             }
-            return tempCalendarEvent;
+            return tempEventCalendar;
         }
 
         public ICalendarNotifiTime findCalendarNotifiTimeById(Guid id)

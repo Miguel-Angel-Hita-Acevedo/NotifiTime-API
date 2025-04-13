@@ -7,18 +7,18 @@ using NotifiTime_API.domain.entities;
 
 namespace NotifiTime_API.application.mappers
 {
-    public static class CalendarEventMapper
+    public static class EventCalendarMapper
     {
-        public static CalendarEventDTO calendarEventToDTO(ICalendarEvent domainCalendarEvent)
+        public static EventCalendarDTO eventCalendarToDTO(IEventCalendar domainEventCalendar)
         {
-            CalendarEventDTO calendarEventDTO = new CalendarEventDTO();
-            calendarEventDTO.Id = domainCalendarEvent.getId();
-            calendarEventDTO.Name = domainCalendarEvent.getName();
-            calendarEventDTO.DateTime = domainCalendarEvent.getDateTime();
-            calendarEventDTO.SupportedPlatformList = domainCalendarEvent.getSupportedPlatformList();
-            calendarEventDTO.Message = domainCalendarEvent.getMessage();
-            calendarEventDTO.TimeIteration = domainCalendarEvent.getTimeIteration();
-            return calendarEventDTO;
+            EventCalendarDTO eventCalendarDTO = new EventCalendarDTO();
+            eventCalendarDTO.Id = domainEventCalendar.getId();
+            eventCalendarDTO.Name = domainEventCalendar.getName();
+            eventCalendarDTO.DateTime = domainEventCalendar.getDateTime();
+            eventCalendarDTO.SupportedPlatformList = domainEventCalendar.getSupportedPlatformList();
+            eventCalendarDTO.Message = domainEventCalendar.getMessage();
+            eventCalendarDTO.TimeIteration = domainEventCalendar.getTimeIteration();
+            return eventCalendarDTO;
         }
     }
 }

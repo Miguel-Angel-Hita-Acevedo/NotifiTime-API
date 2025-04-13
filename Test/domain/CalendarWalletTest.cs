@@ -30,7 +30,7 @@ namespace NotifiTime_API.Test.domain
             ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime(
                 firstCalendarNotifiTime.getId(), 
                 "second test calendar",
-                (new Dictionary<Guid, CalendarEvent>()),
+                (new Dictionary<Guid, EventCalendar>()),
                 firstCalendarNotifiTime.getCreationDate()
             );
             
@@ -80,7 +80,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void findCalendarEventsByIdOn3CalendarsThatExists()
+        public void findEventsCalendarByIdOn3CalendarsThatExists()
         {
             ICalendarWallet calendarWallet = new CalendarWallet();
             ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
@@ -94,13 +94,13 @@ namespace NotifiTime_API.Test.domain
             calendarWallet.addCalendarNotifiTime(secondCalendarNotifiTime);
             calendarWallet.addCalendarNotifiTime(thirdCalendarNotifiTime);
             
-            ICalendarEvent calendarEventToFind = thirdCalendarNotifiTime.createEvent(DateTime.Now, "third event", TimeIteration.None);
+            IEventCalendar eventCalendarToFind = thirdCalendarNotifiTime.createEvent(DateTime.Now, "third event", TimeIteration.None);
             
-            ICalendarEvent found = calendarWallet.findCalendarEventsByIdOnAllCalendars(calendarEventToFind.getId());
+            IEventCalendar found = calendarWallet.findEventsCalendarByIdOnAllCalendars(eventCalendarToFind.getId());
             
             if(found != null)
             {
-                Assert.Equivalent(found, calendarEventToFind.getId());
+                Assert.Equivalent(found, eventCalendarToFind.getId());
             }else
             {
                 Assert.Fail();
@@ -108,7 +108,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void findCalendarEventsByIdOn3CalendarsThatDoesntExists()
+        public void findEventsCalendarByIdOn3CalendarsThatDoesntExists()
         {
             
             ICalendarWallet calendarWallet = new CalendarWallet();
@@ -122,9 +122,9 @@ namespace NotifiTime_API.Test.domain
             calendarWallet.addCalendarNotifiTime(secondCalendarNotifiTime);
             calendarWallet.addCalendarNotifiTime(thirdCalendarNotifiTime);
             
-            ICalendarEvent calendarEventToFind = new CalendarEvent();
+            IEventCalendar eventCalendarToFind = new EventCalendar();
             
-            ICalendarEvent found = calendarWallet.findCalendarEventsByIdOnAllCalendars(calendarEventToFind.getId());
+            IEventCalendar found = calendarWallet.findEventsCalendarByIdOnAllCalendars(eventCalendarToFind.getId());
             
             Assert.Null(found);
         }
@@ -206,13 +206,13 @@ namespace NotifiTime_API.Test.domain
         {
             ICalendarWallet calendarWallet = new CalendarWallet();
             ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2004, 1, 1));
             ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2006, 2, 1));
             ICalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2000, 2, 2));
             
             calendarWallet.addCalendarNotifiTime(firstCalendarNotifiTime);
@@ -235,13 +235,13 @@ namespace NotifiTime_API.Test.domain
         {
             ICalendarWallet calendarWallet = new CalendarWallet();
             ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2004, 1, 1));
             ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2006, 2, 1));
             ICalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2000, 2, 2));
             
             calendarWallet.addCalendarNotifiTime(firstCalendarNotifiTime);
@@ -264,13 +264,13 @@ namespace NotifiTime_API.Test.domain
         {
             ICalendarWallet calendarWallet = new CalendarWallet();
             ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2004, 1, 1));
             ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2006, 2, 1));
             ICalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2000, 2, 2));
             
             calendarWallet.addCalendarNotifiTime(secondCalendarNotifiTime);
@@ -293,13 +293,13 @@ namespace NotifiTime_API.Test.domain
         {
             ICalendarWallet calendarWallet = new CalendarWallet();
             ICalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "first test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2004, 1, 1));
             ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "second test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2006, 2, 1));
             ICalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime(
-                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, CalendarEvent>(),
+                Guid.NewGuid(), "third test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2000, 2, 2));
             
             calendarWallet.addCalendarNotifiTime(firstCalendarNotifiTime);

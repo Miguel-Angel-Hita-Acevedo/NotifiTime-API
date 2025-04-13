@@ -10,21 +10,21 @@ using NotifiTime_API.domain.Enum;
 
 namespace NotifiTime_API.application.services
 {
-    public class CalendarEventsService : ICalendarEventsService
+    public class EventsCalendarService : IEventsCalendarService
     {
         private CalendarNotifiTimeDTO calendarNotifiTimeDTO = new CalendarNotifiTimeDTO();
         
-        public CalendarEventsService(ICalendarNotifiTime calendarNotifiTime)
+        public EventsCalendarService(ICalendarNotifiTime calendarNotifiTime)
         {
             CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(calendarNotifiTime);
         }
     
-        public int calendarEventsLength()
+        public int eventsCalendarLength()
         {
             throw new NotImplementedException();
         }
 
-        public CalendarEventDTO createEvent(DateTime date, string name, TimeIteration timeIteration)
+        public EventCalendarDTO createEvent(DateTime date, string name, TimeIteration timeIteration)
         {
             throw new NotImplementedException();
         }
@@ -34,12 +34,12 @@ namespace NotifiTime_API.application.services
             throw new NotImplementedException();
         }
 
-        public CalendarEventDTO getEventById(Guid id)
+        public EventCalendarDTO getEventById(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public CalendarEventDTO[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
+        public EventCalendarDTO[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
         {
             throw new NotImplementedException();
         }

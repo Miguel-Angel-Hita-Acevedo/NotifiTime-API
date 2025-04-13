@@ -25,7 +25,7 @@ namespace NotifiTime_API.Test
         {
             string name = "Test calendar";
             CalendarNotifiTime testCalendar = new CalendarNotifiTime(name);
-            ICalendarEvent testEvent = testCalendar.createEvent(
+            IEventCalendar testEvent = testCalendar.createEvent(
                 new DateTime(2024, 3, 7, 14, 45, 0),
                 "Test event",
                 TimeIteration.None
@@ -44,7 +44,7 @@ namespace NotifiTime_API.Test
                 TimeIteration.None
             );
             
-            ICalendarEvent testEvent = testCalendar.createEvent(
+            IEventCalendar testEvent = testCalendar.createEvent(
                 new DateTime(2023, 4, 5, 0, 45, 0),
                 "Test event 2",
                 TimeIteration.None
@@ -58,7 +58,7 @@ namespace NotifiTime_API.Test
             
             testCalendar.deleteEventById(testEvent.getId());
             
-            Assert.True(testCalendar.calendarEventsLength() == 2);
+            Assert.True(testCalendar.eventsCalendarLength() == 2);
         }
     
         [Fact]
@@ -72,7 +72,7 @@ namespace NotifiTime_API.Test
                 TimeIteration.None
             );
             
-            ICalendarEvent testEvent = testCalendar.createEvent(
+            IEventCalendar testEvent = testCalendar.createEvent(
                 new DateTime(2023, 4, 5, 0, 45, 0),
                 "Test event 2",
                 TimeIteration.None
@@ -117,7 +117,7 @@ namespace NotifiTime_API.Test
                 TimeIteration.None
             );
             
-            ICalendarEvent[] testEventSortedArray = testCalendar.sortEventsByDate(
+            IEventCalendar[] testEventSortedArray = testCalendar.sortEventsByDate(
                 new DateTime(1,1,1),
                 new DateTime(9999,1,1),
                 false
@@ -152,7 +152,7 @@ namespace NotifiTime_API.Test
                 TimeIteration.None
             );
             
-            ICalendarEvent[] testEventSortedArray = testCalendar.sortEventsByDate(
+            IEventCalendar[] testEventSortedArray = testCalendar.sortEventsByDate(
                 new DateTime(1,1,1),
                 new DateTime(9999,1,1),
                 true
@@ -187,13 +187,13 @@ namespace NotifiTime_API.Test
                 TimeIteration.None
             );
             
-            ICalendarEvent[] calendarEventsTestArray = testCalendar.sortEventsByDate(
+            IEventCalendar[] eventsCalendarTestArray = testCalendar.sortEventsByDate(
                 new DateTime(2024,1,1),
                 new DateTime(9999,1,1),
                 false
                 );
             
-            Assert.True(calendarEventsTestArray.Length == 2);
+            Assert.True(eventsCalendarTestArray.Length == 2);
         }
     }
 }

@@ -6,7 +6,7 @@ using NotifiTime_API.domain.Enum;
 
 namespace NotifiTime_API.domain.entities
 {
-    public interface ICalendarEvent
+    public interface IEventCalendar
     {
         // atributos
         public Guid getId();
@@ -15,11 +15,11 @@ namespace NotifiTime_API.domain.entities
         public TimeIteration getTimeIteration();
         public List<SupportedPlatform> getSupportedPlatformList();
         public string getMessage();
-        public ICalendarEvent setName(string newName);
-        public ICalendarEvent setDateTime(DateTime newDateTime);
-        public ICalendarEvent setTimeIteration(TimeIteration newTimeIteration);
-        public ICalendarEvent setSupportedPlatformList(List<SupportedPlatform> supportedPlatformList);
-        public ICalendarEvent addSupportedPlatform(SupportedPlatform newSupportedPlatform);
-        public ICalendarEvent setMessage(string newMessage);
+        public IEventCalendar setName(string newName);
+        public IEventCalendar setDateTime(DateTime newDateTime);
+        public IEventCalendar setTimeIteration(TimeIteration newTimeIteration);
+        public IEventCalendar setSupportedPlatformList(List<SupportedPlatform> supportedPlatformList);
+        public IEventCalendar addSupportedPlatform(SupportedPlatform newSupportedPlatform);
+        public IEventCalendar setMessage(string newMessage);
     }
 }

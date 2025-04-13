@@ -7,7 +7,7 @@ using NotifiTime_API.domain.Enum;
 
 namespace NotifiTime_API.application.DTOs
 {
-    public class CalendarEventDTO
+    public class EventCalendarDTO
     {
         private Guid id;
         private string name;

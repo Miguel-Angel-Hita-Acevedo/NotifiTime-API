@@ -8,7 +8,7 @@ using System.Runtime.Versioning;
 
 namespace NotifiTime_API.domain.entities
 {
-    public class CalendarEvent : ICalendarEvent
+    public class EventCalendar : IEventCalendar
     {
         private readonly Guid id;
         private string name;
@@ -17,7 +17,7 @@ namespace NotifiTime_API.domain.entities
         private string message;
         private TimeIteration timeIteration;
 
-        public CalendarEvent(){
+        public EventCalendar(){
             id = SequentialGuidGenerator.Instance.NewGuid();
         }
 
@@ -51,37 +51,37 @@ namespace NotifiTime_API.domain.entities
             return timeIteration;
         }
 
-        public ICalendarEvent setDateTime(DateTime newDateTime)
+        public IEventCalendar setDateTime(DateTime newDateTime)
         {
             dateTime = newDateTime;
             return this;
         }
 
-        public ICalendarEvent setMessage(string newMessage)
+        public IEventCalendar setMessage(string newMessage)
         {
             message = newMessage;
             return this;
         }
 
-        public ICalendarEvent setName(string newName)
+        public IEventCalendar setName(string newName)
         {
             name = newName;
             return this;
         }
 
-        public ICalendarEvent setSupportedPlatformList(List<SupportedPlatform> newSupportedPlatformList)
+        public IEventCalendar setSupportedPlatformList(List<SupportedPlatform> newSupportedPlatformList)
         {
             supportedPlatformList = newSupportedPlatformList;
             return this;
         }
 
-        public ICalendarEvent setTimeIteration(TimeIteration newTimeIteration)
+        public IEventCalendar setTimeIteration(TimeIteration newTimeIteration)
         {
             timeIteration = newTimeIteration;
             return this;
         }
 
-        public ICalendarEvent addSupportedPlatform(SupportedPlatform newSupportedPlatform)
+        public IEventCalendar addSupportedPlatform(SupportedPlatform newSupportedPlatform)
         {
             supportedPlatformList.Add(newSupportedPlatform);
             return this;
