@@ -7,18 +7,13 @@ using NotifiTime_API.domain.Enum;
 
 namespace NotifiTime_API.application.Interfaces
 {
-    // To manage calendars of one user
+    // To manage events inside a calendar
     public interface ICalendarNotifiTimeService
     {
-        public Exception updateCalendarsOfUser();
-        public CalendarNotifiTimeDTO createCalendarNotifiTime(string name);
-        public Exception addCalendarNotifiTime(CalendarNotifiTimeDTO newCalendarNotifiTime);
-        public CalendarNotifiTimeDTO[] getCalendarNotifiTimeArray();
-        public CalendarNotifiTimeDTO[] sortCalendarNotifiTimeListByName(bool ascending);
-        public CalendarNotifiTimeDTO[] sortCalendarNotifiTimeListByCreationDate(bool ascending);
-        public CalendarNotifiTimeDTO findCalendarNotifiTimeById(Guid id);
-        public CalendarNotifiTimeDTO[] findCalendarNotifiTimeByName(string name);
-        public EventCalendarDTO findEventCalendarByIdOnAllCalendars(Guid eventId);
-        public Exception deleteCalendarNotifiTimeById(Guid id);
+        public EventCalendarDTO createEvent(DateTime date, string name, TimeIteration timeIteration);
+        public EventCalendarDTO getEventById(Guid id);
+        public EventCalendarDTO[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending);
+        public bool deleteEventById(Guid id);
+        public int eventsCalendarLength();
     }
 }
