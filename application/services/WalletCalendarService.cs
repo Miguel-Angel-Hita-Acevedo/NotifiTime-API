@@ -63,7 +63,7 @@ namespace NotifiTime_API.application.services
             return null;
         }
 
-// PENDIENTE DE TERMINAR CALENDAR EVENTSSERVICE
+// PENDIENTE DE TERMINAR CALENDAR CALENDARNOTIFITIMESERVICE
         public EventCalendarDTO findEventCalendarByIdOnAllCalendars(Guid eventId)
         {
             List<EventCalendarDTO> calendarsEventFound = new List<EventCalendarDTO>();

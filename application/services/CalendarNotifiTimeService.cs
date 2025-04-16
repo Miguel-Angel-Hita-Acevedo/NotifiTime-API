@@ -12,36 +12,44 @@ namespace NotifiTime_API.application.services
 {
     public class CalendarNotifiTimeService : ICalendarNotifiTimeService
     {
-        private CalendarNotifiTimeDTO calendarNotifiTimeDTO = new CalendarNotifiTimeDTO();
+        private ICalendarNotifiTime calendarNotifiTime;
         
         public CalendarNotifiTimeService(ICalendarNotifiTime calendarNotifiTime)
         {
-            CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(calendarNotifiTime);
+            this.calendarNotifiTime = calendarNotifiTime;
         }
     
         public int eventsCalendarLength()
         {
-            throw new NotImplementedException();
+            return calendarNotifiTime.eventsCalendarLength();
         }
 
         public EventCalendarDTO createEvent(DateTime date, string name, TimeIteration timeIteration)
         {
-            throw new NotImplementedException();
+            EventCalendar eventCalendar = (EventCalendar)calendarNotifiTime.createEvent(date, name, timeIteration);
+            return EventCalendarMapper.eventCalendarToDTO(eventCalendar);
         }
 
         public bool deleteEventById(Guid id)
         {
-            throw new NotImplementedException();
+            return calendarNotifiTime.deleteEventById(id);
         }
 
         public EventCalendarDTO getEventById(Guid id)
         {
-            throw new NotImplementedException();
+            EventCalendar eventCalendar = (EventCalendar)calendarNotifiTime.getEventById(id);
+            return EventCalendarMapper.eventCalendarToDTO (eventCalendar);
         }
 
         public EventCalendarDTO[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
         {
-            throw new NotImplementedException();
+            EventCalendar[] eventCalendar = (EventCalendar[])calendarNotifiTime.sortEventsByDate(fromDate, toDate, ascending);
+            List<EventCalendarDTO> returnEventCalendarDTO = new List<EventCalendarDTO>();
+            foreach(EventCalendar currentEventCalendar in eventCalendar)
+            {
+                returnEventCalendarDTO.Add(EventCalendarMapper.eventCalendarToDTO(currentEventCalendar));
+            }
+            return returnEventCalendarDTO.ToArray();
         }
     }
 }
