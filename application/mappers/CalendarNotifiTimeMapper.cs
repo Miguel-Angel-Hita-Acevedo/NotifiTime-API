@@ -16,5 +16,24 @@ namespace NotifiTime_API.application.mappers
             calendarNotifiTimeDTO.Name = domainCalendarNotifiTime.getName();
             return calendarNotifiTimeDTO;
         }
+        
+        public static CalendarNotifiTime calendarNotifiTimeDTOToDomainObject(CalendarNotifiTimeDTO calendarDto)
+        {
+            Dictionary<Guid, EventCalendar> eventCalendarsDictionary = new Dictionary<Guid, EventCalendar>();
+            foreach(EventCalendarDTO currentEventDto in calendarDto.EventCalendarDictionary.Values)
+            {
+                eventCalendarsDictionary.Add(
+                    currentEventDto.Id,
+                    EventCalendarMapper.eventCalendarDtoToDomainObject(currentEventDto)
+                );
+            }
+            CalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime(
+                calendarDto.Id,
+                calendarDto.Name,
+                eventCalendarsDictionary,
+                calendarDto.CreationDate
+            );
+            return calendarNotifiTime;
+        }
     }
 }

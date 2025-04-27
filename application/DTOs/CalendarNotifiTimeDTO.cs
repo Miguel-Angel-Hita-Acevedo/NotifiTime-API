@@ -12,9 +12,11 @@ namespace NotifiTime_API.application.DTOs
         private Guid id;
         private string name;
         private Dictionary<Guid, EventCalendarDTO> eventCalendarDictionary;
+        private DateTime creationDate;
 
         public Guid Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
         public Dictionary<Guid, EventCalendarDTO> EventCalendarDictionary { get => eventCalendarDictionary; set => eventCalendarDictionary = value; }
+        public DateTime CreationDate { get => creationDate; set => creationDate = value; }
     }
 }

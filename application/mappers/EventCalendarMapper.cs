@@ -20,5 +20,18 @@ namespace NotifiTime_API.application.mappers
             eventCalendarDTO.TimeIteration = domainEventCalendar.getTimeIteration();
             return eventCalendarDTO;
         }
+        
+        public static EventCalendar eventCalendarDtoToDomainObject(EventCalendarDTO eventCalendarDto)
+        {
+            EventCalendar eventCalendar = new EventCalendar(
+                eventCalendarDto.Id,
+                eventCalendarDto.Name,
+                eventCalendarDto.DateTime,
+                eventCalendarDto.SupportedPlatformList,
+                eventCalendarDto.Message,
+                eventCalendarDto.TimeIteration
+            );
+            return eventCalendar;
+        }
     }
 }

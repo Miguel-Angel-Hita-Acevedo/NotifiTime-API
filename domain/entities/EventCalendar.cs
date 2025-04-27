@@ -20,6 +20,16 @@ namespace NotifiTime_API.domain.entities
         public EventCalendar(){
             id = SequentialGuidGenerator.Instance.NewGuid();
         }
+        
+        public EventCalendar(Guid id, string name, DateTime dateTime, List<SupportedPlatform> supportedPlatformList, string message, TimeIteration timeIteration)
+        {
+            this.id = id;
+            this.name = name;
+            this.dateTime = dateTime;
+            this.supportedPlatformList = supportedPlatformList;
+            this.message = message;
+            this.timeIteration = timeIteration;
+        }
 
         public DateTime getDateTime()
         {
