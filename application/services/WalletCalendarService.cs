@@ -11,100 +11,87 @@ namespace NotifiTime_API.application.services
 {
     public class WalletCalendarService : IWalletCalendarService
     {
-        Dictionary<Guid, CalendarNotifiTimeDTO> calendarDictionary = new Dictionary<Guid, CalendarNotifiTimeDTO>();
+        // Dictionary<Guid, CalendarNotifiTimeDTO> calendarDictionary = new Dictionary<Guid, CalendarNotifiTimeDTO>();
+        private WalletCalendar walletCalendar;
 
-        public WalletCalendarService()
+        public WalletCalendarService(CalendarNotifiTimeDTO[] calendarNotifiTimeDtoArray)
         {
-            updateCalendarsOfUser();
+            walletCalendar = new WalletCalendar();
+            updateCalendarsOfUser(calendarNotifiTimeDtoArray);
         }
         
         public Exception addCalendarNotifiTime(CalendarNotifiTimeDTO newCalendarNotifiTime)
         {
-            try
-            {
-                if(!calendarDictionary.ContainsKey(newCalendarNotifiTime.Id))
-                {
-                    calendarDictionary.Add(newCalendarNotifiTime.Id, newCalendarNotifiTime);
-                }
-            } catch(Exception ex)
-            {
-                return ex;
-            }
-            return null;
+            return walletCalendar.addCalendarNotifiTime(
+                CalendarNotifiTimeMapper.calendarNotifiTimeDTOToDomainObject(
+                    newCalendarNotifiTime
+                )
+            );
         }
 
         public CalendarNotifiTimeDTO createCalendarNotifiTime(string name)
         {
-            CalendarNotifiTimeDTO newCalendarNotifiTime = null;
-            try
-            {
-                CalendarNotifiTimeDTO newCalendarNotifitimeDTO = new CalendarNotifiTimeDTO();
-                CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(new CalendarNotifiTime(name));
-                calendarDictionary.Add(newCalendarNotifitimeDTO.Id, newCalendarNotifitimeDTO);
-            } catch(Exception ex)
-            {
-                return null;
-            }
-            return newCalendarNotifiTime;
+            CalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime(name);
+            walletCalendar.addCalendarNotifiTime(calendarNotifiTime);
+            return CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(calendarNotifiTime);
         }
 
         public Exception deleteCalendarNotifiTimeById(Guid id)
         {
-            try
-            {
-                if(!calendarDictionary.ContainsKey(id))
-                {
-                    calendarDictionary.Remove(id);
-                }
-            } catch(Exception ex)
-            {
-                return ex;
-            }
-            return null;
+            return walletCalendar.deleteCalendarNotifiTimeById(id);
         }
-
-// PENDIENTE DE TERMINAR CALENDAR CALENDARNOTIFITIMESERVICE
         public EventCalendarDTO findEventCalendarByIdOnAllCalendars(Guid eventId)
         {
-            List<EventCalendarDTO> calendarsEventFound = new List<EventCalendarDTO>();
-            CalendarNotifiTimeDTO[] calendarsNotifiTimeArray = calendarDictionary.Values.ToArray();
-            foreach(CalendarNotifiTimeDTO currentCalendar in calendarsNotifiTimeArray)
-            {
-                // pending finish of calendareventsservice
-            }
-            return null;
+            EventCalendar eventCalendar = (EventCalendar)walletCalendar.findEventCalendarByIdOnAllCalendars(eventId);
+            return EventCalendarMapper.eventCalendarToDTO(eventCalendar);
         }
 
         public CalendarNotifiTimeDTO findCalendarNotifiTimeById(Guid id)
         {
-            throw new NotImplementedException();
+            CalendarNotifiTime calendarNotifiTime 
+                = (CalendarNotifiTime)walletCalendar.findCalendarNotifiTimeById(id);
+            return CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(calendarNotifiTime);
         }
 
         public CalendarNotifiTimeDTO[] findCalendarNotifiTimeByName(string name)
         {
-            throw new NotImplementedException();
+            CalendarNotifiTime[] calendarNotifiTimeArray 
+                = (CalendarNotifiTime[])walletCalendar.findCalendarNotifiTimeByName(name);
+            return CalendarNotifiTimeMapper.calendarNotifiTimesToDtoArray(calendarNotifiTimeArray);
         }
 
         public CalendarNotifiTimeDTO[] getCalendarNotifiTimeArray()
         {
-            throw new NotImplementedException();
+            CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.getCalendarNotifiTimeArray();
+            return CalendarNotifiTimeMapper.calendarNotifiTimesToDtoArray(calendarNotifiTimeArray);
         }
 
         public CalendarNotifiTimeDTO[] sortCalendarNotifiTimeListByCreationDate(bool ascending)
         {
-            throw new NotImplementedException();
+            CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.sortCalendarNotifiTimeListByCreationDate(ascending);
+            return CalendarNotifiTimeMapper.calendarNotifiTimesToDtoArray(calendarNotifiTimeArray);
         }
 
         public CalendarNotifiTimeDTO[] sortCalendarNotifiTimeListByName(bool ascending)
         {
-            throw new NotImplementedException();
+            CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.sortCalendarNotifiTimeListByName(ascending);
+            return CalendarNotifiTimeMapper.calendarNotifiTimesToDtoArray(calendarNotifiTimeArray);
         }
 
-        public Exception updateCalendarsOfUser()
+        public Exception updateCalendarsOfUser(CalendarNotifiTimeDTO[] calendarNotifiTimeDtoArray)
         {
-            calendarDictionary = new Dictionary<Guid, CalendarNotifiTimeDTO>();
-            // update of calendarDictionary from database if is data saved previusly
-            throw new NotImplementedException();
+            try
+            {
+                if(calendarNotifiTimeDtoArray != null)
+                {
+                    CalendarNotifiTime[] calendarNotifiTimes = CalendarNotifiTimeMapper.calendarNotifiTimesDtoToDomainObjectArray(calendarNotifiTimeDtoArray);
+                    walletCalendar = new WalletCalendar(calendarNotifiTimes);
+                }
+            } catch(Exception e)
+            {
+                return e;
+            }
+            return null;
         }
     }
 }

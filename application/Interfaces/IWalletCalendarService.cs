@@ -10,7 +10,7 @@ namespace NotifiTime_API.application.Interfaces
     // To manage calendars of one user
     public interface IWalletCalendarService
     {
-        public Exception updateCalendarsOfUser();
+        public Exception updateCalendarsOfUser(CalendarNotifiTimeDTO[] calendarNotifiTimeDtoArray);
         public CalendarNotifiTimeDTO createCalendarNotifiTime(string name);
         public Exception addCalendarNotifiTime(CalendarNotifiTimeDTO newCalendarNotifiTime);
         public CalendarNotifiTimeDTO[] getCalendarNotifiTimeArray();

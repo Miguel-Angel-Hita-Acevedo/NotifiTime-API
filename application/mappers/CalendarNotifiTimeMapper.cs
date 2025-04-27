@@ -17,6 +17,20 @@ namespace NotifiTime_API.application.mappers
             return calendarNotifiTimeDTO;
         }
         
+        public static CalendarNotifiTimeDTO[] calendarNotifiTimesToDtoArray(ICalendarNotifiTime[] domainCalendarNotifiTimeArray)
+        {
+            List<CalendarNotifiTimeDTO> calendarNotifiTimeDTOList = new List<CalendarNotifiTimeDTO>();
+            foreach(CalendarNotifiTime calendarNotifiTime in domainCalendarNotifiTimeArray)
+            {
+                calendarNotifiTimeDTOList.Add(
+                    calendarNotifiTimeToDTO(
+                        calendarNotifiTime
+                    )
+                );
+            }
+            return calendarNotifiTimeDTOList.ToArray();
+        }
+        
         public static CalendarNotifiTime calendarNotifiTimeDTOToDomainObject(CalendarNotifiTimeDTO calendarDto)
         {
             Dictionary<Guid, EventCalendar> eventCalendarsDictionary = new Dictionary<Guid, EventCalendar>();
@@ -34,6 +48,20 @@ namespace NotifiTime_API.application.mappers
                 calendarDto.CreationDate
             );
             return calendarNotifiTime;
+        }
+
+        public static CalendarNotifiTime[] calendarNotifiTimesDtoToDomainObjectArray(CalendarNotifiTimeDTO[] domainCalendarNotifiTimeDtoArray)
+        {
+            List<CalendarNotifiTime> calendarNotifiTimeList = new List<CalendarNotifiTime>();
+            foreach(CalendarNotifiTimeDTO calendarNotifiTimeDto in domainCalendarNotifiTimeDtoArray)
+            {
+                calendarNotifiTimeList.Add(
+                    calendarNotifiTimeDTOToDomainObject(
+                        calendarNotifiTimeDto
+                    )
+                );
+            }
+            return calendarNotifiTimeList.ToArray();
         }
     }
 }

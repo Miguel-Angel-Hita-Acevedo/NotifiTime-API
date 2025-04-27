@@ -17,7 +17,7 @@ namespace NotifiTime_API.Test.domain
             IWalletCalendar walletCalendar = new WalletCalendar();
             ICalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime("test calendar");
             
-            bool created = walletCalendar.addCalendarNotifiTime(calendarNotifiTime);
+            bool created = walletCalendar.addCalendarNotifiTime(calendarNotifiTime) == null;
             
             Assert.True(created);
         }
@@ -35,7 +35,7 @@ namespace NotifiTime_API.Test.domain
             );
             
             walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            bool created = walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
+            bool created = walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime) == null;
             
             Assert.False(created);
         }
@@ -48,7 +48,7 @@ namespace NotifiTime_API.Test.domain
             ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             
             walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            bool created = walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
+            bool created = walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime) == null;
             
             Assert.True(created);
         }
@@ -60,7 +60,7 @@ namespace NotifiTime_API.Test.domain
             ICalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime("test calendar");
             
             walletCalendar.addCalendarNotifiTime(calendarNotifiTime);
-            bool deleted = walletCalendar.deleteCalendarNotifiTimeById(calendarNotifiTime.getId());
+            bool deleted = walletCalendar.deleteCalendarNotifiTimeById(calendarNotifiTime.getId()) == null;
             
             Assert.True(deleted);
         }
@@ -74,7 +74,7 @@ namespace NotifiTime_API.Test.domain
             
             walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
             
-            bool deleted = walletCalendar.deleteCalendarNotifiTimeById(secondCalendarNotifiTime.getId());
+            bool deleted = walletCalendar.deleteCalendarNotifiTimeById(secondCalendarNotifiTime.getId()) == null;
             
             Assert.False(deleted);
         }

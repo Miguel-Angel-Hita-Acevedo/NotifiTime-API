@@ -23,14 +23,18 @@ namespace NotifiTime_API.domain.entities
             }
         }
     
-        public bool addCalendarNotifiTime(ICalendarNotifiTime newCalendarNotifiTime)
+        public Exception addCalendarNotifiTime(ICalendarNotifiTime newCalendarNotifiTime)
         {
-            return calendarDictionary.TryAdd(newCalendarNotifiTime.getId(), newCalendarNotifiTime);
+            if(calendarDictionary.TryAdd(newCalendarNotifiTime.getId(), newCalendarNotifiTime))
+                return new Exception();
+            return null;
         }
 
-        public bool deleteCalendarNotifiTimeById(Guid id)
+        public Exception deleteCalendarNotifiTimeById(Guid id)
         {
-            return calendarDictionary.Remove(id);
+            if(!calendarDictionary.Remove(id))
+                return new Exception();
+            return null;
         }
 
         public IEventCalendar findEventCalendarByIdOnAllCalendars(Guid eventId)
