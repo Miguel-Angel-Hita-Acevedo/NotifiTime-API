@@ -17,7 +17,7 @@ namespace NotifiTime_API.Test.domain
             IWalletCalendar walletCalendar = new WalletCalendar();
             ICalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime("test calendar");
             
-            bool created = walletCalendar.addCalendarNotifiTime(calendarNotifiTime) == null;
+            bool created = walletCalendar.addCalendarNotifiTime(calendarNotifiTime) != null;
             
             Assert.True(created);
         }
@@ -35,7 +35,7 @@ namespace NotifiTime_API.Test.domain
             );
             
             walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            bool created = walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime) == null;
+            bool created = walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime) != null;
             
             Assert.False(created);
         }
@@ -48,7 +48,7 @@ namespace NotifiTime_API.Test.domain
             ICalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             
             walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            bool created = walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime) == null;
+            bool created = walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime) != null;
             
             Assert.True(created);
         }
