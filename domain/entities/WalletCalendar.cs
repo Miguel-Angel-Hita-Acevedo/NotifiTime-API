@@ -33,7 +33,7 @@ namespace NotifiTime_API.domain.entities
             return calendarDictionary.Remove(id);
         }
 
-        public IEventCalendar findEventsCalendarByIdOnAllCalendars(Guid eventId)
+        public IEventCalendar findEventCalendarByIdOnAllCalendars(Guid eventId)
         {
             ICalendarNotifiTime[] calendarArray = calendarDictionary.Values.ToArray();
             List<IEventCalendar> eventCalendarList = new List<IEventCalendar>();

@@ -96,7 +96,7 @@ namespace NotifiTime_API.Test.domain
             
             IEventCalendar eventCalendarToFind = thirdCalendarNotifiTime.createEvent(DateTime.Now, "third event", TimeIteration.None);
             
-            IEventCalendar found = walletCalendar.findEventsCalendarByIdOnAllCalendars(eventCalendarToFind.getId());
+            IEventCalendar found = walletCalendar.findEventCalendarByIdOnAllCalendars(eventCalendarToFind.getId());
             
             if(found != null)
             {
@@ -124,7 +124,7 @@ namespace NotifiTime_API.Test.domain
             
             IEventCalendar eventCalendarToFind = new EventCalendar();
             
-            IEventCalendar found = walletCalendar.findEventsCalendarByIdOnAllCalendars(eventCalendarToFind.getId());
+            IEventCalendar found = walletCalendar.findEventCalendarByIdOnAllCalendars(eventCalendarToFind.getId());
             
             Assert.Null(found);
         }
