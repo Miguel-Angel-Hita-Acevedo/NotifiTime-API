@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NotifiTime_API.application.DTOs;
-using NotifiTime_API.application.Interfaces;
 using NotifiTime_API.application.mappers;
 using NotifiTime_API.domain.entities;
 using NotifiTime_API.domain.Enum;
 
 namespace NotifiTime_API.application.services
 {
-    public class CalendarNotifiTimeService : ICalendarNotifiTimeService
+    public class CalendarNotifiTimeService
     {
         private ICalendarNotifiTime calendarNotifiTime;
         

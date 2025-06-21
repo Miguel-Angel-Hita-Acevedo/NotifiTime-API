@@ -3,13 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NotifiTime_API.application.DTOs;
-using NotifiTime_API.application.Interfaces;
 using NotifiTime_API.application.mappers;
 using NotifiTime_API.domain.entities;
 
 namespace NotifiTime_API.application.services
 {
-    public class WalletCalendarService : IWalletCalendarService
+    public class WalletCalendarService
     {
         // Dictionary<Guid, CalendarNotifiTimeDTO> calendarDictionary = new Dictionary<Guid, CalendarNotifiTimeDTO>();
         private WalletCalendar walletCalendar;
