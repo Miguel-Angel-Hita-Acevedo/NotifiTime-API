@@ -55,10 +55,25 @@ namespace NotifiTime_API.domain.entities
         {
             return supportedPlatformList;
         }
+        
+        public List<string> getSupportedPlatformListToStringArray()
+        {
+            List<string> supportedPlatformListStringArray = new List<string>();
+            foreach(SupportedPlatform currentSupportedPlatform in supportedPlatformList)
+            {
+                supportedPlatformListStringArray.Add(currentSupportedPlatform.ToString());
+            }
+            return supportedPlatformListStringArray;
+        }
 
         public TimeIteration getTimeIteration()
         {
             return timeIteration;
+        }
+        
+        public string getTimeIterationToString()
+        {
+            return timeIteration.ToString();
         }
 
         public IEventCalendar setDateTime(DateTime newDateTime)
