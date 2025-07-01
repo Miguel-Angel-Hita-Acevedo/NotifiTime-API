@@ -37,10 +37,15 @@ namespace NotifiTime_API.infrastructure.entities
                 eventCalendar.getId(),
                 eventCalendar.getName(),
                 eventCalendar.getDateTime(),
-                eventCalendar.getSupportedPlatformListToStringArray(),
+                eventCalendar.getSupportedPlatformListToStringList(),
                 eventCalendar.getMessage(),
                 eventCalendar.getTimeIterationToString()
             );
+        }
+        
+        public EventCalendar toDomainModel()
+        {
+            return new EventCalendar(id, name, dateTime, supportedPlatformList, message, timeIteration);
         }
 
         public Guid Id { get => id; set => id = value; }

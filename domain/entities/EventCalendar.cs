@@ -17,6 +17,20 @@ namespace NotifiTime_API.domain.entities
         private string message;
         private TimeIteration timeIteration;
 
+        //const conversions string-enum
+        readonly Dictionary<string, SupportedPlatform> stringAndSupportedPlatformCast = new Dictionary<string, SupportedPlatform>()
+            {
+                ["mail"] = SupportedPlatform.Mail
+            };
+        readonly Dictionary<string, TimeIteration> stringAndTimeIterationCast = new Dictionary<string, TimeIteration>()
+            {
+                ["annually"] = TimeIteration.Annually,
+                ["monthly"] = TimeIteration.Monthly,
+                ["weekly,"] = TimeIteration.Weekly,
+                ["daily,"] = TimeIteration.Daily,
+                ["none"] = TimeIteration.None
+            };
+        
         public EventCalendar(){
             id = SequentialGuidGenerator.Instance.NewGuid();
         }
@@ -29,6 +43,16 @@ namespace NotifiTime_API.domain.entities
             this.supportedPlatformList = supportedPlatformList;
             this.message = message;
             this.timeIteration = timeIteration;
+        }
+        
+        public EventCalendar(Guid id, string name, DateTime dateTime, List<string> supportedPlatformStringList, string message, string timeIterationString)
+        {
+            this.id = id;
+            this.name = name;
+            this.dateTime = dateTime;
+            this.supportedPlatformList = castStringListToSupportedPlatformsList(supportedPlatformStringList);
+            this.message = message;
+            this.timeIteration = castStringToTimeIteration(timeIterationString);
         }
 
         public DateTime getDateTime()
@@ -56,14 +80,25 @@ namespace NotifiTime_API.domain.entities
             return supportedPlatformList;
         }
         
-        public List<string> getSupportedPlatformListToStringArray()
+        public List<string> getSupportedPlatformListToStringList()
         {
-            List<string> supportedPlatformListStringArray = new List<string>();
+            List<string> supportedPlatformListStringList = new List<string>();
             foreach(SupportedPlatform currentSupportedPlatform in supportedPlatformList)
             {
-                supportedPlatformListStringArray.Add(currentSupportedPlatform.ToString());
+                supportedPlatformListStringList.Add(currentSupportedPlatform.ToString());
             }
-            return supportedPlatformListStringArray;
+            return supportedPlatformListStringList;
+        }
+        
+        private List<SupportedPlatform> castStringListToSupportedPlatformsList(List<string> stringSupportedPlatformsList)
+        {
+            List<SupportedPlatform> supportedPlatformList = new List<SupportedPlatform>();
+            
+            foreach(string currentSupportedPlatformString in stringSupportedPlatformsList)
+            {
+                supportedPlatformList.Add(stringAndSupportedPlatformCast[currentSupportedPlatformString.ToLower()]);
+            }
+            return supportedPlatformList;
         }
 
         public TimeIteration getTimeIteration()
@@ -74,6 +109,11 @@ namespace NotifiTime_API.domain.entities
         public string getTimeIterationToString()
         {
             return timeIteration.ToString();
+        }
+        
+        private TimeIteration castStringToTimeIteration(string stringTimeIteration)
+        {
+            return stringAndTimeIterationCast[stringTimeIteration.ToLower()];
         }
 
         public IEventCalendar setDateTime(DateTime newDateTime)
