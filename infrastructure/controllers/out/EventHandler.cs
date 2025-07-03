@@ -2,8 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
 
-public class EventHandler
+[ApiController]
+[Route("api/controller/[in]")]
+public class EventHandler : ControllerBase
 {
-    
+    [HttpGet]
+    public IActionResult CheckPendingEvent()
+    {
+        return Ok("GET request received");
+    }
 }
