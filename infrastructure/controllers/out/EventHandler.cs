@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/controller/[in]")]
+[Route("api/controller/out")]
 public class EventHandler : ControllerBase
 {
     [HttpGet]

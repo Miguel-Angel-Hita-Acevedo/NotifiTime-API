@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/controller/[in]")]
+[Route("api/controller/in")]
 public class CreationController : ControllerBase
 {
     [HttpPost]

@@ -105,12 +105,6 @@ D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\scopedcss\bundle\NotifiTime-A
 D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\staticwebassets.build.json
 D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\staticwebassets.development.json
 D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\staticwebassets.build.endpoints.json
-D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\staticwebassets\msbuild.NotifiTime-API.Microsoft.AspNetCore.StaticWebAssets.props
-D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\staticwebassets\msbuild.NotifiTime-API.Microsoft.AspNetCore.StaticWebAssetEndpoints.props
-D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\staticwebassets\msbuild.build.NotifiTime-API.props
-D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\staticwebassets\msbuild.buildMultiTargeting.NotifiTime-API.props
-D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.NotifiTime-API.props
-D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\staticwebassets.pack.json
 D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\NotifiTi.5C6DCC70.Up2Date
 D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\NotifiTime-API.dll
 D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\refint\NotifiTime-API.dll
@@ -118,3 +112,8 @@ D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\NotifiTime-API.pdb
 D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\NotifiTime-API.genruntimeconfig.cache
 D:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\ref\NotifiTime-API.dll
 d:\DotNet_Projects\NotifiTime-API\bin\Debug\net8.0\xunit.runner.visualstudio.testadapter.dll
+d:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\rpswa.dswa.cache.json
+d:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\rjimswa.dswa.cache.json
+d:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\rjsmrazor.dswa.cache.json
+d:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\rjsmcshtml.dswa.cache.json
+d:\DotNet_Projects\NotifiTime-API\obj\Debug\net8.0\staticwebassets.build.json.cache

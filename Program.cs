@@ -7,6 +7,20 @@ namespace NotifiTime_API
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // Definir política CORS
+            IServiceCollection serviceCollection = builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("PermitirAngular",
+                    policy =>
+                    {
+                        Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicyBuilder corsPolicyBuilder = policy.WithOrigins("http://localhost:4200") // URL de tu frontend Angular
+                            .AllowAnyHeader()
+                            .AllowAnyMethod();
+                    });
+            });
+
+            builder.Services.AddControllers();
+
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -15,6 +29,10 @@ namespace NotifiTime_API
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
+            
+            
+            // Usar la política CORS
+            app.UseCors("PermitirAngular");
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -23,10 +41,12 @@ namespace NotifiTime_API
                 app.UseSwaggerUI();
             }
 
-            app.UseAuthorization();
+            // Usar rutas para API
+            app.UseRouting();
 
+            app.UseAuthorization(); // si usas autenticación
 
-            app.MapControllers();
+            app.MapControllers(); // Esto expone los endpoints
 
             app.Run();
         }
