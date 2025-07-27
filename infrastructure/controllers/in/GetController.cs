@@ -5,21 +5,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/controller/getCalendar")]
+[Route("Get/Calendar")]
 public class GetController : ControllerBase
 {
-    [HttpGet]
+    [HttpGet("All")]
     public IActionResult GetCalendars()
     {
         return Ok(
         new{
-            text = "FUNCIONAA"
+            text = "GetCalendars"
         });
     }
-    /*
-    [HttpGet]
-    public IActionResult GetEventsOfCalendar()
+    
+    [HttpGet("Events/{calendarId}", Name = "EventsOfCalendar")]
+    public IActionResult GetEventsOfCalendar(string calendarId)
     {
-        return Ok("GET request received");
-    }*/
+        return Ok(
+        new{
+            text = "GetEventsOfCalendar"
+        });
+    }
 }

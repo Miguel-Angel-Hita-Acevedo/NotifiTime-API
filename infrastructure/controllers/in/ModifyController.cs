@@ -5,18 +5,24 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/controller/in")]
+[Route("Modify")]
 public class ModifyController : ControllerBase
 {
-    [HttpPost]
-    public IActionResult ModifyCalendarName()
+    [HttpPost("Calendar/{calendarId}", Name = "ModifyCalendarName")]
+    public IActionResult ModifyCalendarName(string  calendarId)
     {
-        return Ok("GET request received");
+        return Ok(
+        new{
+            text = "ModifyCalendarName"
+        });
     }
     
-    [HttpPost]
+    [HttpPost("Event/{eventId}", Name = "ModifyEvent")]
     public IActionResult ModifyEvent()
     {
-        return Ok("GET request received");
+        return Ok(
+        new{
+            text = "ModifyEvent"
+        });
     }
 }

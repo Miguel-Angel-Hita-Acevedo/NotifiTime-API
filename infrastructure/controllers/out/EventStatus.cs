@@ -5,12 +5,15 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/controller/out")]
-public class EventHandler : ControllerBase
+[Route("CheckEvents")]
+public class EventStatus : ControllerBase
 {
     [HttpGet]
     public IActionResult CheckPendingEvent()
     {
-        return Ok("GET request received");
+        return Ok(
+        new{
+            text = "CheckPendingEvent"
+        });
     }
 }

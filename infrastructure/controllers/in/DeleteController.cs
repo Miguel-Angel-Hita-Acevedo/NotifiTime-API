@@ -5,24 +5,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
 [ApiController]
-[Route("api/controller/in")]
+[Route("Delete")]
 public class DeleteController : ControllerBase
 {
-    [HttpDelete]
+    [HttpDelete("Wallet")]
     public IActionResult DeleteWallet()
     {
-        return Ok("GET request received");
+        return Ok(
+        new{
+            text = "DeleteWallet"
+        });
     }
     
-    [HttpDelete("calendar/{id}")]
-    public IActionResult DeleteCalendar(string id)
+    [HttpDelete("Calendar/{calendarId}", Name = "DeleteCalendar")]
+    public IActionResult DeleteCalendar(string calendarId)
     {
-        return Ok("GET request received");
+        return Ok(
+        new{
+            text = "DeleteCalendar"
+        });
     }
     
-    [HttpDelete("event/{id}")]
-    public IActionResult DeleteEvent(string id)
+    [HttpDelete("Event/{eventId}", Name = "DeleteEvent")]
+    public IActionResult DeleteEvent(string eventId)
     {
-        return Ok("GET request received");
+        return Ok(
+        new{
+            text = "DeleteEvent"
+        });
     }
 }
