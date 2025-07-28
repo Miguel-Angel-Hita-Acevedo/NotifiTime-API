@@ -6,6 +6,7 @@ using NotifiTime_API.application.DTOs;
 using NotifiTime_API.application.mappers;
 using NotifiTime_API.application.services;
 using NotifiTime_API.domain.entities;
+using NotifiTime_API.infrastructure.entities;
 
 namespace NotifiTime_API.infrastructure.configuration
 {
@@ -17,6 +18,11 @@ namespace NotifiTime_API.infrastructure.configuration
         {
             ICalendarNotifiTime calendar = new CalendarNotifiTime("Default calendar");
             walletCalendarService = new WalletCalendarService([CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(calendar)]);
+        }
+        
+        public CalendarNotifiTimeDTO[] GetAllCalendars()
+        {
+            return walletCalendarService.getCalendarNotifiTimeArray();
         }
     }
 }

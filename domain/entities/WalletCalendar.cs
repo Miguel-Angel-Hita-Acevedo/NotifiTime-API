@@ -8,7 +8,7 @@ namespace NotifiTime_API.domain.entities
 {
     public class WalletCalendar : IWalletCalendar
     {
-        public Dictionary<Guid, ICalendarNotifiTime> calendarDictionary = new Dictionary<Guid, ICalendarNotifiTime>();
+        public Dictionary<Guid, CalendarNotifiTime> calendarDictionary = new Dictionary<Guid, CalendarNotifiTime>();
         
         public WalletCalendar()
         {
@@ -17,7 +17,7 @@ namespace NotifiTime_API.domain.entities
         
         public WalletCalendar(ICalendarNotifiTime[] newCalendarNotifiTimeArray)
         {
-            foreach(ICalendarNotifiTime currentCalendar in newCalendarNotifiTimeArray)
+            foreach(CalendarNotifiTime currentCalendar in newCalendarNotifiTimeArray)
             {
                 calendarDictionary.Add(currentCalendar.getId(), currentCalendar);
             }
@@ -25,7 +25,7 @@ namespace NotifiTime_API.domain.entities
     
         public Exception addCalendarNotifiTime(ICalendarNotifiTime newCalendarNotifiTime)
         {
-            if(calendarDictionary.TryAdd(newCalendarNotifiTime.getId(), newCalendarNotifiTime))
+            if(calendarDictionary.TryAdd(newCalendarNotifiTime.getId(), (CalendarNotifiTime)newCalendarNotifiTime))
                 return new Exception();
             return null;
         }
@@ -39,7 +39,7 @@ namespace NotifiTime_API.domain.entities
 
         public IEventCalendar findEventCalendarByIdOnAllCalendars(Guid eventId)
         {
-            ICalendarNotifiTime[] calendarArray = calendarDictionary.Values.ToArray();
+            CalendarNotifiTime[] calendarArray = calendarDictionary.Values.ToArray();
             List<IEventCalendar> eventCalendarList = new List<IEventCalendar>();
             IEventCalendar tempEventCalendar = null;
             int position = 0;
@@ -53,16 +53,16 @@ namespace NotifiTime_API.domain.entities
 
         public ICalendarNotifiTime findCalendarNotifiTimeById(Guid id)
         {
-            ICalendarNotifiTime calendarFound;
+            CalendarNotifiTime calendarFound;
             bool found = calendarDictionary.TryGetValue(id, out calendarFound);
             return found ? calendarFound : null;
         }
 
         public ICalendarNotifiTime[] findCalendarNotifiTimeByName(string name)
         {
-            ICalendarNotifiTime[] calendarArray = calendarDictionary.Values.ToArray();
-            List<ICalendarNotifiTime> calendarFoundList = new List<ICalendarNotifiTime>();
-            foreach(ICalendarNotifiTime calendarNotifiTime in calendarArray)
+            CalendarNotifiTime[] calendarArray = calendarDictionary.Values.ToArray();
+            List<CalendarNotifiTime> calendarFoundList = new List<CalendarNotifiTime>();
+            foreach(CalendarNotifiTime calendarNotifiTime in calendarArray)
             {
                 if(calendarNotifiTime.getName().Equals(name))
                 {
@@ -79,14 +79,14 @@ namespace NotifiTime_API.domain.entities
 
         public ICalendarNotifiTime[] sortCalendarNotifiTimeListByCreationDate(bool ascending)
         {
-            List<ICalendarNotifiTime> calendarDictionaryAsList = calendarDictionary.Values.ToList();
+            List<CalendarNotifiTime> calendarDictionaryAsList = calendarDictionary.Values.ToList();
             
             calendarDictionaryAsList.Sort
             (
-                (ICalendarNotifiTime oneCalendar, ICalendarNotifiTime otherCalendar) 
+                (CalendarNotifiTime oneCalendar, CalendarNotifiTime otherCalendar) 
                     => otherCalendar.getCreationDate().CompareTo(oneCalendar.getCreationDate())
             );
-            ICalendarNotifiTime[] sortedCalendarByCreationDate = calendarDictionaryAsList.ToArray();
+            CalendarNotifiTime[] sortedCalendarByCreationDate = calendarDictionaryAsList.ToArray();
             
             if (ascending)
             {
@@ -98,14 +98,14 @@ namespace NotifiTime_API.domain.entities
 
         public ICalendarNotifiTime[] sortCalendarNotifiTimeListByName(bool ascending)
         {
-            List<ICalendarNotifiTime> calendarDictionaryAsList = calendarDictionary.Values.ToList();
+            List<CalendarNotifiTime> calendarDictionaryAsList = calendarDictionary.Values.ToList();
             
             calendarDictionaryAsList.Sort
             (
-                (ICalendarNotifiTime oneCalendar, ICalendarNotifiTime otherCalendar) 
+                (CalendarNotifiTime oneCalendar, CalendarNotifiTime otherCalendar) 
                     => otherCalendar.getName().CompareTo(oneCalendar.getName())
             );
-            ICalendarNotifiTime[] sortedCalendarByCreationDate = calendarDictionaryAsList.ToArray();
+            CalendarNotifiTime[] sortedCalendarByCreationDate = calendarDictionaryAsList.ToArray();
             
             if (ascending)
             {

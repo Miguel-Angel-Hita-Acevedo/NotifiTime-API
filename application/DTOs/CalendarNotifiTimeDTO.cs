@@ -11,7 +11,7 @@ namespace NotifiTime_API.application.DTOs
         
         private Guid id;
         private string name;
-        private Dictionary<Guid, EventCalendarDTO> eventCalendarDictionary;
+        private Dictionary<Guid, EventCalendarDTO> eventCalendarDictionary = new Dictionary<Guid, EventCalendarDTO>();
         private DateTime creationDate;
 
         public Guid Id { get => id; set => id = value; }
