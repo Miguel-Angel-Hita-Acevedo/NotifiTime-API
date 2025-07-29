@@ -23,5 +23,12 @@ namespace NotifiTime_API.infrastructure.adapters
             string strobj = JsonConvert.SerializeObject(calendarNotifiTimeDtoArray, Formatting.Indented);
             return strobj;
         }
+        
+        public string GetEventsInCalendar(Guid calendarId)
+        {
+            EventCalendarDTO[] eventsOfCalendar = walletConfiguration.GetEventsInCalendar(calendarId);
+            string strobj = JsonConvert.SerializeObject(eventsOfCalendar, Formatting.Indented);
+            return strobj;
+        }
     }
 }

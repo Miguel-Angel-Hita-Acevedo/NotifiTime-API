@@ -33,5 +33,19 @@ namespace NotifiTime_API.application.mappers
             );
             return eventCalendar;
         }
+        
+        public static EventCalendarDTO[] eventCalendarArrayToDtoArray(IEventCalendar[] eventCalendarArray)
+        {
+            List<EventCalendarDTO> eventCalendarDTOList = new List<EventCalendarDTO>();
+            foreach(EventCalendar currentEvent in eventCalendarArray)
+            {
+                eventCalendarDTOList.Add(
+                    eventCalendarToDTO(
+                        currentEvent
+                    )
+                );
+            }
+            return eventCalendarDTOList.ToArray();
+        }
     }
 }

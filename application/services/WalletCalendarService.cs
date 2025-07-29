@@ -28,11 +28,11 @@ namespace NotifiTime_API.application.services
             );
         }
 
-        public CalendarNotifiTimeDTO createCalendarNotifiTime(string name)
+        public CalendarNotifiTimeService createCalendarNotifiTime(string name)
         {
             CalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime(name);
             walletCalendar.addCalendarNotifiTime(calendarNotifiTime);
-            return CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(calendarNotifiTime);
+            return new CalendarNotifiTimeService(calendarNotifiTime);
         }
 
         public Exception deleteCalendarNotifiTimeById(Guid id)
@@ -45,36 +45,36 @@ namespace NotifiTime_API.application.services
             return EventCalendarMapper.eventCalendarToDTO(eventCalendar);
         }
 
-        public CalendarNotifiTimeDTO findCalendarNotifiTimeById(Guid id)
+        public CalendarNotifiTimeService findCalendarNotifiTimeById(Guid id)
         {
             CalendarNotifiTime calendarNotifiTime 
                 = (CalendarNotifiTime)walletCalendar.findCalendarNotifiTimeById(id);
-            return CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(calendarNotifiTime);
+            return new CalendarNotifiTimeService(calendarNotifiTime);
         }
 
-        public CalendarNotifiTimeDTO[] findCalendarNotifiTimeByName(string name)
+        public CalendarNotifiTimeService[] findCalendarNotifiTimeByName(string name)
         {
             CalendarNotifiTime[] calendarNotifiTimeArray 
                 = (CalendarNotifiTime[])walletCalendar.findCalendarNotifiTimeByName(name);
-            return CalendarNotifiTimeMapper.calendarNotifiTimesToDtoArray(calendarNotifiTimeArray);
+            return CalendarNotifiTimeMapper.DomainCalendarArrayToCalendarServiceArray(calendarNotifiTimeArray);
         }
 
-        public CalendarNotifiTimeDTO[] getCalendarNotifiTimeArray()
+        public CalendarNotifiTimeService[] getCalendarNotifiTimeArray()
         {
             CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.getCalendarNotifiTimeArray();
-            return CalendarNotifiTimeMapper.calendarNotifiTimesToDtoArray(calendarNotifiTimeArray);
+            return CalendarNotifiTimeMapper.DomainCalendarArrayToCalendarServiceArray(calendarNotifiTimeArray);
         }
 
-        public CalendarNotifiTimeDTO[] sortCalendarNotifiTimeListByCreationDate(bool ascending)
+        public CalendarNotifiTimeService[] sortCalendarNotifiTimeListByCreationDate(bool ascending)
         {
             CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.sortCalendarNotifiTimeListByCreationDate(ascending);
-            return CalendarNotifiTimeMapper.calendarNotifiTimesToDtoArray(calendarNotifiTimeArray);
+            return CalendarNotifiTimeMapper.DomainCalendarArrayToCalendarServiceArray(calendarNotifiTimeArray);
         }
 
-        public CalendarNotifiTimeDTO[] sortCalendarNotifiTimeListByName(bool ascending)
+        public CalendarNotifiTimeService[] sortCalendarNotifiTimeListByName(bool ascending)
         {
             CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.sortCalendarNotifiTimeListByName(ascending);
-            return CalendarNotifiTimeMapper.calendarNotifiTimesToDtoArray(calendarNotifiTimeArray);
+            return CalendarNotifiTimeMapper.DomainCalendarArrayToCalendarServiceArray(calendarNotifiTimeArray);
         }
 
         public Exception updateCalendarsOfUser(CalendarNotifiTimeDTO[] calendarNotifiTimeDtoArray)

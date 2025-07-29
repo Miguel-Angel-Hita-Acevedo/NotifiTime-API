@@ -119,5 +119,10 @@ namespace NotifiTime_API.domain.entities
         {
             return eventCalendarDictionary.ToArray().Length;
         }
+        
+        public IEventCalendar[] GetAllEvents()
+        {
+            return eventCalendarDictionary.Values.ToArray();
+        }
     }
 }

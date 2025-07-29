@@ -16,13 +16,19 @@ namespace NotifiTime_API.infrastructure.configuration
         
         public WalletConfiguration()
         {
-            ICalendarNotifiTime calendar = new CalendarNotifiTime("Default calendar");
+            ICalendarNotifiTime calendar = new CalendarNotifiTime(Guid.Parse("08ddcebf-049e-32de-f96a-8e59b0051f19"), "Default calendar", new Dictionary<Guid, EventCalendar>(), DateTime.Today);
             walletCalendarService = new WalletCalendarService([CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(calendar)]);
         }
         
         public CalendarNotifiTimeDTO[] GetAllCalendars()
         {
-            return walletCalendarService.getCalendarNotifiTimeArray();
+            return CalendarNotifiTimeMapper.CalendarServiceArrayToCalendarDtoArray(walletCalendarService.getCalendarNotifiTimeArray());
+        }
+        
+        public EventCalendarDTO[] GetEventsInCalendar(Guid calendarId)
+        {
+            CalendarNotifiTimeService calendarFound = walletCalendarService.findCalendarNotifiTimeById(calendarId);
+            return calendarFound != null ? calendarFound.GetAllEvents() : null;
         }
     }
 }

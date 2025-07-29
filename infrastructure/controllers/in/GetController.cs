@@ -16,11 +16,8 @@ public class GetController : ControllerBase
     }
     
     [HttpGet("Events/{calendarId}", Name = "EventsOfCalendar")]
-    public IActionResult GetEventsOfCalendar(string calendarId)
+    public IActionResult GetEventsOfCalendar(Guid calendarId)
     {
-        return Ok(
-        new{
-            text = "GetEventsOfCalendar"
-        });
+        return Ok(new CalendarJsonAdapter().GetEventsInCalendar(calendarId));
     }
 }

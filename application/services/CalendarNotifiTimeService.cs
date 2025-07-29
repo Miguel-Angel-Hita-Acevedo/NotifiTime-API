@@ -17,6 +17,11 @@ namespace NotifiTime_API.application.services
         {
             this.calendarNotifiTime = calendarNotifiTime;
         }
+        
+        public CalendarNotifiTimeDTO GetDto()
+        {
+            return CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(calendarNotifiTime);
+        }
     
         public int eventsCalendarLength()
         {
@@ -49,6 +54,11 @@ namespace NotifiTime_API.application.services
                 returnEventCalendarDTO.Add(EventCalendarMapper.eventCalendarToDTO(currentEventCalendar));
             }
             return returnEventCalendarDTO.ToArray();
+        }
+        
+        public EventCalendarDTO[] GetAllEvents()
+        {
+            return EventCalendarMapper.eventCalendarArrayToDtoArray(calendarNotifiTime.GetAllEvents());
         }
     }
 }

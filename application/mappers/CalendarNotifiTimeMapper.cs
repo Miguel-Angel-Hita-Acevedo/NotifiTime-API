@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NotifiTime_API.application.DTOs;
+using NotifiTime_API.application.services;
 using NotifiTime_API.domain.entities;
 
 namespace NotifiTime_API.application.mappers
@@ -62,6 +63,26 @@ namespace NotifiTime_API.application.mappers
                 );
             }
             return calendarNotifiTimeList.ToArray();
+        }
+        
+        public static CalendarNotifiTimeService[] DomainCalendarArrayToCalendarServiceArray(CalendarNotifiTime[] calendarNotifiTimeArray)
+        {
+            List<CalendarNotifiTimeService> calendarNotifiTimeServiceList = new List<CalendarNotifiTimeService>();
+            foreach(CalendarNotifiTime currentCalendar in calendarNotifiTimeArray)
+            {
+                calendarNotifiTimeServiceList.Add(new CalendarNotifiTimeService(currentCalendar));
+            }
+            return calendarNotifiTimeServiceList.ToArray();
+        }
+        
+        public static CalendarNotifiTimeDTO[] CalendarServiceArrayToCalendarDtoArray(CalendarNotifiTimeService[] calendarNotifiTimeServiceArray)
+        {
+            List<CalendarNotifiTimeDTO> calendarNotifiTimeDtoList = new List<CalendarNotifiTimeDTO>();
+            foreach(CalendarNotifiTimeService currentCalendarService in calendarNotifiTimeServiceArray)
+            {
+                calendarNotifiTimeDtoList.Add(currentCalendarService.GetDto());
+            }
+            return calendarNotifiTimeDtoList.ToArray();
         }
     }
 }
