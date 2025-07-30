@@ -15,6 +15,8 @@ namespace NotifiTime_API.application.mappers
             CalendarNotifiTimeDTO calendarNotifiTimeDTO = new CalendarNotifiTimeDTO();
             calendarNotifiTimeDTO.Id = domainCalendarNotifiTime.getId();
             calendarNotifiTimeDTO.Name = domainCalendarNotifiTime.getName();
+            calendarNotifiTimeDTO.EventCalendarList = EventCalendarMapper.eventCalendarArrayToDtoArray(domainCalendarNotifiTime.GetAllEvents()).ToList();
+            calendarNotifiTimeDTO.CreationDate = domainCalendarNotifiTime.getCreationDate();
             return calendarNotifiTimeDTO;
         }
         
@@ -35,7 +37,7 @@ namespace NotifiTime_API.application.mappers
         public static CalendarNotifiTime calendarNotifiTimeDTOToDomainObject(CalendarNotifiTimeDTO calendarDto)
         {
             Dictionary<Guid, EventCalendar> eventCalendarsDictionary = new Dictionary<Guid, EventCalendar>();
-            foreach(EventCalendarDTO currentEventDto in calendarDto.EventCalendarDictionary.Values)
+            foreach(EventCalendarDTO currentEventDto in calendarDto.EventCalendarList)
             {
                 eventCalendarsDictionary.Add(
                     currentEventDto.Id,

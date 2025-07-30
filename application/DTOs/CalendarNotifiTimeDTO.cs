@@ -11,12 +11,12 @@ namespace NotifiTime_API.application.DTOs
         
         private Guid id;
         private string name;
-        private Dictionary<Guid, EventCalendarDTO> eventCalendarDictionary = new Dictionary<Guid, EventCalendarDTO>();
+        private List<EventCalendarDTO> eventCalendarList = new List<EventCalendarDTO>();
         private DateTime creationDate;
 
         public Guid Id { get => id; set => id = value; }
         public string Name { get => name; set => name = value; }
-        public Dictionary<Guid, EventCalendarDTO> EventCalendarDictionary { get => eventCalendarDictionary; set => eventCalendarDictionary = value; }
+        public List<EventCalendarDTO> EventCalendarList { get => eventCalendarList; set => eventCalendarList = value; }
         public DateTime CreationDate { get => creationDate; set => creationDate = value; }
     }
 }
