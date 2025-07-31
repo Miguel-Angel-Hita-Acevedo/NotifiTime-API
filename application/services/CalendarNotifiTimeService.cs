@@ -33,6 +33,12 @@ namespace NotifiTime_API.application.services
             EventCalendar eventCalendar = (EventCalendar)calendarNotifiTime.createEvent(date, name, timeIteration);
             return EventCalendarMapper.eventCalendarToDTO(eventCalendar);
         }
+        
+        public CalendarNotifiTimeDTO UpdateName(string newName)
+        {
+            calendarNotifiTime.setName(newName);
+            return GetDto();
+        }
 
         public bool deleteEventById(Guid id)
         {

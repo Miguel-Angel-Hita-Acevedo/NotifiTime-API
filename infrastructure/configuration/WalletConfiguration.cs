@@ -111,5 +111,16 @@ namespace NotifiTime_API.infrastructure.configuration
             CalendarNotifiTimeService calendarFound = walletCalendarService.findCalendarNotifiTimeById(calendarId);
             return calendarFound != null ? calendarFound.GetAllEvents() : null;
         }
+        
+        public CalendarNotifiTimeDTO UpdateCalendarName(Guid calendarId, string newName)
+        {
+            CalendarNotifiTimeService calendarFound = walletCalendarService.findCalendarNotifiTimeById(calendarId);
+            CalendarNotifiTimeDTO returnCalendarDto = null;
+            if(calendarFound != null)
+            {
+                returnCalendarDto = calendarFound.UpdateName(newName);
+            }
+            return returnCalendarDto;
+        }
     }
 }

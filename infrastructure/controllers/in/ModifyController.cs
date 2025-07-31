@@ -3,26 +3,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using NotifiTime_API.infrastructure.adapters;
 
 [ApiController]
-[Route("Modify")]
-public class ModifyController : ControllerBase
+[Route("Update")]
+public class UpdateController : ControllerBase
 {
-    [HttpPost("Calendar/{calendarId}", Name = "ModifyCalendarName")]
-    public IActionResult ModifyCalendarName(string  calendarId)
+    [HttpPost("Calendar/{calendarId}/{newName}", Name = "UpdateCalendarName")]
+    public IActionResult UpdateCalendarName(Guid calendarId, string newName)
+    {
+        return Ok(new CalendarJsonAdapter().UpdateCalendarName(calendarId, newName));
+    }
+    
+    [HttpPost("Event/{eventId}", Name = "UpdateEvent")]
+    public IActionResult UpdateEvent()
     {
         return Ok(
         new{
-            text = "ModifyCalendarName"
+            text = "UpdateEvent"
         });
     }
     
-    [HttpPost("Event/{eventId}", Name = "ModifyEvent")]
-    public IActionResult ModifyEvent()
-    {
-        return Ok(
-        new{
-            text = "ModifyEvent"
-        });
-    }
+    
 }
