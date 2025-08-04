@@ -14,7 +14,7 @@ namespace NotifiTime_API.infrastructure.adapters
         private WalletConfiguration walletConfiguration;
         public CalendarJsonAdapter()
         {
-            walletConfiguration = new WalletConfiguration();
+            walletConfiguration = WalletConfiguration.GetWalletConfiguration();
         }
         
         public string GetAllCalendars()

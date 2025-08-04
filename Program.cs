@@ -1,4 +1,10 @@
 
+using Microsoft.AspNetCore.DataProtection.KeyManagement.Internal;
+using NotifiTime_API.domain.Interfaces;
+using NotifiTime_API.infrastructure.repositories;
+using Microsoft.EntityFrameworkCore.SqlServer;
+using Microsoft.EntityFrameworkCore;
+
 namespace NotifiTime_API
 {
     public class Program
@@ -29,7 +35,6 @@ namespace NotifiTime_API
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
-            
             
             // Usar la política CORS
             app.UseCors("PermitirAngular");

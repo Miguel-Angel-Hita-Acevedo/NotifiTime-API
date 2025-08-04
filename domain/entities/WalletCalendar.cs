@@ -2,7 +2,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using NotifiTime_API.domain.Interfaces;
+using NotifiTime_API.infrastructure.repositories;
 
 namespace NotifiTime_API.domain.entities
 {
@@ -12,7 +14,6 @@ namespace NotifiTime_API.domain.entities
         
         public WalletCalendar()
         {
-            
         }
         
         public WalletCalendar(ICalendarNotifiTime[] newCalendarNotifiTimeArray)
@@ -22,7 +23,7 @@ namespace NotifiTime_API.domain.entities
                 calendarDictionary.Add(currentCalendar.getId(), currentCalendar);
             }
         }
-    
+        
         public Exception addCalendarNotifiTime(ICalendarNotifiTime newCalendarNotifiTime)
         {
             if(calendarDictionary.TryAdd(newCalendarNotifiTime.getId(), (CalendarNotifiTime)newCalendarNotifiTime))

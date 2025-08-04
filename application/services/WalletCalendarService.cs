@@ -5,18 +5,23 @@ using System.Threading.Tasks;
 using NotifiTime_API.application.DTOs;
 using NotifiTime_API.application.mappers;
 using NotifiTime_API.domain.entities;
+using NotifiTime_API.domain.Interfaces;
 
 namespace NotifiTime_API.application.services
 {
     public class WalletCalendarService
     {
         // Dictionary<Guid, CalendarNotifiTimeDTO> calendarDictionary = new Dictionary<Guid, CalendarNotifiTimeDTO>();
-        private WalletCalendar walletCalendar;
-
-        public WalletCalendarService(CalendarNotifiTimeDTO[] calendarNotifiTimeDtoArray)
+        private WalletCalendar walletCalendar = null;
+        
+        public WalletCalendarService(IWalletRepository repository)
         {
-            walletCalendar = new WalletCalendar();
-            updateCalendarsOfUser(calendarNotifiTimeDtoArray);
+            UpdateWalletCalendar(repository.GetWalletContent());
+        }
+        
+        private async void UpdateWalletCalendar(Task<WalletCalendar> taskWalletCalendar)
+        {
+            walletCalendar = await taskWalletCalendar;
         }
         
         public Exception addCalendarNotifiTime(CalendarNotifiTimeDTO newCalendarNotifiTime)
