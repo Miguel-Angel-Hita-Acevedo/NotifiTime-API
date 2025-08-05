@@ -19,5 +19,6 @@ namespace NotifiTime_API.domain.entities
         public bool deleteEventById(Guid id);
         public int eventsCalendarLength();
         public IEventCalendar[] GetAllEvents();
+        public EventCalendar UpdateEventById(EventCalendar eventCalendar);
     }
 }

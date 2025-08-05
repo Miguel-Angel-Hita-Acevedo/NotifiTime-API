@@ -66,5 +66,17 @@ namespace NotifiTime_API.application.services
         {
             return EventCalendarMapper.eventCalendarArrayToDtoArray(calendarNotifiTime.GetAllEvents());
         }
+        
+        public EventCalendarDTO UpdateEvent(EventCalendarDTO eventCalendarDto)
+        {
+            EventCalendar eventCalendar = EventCalendarMapper.eventCalendarDtoToDomainObject(eventCalendarDto);
+            eventCalendar = calendarNotifiTime.UpdateEventById(eventCalendar);
+            if(eventCalendar == null)
+            {
+                return null;
+            }
+            eventCalendarDto = EventCalendarMapper.eventCalendarToDTO(eventCalendar);
+            return eventCalendarDto;
+        }
     }
 }

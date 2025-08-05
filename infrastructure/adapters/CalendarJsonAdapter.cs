@@ -37,5 +37,12 @@ namespace NotifiTime_API.infrastructure.adapters
             string strobj = JsonConvert.SerializeObject(eventsOfCalendar, Formatting.Indented);
             return strobj;
         }
+        
+        public string UpdateEvent(Guid calendarId, EventCalendarDTO eventCalendarDto)
+        {
+            EventCalendarDTO eventCalendarDtoEdited = walletConfiguration.UpdateEventCalendar(calendarId, eventCalendarDto);
+            string strobj = JsonConvert.SerializeObject(eventCalendarDtoEdited, Formatting.Indented);
+            return strobj;
+        }
     }
 }

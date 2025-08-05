@@ -64,5 +64,11 @@ namespace NotifiTime_API.infrastructure.configuration
             }
             return returnCalendarDto;
         }
+        
+        public EventCalendarDTO UpdateEventCalendar(Guid calendarId, EventCalendarDTO eventCalendarDto)
+        {
+            CalendarNotifiTimeService calendarService = walletCalendarService.findCalendarNotifiTimeById(calendarId);
+            return calendarService.UpdateEvent(eventCalendarDto);
+        }
     }
 }

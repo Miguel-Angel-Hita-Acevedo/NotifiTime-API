@@ -6,6 +6,7 @@ using SequentialGuid;
 using NotifiTime_API.domain.Enum;
 using System.Collections.Immutable;
 using System.Runtime.InteropServices;
+using System.Reflection.Metadata.Ecma335;
 
 namespace NotifiTime_API.domain.entities
 {
@@ -123,6 +124,22 @@ namespace NotifiTime_API.domain.entities
         public IEventCalendar[] GetAllEvents()
         {
             return eventCalendarDictionary.Values.ToArray();
+        }
+        
+        public EventCalendar UpdateEventById(EventCalendar eventCalendar)
+        {
+            try
+            {
+                eventCalendarDictionary[eventCalendar.getId()].setDateTime(eventCalendar.getDateTime());
+                eventCalendarDictionary[eventCalendar.getId()].setMessage(eventCalendar.getMessage());
+                eventCalendarDictionary[eventCalendar.getId()].setName(eventCalendar.getName());
+                eventCalendarDictionary[eventCalendar.getId()].setSupportedPlatformList(eventCalendar.getSupportedPlatformList());
+                eventCalendarDictionary[eventCalendar.getId()].setTimeIteration(eventCalendar.getTimeIteration());
+                return eventCalendarDictionary[eventCalendar.getId()];
+            } catch (Exception) 
+            {
+                return null;
+            }
         }
     }
 }
