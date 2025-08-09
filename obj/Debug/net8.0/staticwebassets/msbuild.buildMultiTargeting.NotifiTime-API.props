@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\NotifiTime-API.props" />
+</Project>
