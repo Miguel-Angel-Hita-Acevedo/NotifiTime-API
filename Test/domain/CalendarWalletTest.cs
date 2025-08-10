@@ -12,69 +12,69 @@ namespace NotifiTime_API.Test.domain
     public class WalletCalendarTest
     {
         [Fact]
-        public void addCalendarNotifiTimeToEmptyDictionaryReturnTrue()
+        public void AddCalendarNotifiTimeToEmptyDictionaryReturnTrue()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime("test calendar");
             
-            bool created = walletCalendar.addCalendarNotifiTime(calendarNotifiTime) != null;
+            bool created = walletCalendar.AddCalendarNotifiTime(calendarNotifiTime) != null;
             
             Assert.True(created);
         }
         
         [Fact]
-        public void addCalendarNotifiTimeToDictionaryWithExistingGuidReturnFalse()
+        public void AddCalendarNotifiTimeToDictionaryWithExistingGuidReturnFalse()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime(
-                firstCalendarNotifiTime.getId(), 
+                firstCalendarNotifiTime.GetId(), 
                 "second test calendar",
                 (new Dictionary<Guid, EventCalendar>()),
                 firstCalendarNotifiTime.getCreationDate()
             );
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            bool created = walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime) != null;
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            bool created = walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime) != null;
             
             Assert.False(created);
         }
         
         [Fact]
-        public void addCalendarNotifiTimeToDictionaryWithOneDifferentElementReturnTrue()
+        public void AddCalendarNotifiTimeToDictionaryWithOneDifferentElementReturnTrue()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            bool created = walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime) != null;
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            bool created = walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime) != null;
             
             Assert.True(created);
         }
         
         [Fact]
-        public void deleteCalendarNotifiTimeByIdThatExistsReturnTrue()
+        public void DeleteCalendarNotifiTimeByIdThatExistsReturnTrue()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime("test calendar");
             
-            walletCalendar.addCalendarNotifiTime(calendarNotifiTime);
-            bool deleted = walletCalendar.deleteCalendarNotifiTimeById(calendarNotifiTime.getId()) == null;
+            walletCalendar.AddCalendarNotifiTime(calendarNotifiTime);
+            bool deleted = walletCalendar.DeleteCalendarNotifiTimeById(calendarNotifiTime.GetId()) == null;
             
             Assert.True(deleted);
         }
         
         [Fact]
-        public void deleteCalendarNotifiTimeByIdThatDoesntExistsReturnFalse()
+        public void DeleteCalendarNotifiTimeByIdThatDoesntExistsReturnFalse()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
             
-            bool deleted = walletCalendar.deleteCalendarNotifiTimeById(secondCalendarNotifiTime.getId()) == null;
+            bool deleted = walletCalendar.DeleteCalendarNotifiTimeById(secondCalendarNotifiTime.GetId()) == null;
             
             Assert.False(deleted);
         }
@@ -87,20 +87,20 @@ namespace NotifiTime_API.Test.domain
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             CalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime("third test calendar");
             
-            firstCalendarNotifiTime.createEvent(DateTime.Now, "first event", TimeIteration.None);
-            firstCalendarNotifiTime.createEvent(DateTime.Now, "second event", TimeIteration.None);
+            firstCalendarNotifiTime.CreateEvent(DateTime.Now, "first event", TimeIteration.None);
+            firstCalendarNotifiTime.CreateEvent(DateTime.Now, "second event", TimeIteration.None);
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(thirdCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(thirdCalendarNotifiTime);
             
-            EventCalendar eventCalendarToFind = thirdCalendarNotifiTime.createEvent(DateTime.Now, "third event", TimeIteration.None);
+            EventCalendar eventCalendarToFind = thirdCalendarNotifiTime.CreateEvent(DateTime.Now, "third event", TimeIteration.None);
             
-            EventCalendar found = walletCalendar.findEventCalendarByIdOnAllCalendars(eventCalendarToFind.getId());
+            EventCalendar found = walletCalendar.FindEventCalendarByIdOnAllCalendars(eventCalendarToFind.GetId());
             
             if(found != null)
             {
-                Assert.Equivalent(found, eventCalendarToFind.getId());
+                Assert.Equivalent(found, eventCalendarToFind.GetId());
             }else
             {
                 Assert.Fail();
@@ -116,65 +116,65 @@ namespace NotifiTime_API.Test.domain
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             CalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime("third test calendar");
             
-            firstCalendarNotifiTime.createEvent(DateTime.Now, "event", TimeIteration.None);
+            firstCalendarNotifiTime.CreateEvent(DateTime.Now, "event", TimeIteration.None);
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(thirdCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(thirdCalendarNotifiTime);
             
             EventCalendar eventCalendarToFind = new EventCalendar();
             
-            EventCalendar found = walletCalendar.findEventCalendarByIdOnAllCalendars(eventCalendarToFind.getId());
+            EventCalendar found = walletCalendar.FindEventCalendarByIdOnAllCalendars(eventCalendarToFind.GetId());
             
             Assert.Null(found);
         }
         
         [Fact]
-        public void findCalendarNotifiTimeByIdThatExistsReturnElement()
+        public void FindCalendarNotifiTimeByIdThatExistsReturnElement()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             CalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime("third test calendar");
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(thirdCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(thirdCalendarNotifiTime);
             
-            CalendarNotifiTime calendarFound = walletCalendar.findCalendarNotifiTimeById(secondCalendarNotifiTime.getId());
+            CalendarNotifiTime calendarFound = walletCalendar.FindCalendarNotifiTimeById(secondCalendarNotifiTime.GetId());
             
             Assert.Equivalent(calendarFound, secondCalendarNotifiTime);
         }
         
         [Fact]
-        public void findCalendarNotifiTimeByIdThatDoesntExistsReturnNull()
+        public void FindCalendarNotifiTimeByIdThatDoesntExistsReturnNull()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             CalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime("third test calendar");
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);
             
-            CalendarNotifiTime calendarFound = walletCalendar.findCalendarNotifiTimeById(thirdCalendarNotifiTime.getId());
+            CalendarNotifiTime calendarFound = walletCalendar.FindCalendarNotifiTimeById(thirdCalendarNotifiTime.GetId());
             
             Assert.Null(calendarFound);
         }
         
         [Fact]
-        public void findCalendarNotifiTimeByNameThatExistsReturnElement()
+        public void FindCalendarNotifiTimeByNameThatExistsReturnElement()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             CalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime("third test calendar");
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(thirdCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(thirdCalendarNotifiTime);
             
-            CalendarNotifiTime[] calendarArrayFound = walletCalendar.findCalendarNotifiTimeByName(secondCalendarNotifiTime.getName());
+            CalendarNotifiTime[] calendarArrayFound = walletCalendar.FindCalendarNotifiTimeByName(secondCalendarNotifiTime.GetName());
             
             if(calendarArrayFound != null && calendarArrayFound.Length > 0)
             {
@@ -186,17 +186,17 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void findCalendarNotifiTimeByNameThatDoesntExistsReturnNull()
+        public void FindCalendarNotifiTimeByNameThatDoesntExistsReturnNull()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             CalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime("third test calendar");
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(thirdCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(thirdCalendarNotifiTime);
             
-            CalendarNotifiTime[] calendarArrayFound = walletCalendar.findCalendarNotifiTimeByName(secondCalendarNotifiTime.getName());
+            CalendarNotifiTime[] calendarArrayFound = walletCalendar.FindCalendarNotifiTimeByName(secondCalendarNotifiTime.GetName());
             
             Assert.Empty(calendarArrayFound);
         }
@@ -215,11 +215,11 @@ namespace NotifiTime_API.Test.domain
                 Guid.NewGuid(), "third test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2000, 2, 2));
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(thirdCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(thirdCalendarNotifiTime);
             
-            CalendarNotifiTime[] calendarArrayFound = walletCalendar.sortCalendarNotifiTimeListByCreationDate(true);
+            CalendarNotifiTime[] calendarArrayFound = walletCalendar.SortCalendarNotifiTimeListByCreationDate(true);
             
             if(calendarArrayFound != null && calendarArrayFound.Length > 0)
             {
@@ -244,11 +244,11 @@ namespace NotifiTime_API.Test.domain
                 Guid.NewGuid(), "third test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2000, 2, 2));
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(thirdCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(thirdCalendarNotifiTime);
             
-            CalendarNotifiTime[] calendarArrayFound = walletCalendar.sortCalendarNotifiTimeListByCreationDate(false);
+            CalendarNotifiTime[] calendarArrayFound = walletCalendar.SortCalendarNotifiTimeListByCreationDate(false);
             
             if(calendarArrayFound != null && calendarArrayFound.Length > 0)
             {
@@ -273,15 +273,15 @@ namespace NotifiTime_API.Test.domain
                 Guid.NewGuid(), "third test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2000, 2, 2));
             
-            walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(thirdCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(thirdCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
             
-            CalendarNotifiTime[] calendarArrayFound = walletCalendar.sortCalendarNotifiTimeListByName(true);
+            CalendarNotifiTime[] calendarArrayFound = walletCalendar.SortCalendarNotifiTimeListByName(true);
             
             if(calendarArrayFound != null && calendarArrayFound.Length > 0)
             {
-                Assert.Equivalent(calendarArrayFound[0].getName(), firstCalendarNotifiTime.getName());
+                Assert.Equivalent(calendarArrayFound[0].GetName(), firstCalendarNotifiTime.GetName());
             }else
             {
                 Assert.Fail();
@@ -302,15 +302,15 @@ namespace NotifiTime_API.Test.domain
                 Guid.NewGuid(), "third test calendar", new Dictionary<Guid, EventCalendar>(),
                 new DateTime(2000, 2, 2));
             
-            walletCalendar.addCalendarNotifiTime(firstCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(secondCalendarNotifiTime);
-            walletCalendar.addCalendarNotifiTime(thirdCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(thirdCalendarNotifiTime);
             
-            CalendarNotifiTime[] calendarArrayFound = walletCalendar.sortCalendarNotifiTimeListByName(false);
+            CalendarNotifiTime[] calendarArrayFound = walletCalendar.SortCalendarNotifiTimeListByName(false);
             
             if(calendarArrayFound != null && calendarArrayFound.Length > 0)
             {
-                Assert.Equivalent(calendarArrayFound[0].getName(), thirdCalendarNotifiTime.getName());
+                Assert.Equivalent(calendarArrayFound[0].GetName(), thirdCalendarNotifiTime.GetName());
             }else
             {
                 Assert.Fail();

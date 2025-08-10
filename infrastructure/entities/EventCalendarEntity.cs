@@ -31,19 +31,19 @@ namespace NotifiTime_API.infrastructure.entities
             TimeIteration = timeIteration;
         }
         
-        public static EventCalendarEntity fromDomainModel(EventCalendar eventCalendar)
+        public static EventCalendarEntity FromDomainModel(EventCalendar eventCalendar)
         {
             return new EventCalendarEntity(
-                eventCalendar.getId(),
-                eventCalendar.getName(),
-                eventCalendar.getDateTime(),
-                eventCalendar.getSupportedPlatformListToStringList(),
-                eventCalendar.getMessage(),
-                eventCalendar.getTimeIterationToString()
+                eventCalendar.GetId(),
+                eventCalendar.GetName(),
+                eventCalendar.GetDateTime(),
+                eventCalendar.GetSupportedPlatformListToStringList(),
+                eventCalendar.GetMessage(),
+                eventCalendar.GetTimeIterationToString()
             );
         }
         
-        public EventCalendar toDomainModel()
+        public EventCalendar ToDomainModel()
         {
             return new EventCalendar(id, name, dateTime, supportedPlatformList, message, timeIteration);
         }

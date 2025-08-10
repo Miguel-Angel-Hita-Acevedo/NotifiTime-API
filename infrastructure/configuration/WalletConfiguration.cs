@@ -45,18 +45,18 @@ namespace NotifiTime_API.infrastructure.configuration
         
         public CalendarNotifiTimeDTO[] GetAllCalendars()
         {
-            return CalendarNotifiTimeMapper.CalendarServiceArrayToCalendarDtoArray(walletCalendarService.getCalendarNotifiTimeArray());
+            return CalendarNotifiTimeMapper.CalendarServiceArrayToCalendarDtoArray(walletCalendarService.GetCalendarNotifiTimeArray());
         }
         
         public EventCalendarDTO[] GetEventsInCalendar(Guid calendarId)
         {
-            CalendarNotifiTimeService calendarFound = walletCalendarService.findCalendarNotifiTimeById(calendarId);
+            CalendarNotifiTimeService calendarFound = walletCalendarService.FindCalendarNotifiTimeById(calendarId);
             return calendarFound != null ? calendarFound.GetAllEvents() : null;
         }
         
         public CalendarNotifiTimeDTO UpdateCalendarName(Guid calendarId, string newName)
         {
-            CalendarNotifiTimeService calendarFound = walletCalendarService.findCalendarNotifiTimeById(calendarId);
+            CalendarNotifiTimeService calendarFound = walletCalendarService.FindCalendarNotifiTimeById(calendarId);
             CalendarNotifiTimeDTO returnCalendarDto = null;
             if(calendarFound != null)
             {
@@ -67,7 +67,7 @@ namespace NotifiTime_API.infrastructure.configuration
         
         public EventCalendarDTO UpdateEventCalendar(Guid calendarId, EventCalendarDTO eventCalendarDto)
         {
-            CalendarNotifiTimeService calendarService = walletCalendarService.findCalendarNotifiTimeById(calendarId);
+            CalendarNotifiTimeService calendarService = walletCalendarService.FindCalendarNotifiTimeById(calendarId);
             return calendarService.UpdateEvent(eventCalendarDto);
         }
     }

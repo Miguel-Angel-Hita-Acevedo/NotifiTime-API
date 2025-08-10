@@ -50,37 +50,37 @@ namespace NotifiTime_API.domain.entities
             this.id = id;
             this.name = name;
             this.dateTime = dateTime;
-            this.supportedPlatformList = castStringListToSupportedPlatformsList(supportedPlatformStringList);
+            this.supportedPlatformList = CastStringListToSupportedPlatformsList(supportedPlatformStringList);
             this.message = message;
-            this.timeIteration = castStringToTimeIteration(timeIterationString);
+            this.timeIteration = CastStringToTimeIteration(timeIterationString);
         }
 
-        public DateTime getDateTime()
+        public DateTime GetDateTime()
         {
             return dateTime;
         }
 
-        public Guid getId()
+        public Guid GetId()
         {
             return id;
         }
 
-        public string getMessage()
+        public string GetMessage()
         {
             return message;
         }
 
-        public string getName()
+        public string GetName()
         {
             return name;
         }
 
-        public List<SupportedPlatform> getSupportedPlatformList()
+        public List<SupportedPlatform> GetSupportedPlatformList()
         {
             return supportedPlatformList;
         }
         
-        public List<string> getSupportedPlatformListToStringList()
+        public List<string> GetSupportedPlatformListToStringList()
         {
             List<string> supportedPlatformListStringList = new List<string>();
             foreach(SupportedPlatform currentSupportedPlatform in supportedPlatformList)
@@ -90,7 +90,7 @@ namespace NotifiTime_API.domain.entities
             return supportedPlatformListStringList;
         }
         
-        private List<SupportedPlatform> castStringListToSupportedPlatformsList(List<string> stringSupportedPlatformsList)
+        private List<SupportedPlatform> CastStringListToSupportedPlatformsList(List<string> stringSupportedPlatformsList)
         {
             List<SupportedPlatform> supportedPlatformList = new List<SupportedPlatform>();
             
@@ -101,52 +101,52 @@ namespace NotifiTime_API.domain.entities
             return supportedPlatformList;
         }
 
-        public TimeIteration getTimeIteration()
+        public TimeIteration GetTimeIteration()
         {
             return timeIteration;
         }
         
-        public string getTimeIterationToString()
+        public string GetTimeIterationToString()
         {
             return timeIteration.ToString();
         }
         
-        private TimeIteration castStringToTimeIteration(string stringTimeIteration)
+        private TimeIteration CastStringToTimeIteration(string stringTimeIteration)
         {
             return stringAndTimeIterationCast[stringTimeIteration.ToLower()];
         }
 
-        public EventCalendar setDateTime(DateTime newDateTime)
+        public EventCalendar SetDateTime(DateTime newDateTime)
         {
             dateTime = newDateTime;
             return this;
         }
 
-        public EventCalendar setMessage(string newMessage)
+        public EventCalendar SetMessage(string newMessage)
         {
             message = newMessage;
             return this;
         }
 
-        public EventCalendar setName(string newName)
+        public EventCalendar SetName(string newName)
         {
             name = newName;
             return this;
         }
 
-        public EventCalendar setSupportedPlatformList(List<SupportedPlatform> newSupportedPlatformList)
+        public EventCalendar SetSupportedPlatformList(List<SupportedPlatform> newSupportedPlatformList)
         {
             supportedPlatformList = newSupportedPlatformList;
             return this;
         }
 
-        public EventCalendar setTimeIteration(TimeIteration newTimeIteration)
+        public EventCalendar SetTimeIteration(TimeIteration newTimeIteration)
         {
             timeIteration = newTimeIteration;
             return this;
         }
 
-        public EventCalendar addSupportedPlatform(SupportedPlatform newSupportedPlatform)
+        public EventCalendar AddSupportedPlatform(SupportedPlatform newSupportedPlatform)
         {
             supportedPlatformList.Add(newSupportedPlatform);
             return this;

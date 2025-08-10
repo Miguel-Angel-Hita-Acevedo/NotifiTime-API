@@ -20,62 +20,62 @@ namespace NotifiTime_API.application.services
         
         public CalendarNotifiTimeDTO GetDto()
         {
-            return CalendarNotifiTimeMapper.calendarNotifiTimeToDTO(calendarNotifiTime);
+            return CalendarNotifiTimeMapper.CalendarNotifiTimeToDTO(calendarNotifiTime);
         }
     
-        public int eventsCalendarLength()
+        public int EventsCalendarLength()
         {
-            return calendarNotifiTime.eventsCalendarLength();
+            return calendarNotifiTime.EventsCalendarLength();
         }
 
-        public EventCalendarDTO createEvent(DateTime date, string name, TimeIteration timeIteration)
+        public EventCalendarDTO CreateEvent(DateTime date, string name, TimeIteration timeIteration)
         {
-            EventCalendar eventCalendar = (EventCalendar)calendarNotifiTime.createEvent(date, name, timeIteration);
-            return EventCalendarMapper.eventCalendarToDTO(eventCalendar);
+            EventCalendar eventCalendar = (EventCalendar)calendarNotifiTime.CreateEvent(date, name, timeIteration);
+            return EventCalendarMapper.EventCalendarToDTO(eventCalendar);
         }
         
         public CalendarNotifiTimeDTO UpdateName(string newName)
         {
-            calendarNotifiTime.setName(newName);
+            calendarNotifiTime.SetName(newName);
             return GetDto();
         }
 
-        public bool deleteEventById(Guid id)
+        public bool DeleteEventById(Guid id)
         {
-            return calendarNotifiTime.deleteEventById(id);
+            return calendarNotifiTime.DeleteEventById(id);
         }
 
-        public EventCalendarDTO getEventById(Guid id)
+        public EventCalendarDTO GetEventById(Guid id)
         {
-            EventCalendar eventCalendar = (EventCalendar)calendarNotifiTime.getEventById(id);
-            return EventCalendarMapper.eventCalendarToDTO (eventCalendar);
+            EventCalendar eventCalendar = (EventCalendar)calendarNotifiTime.GetEventById(id);
+            return EventCalendarMapper.EventCalendarToDTO (eventCalendar);
         }
 
-        public EventCalendarDTO[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
+        public EventCalendarDTO[] SortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
         {
-            EventCalendar[] eventCalendar = (EventCalendar[])calendarNotifiTime.sortEventsByDate(fromDate, toDate, ascending);
+            EventCalendar[] eventCalendar = (EventCalendar[])calendarNotifiTime.SortEventsByDate(fromDate, toDate, ascending);
             List<EventCalendarDTO> returnEventCalendarDTO = new List<EventCalendarDTO>();
             foreach(EventCalendar currentEventCalendar in eventCalendar)
             {
-                returnEventCalendarDTO.Add(EventCalendarMapper.eventCalendarToDTO(currentEventCalendar));
+                returnEventCalendarDTO.Add(EventCalendarMapper.EventCalendarToDTO(currentEventCalendar));
             }
             return returnEventCalendarDTO.ToArray();
         }
         
         public EventCalendarDTO[] GetAllEvents()
         {
-            return EventCalendarMapper.eventCalendarArrayToDtoArray(calendarNotifiTime.GetAllEvents());
+            return EventCalendarMapper.EventCalendarArrayToDtoArray(calendarNotifiTime.GetAllEvents());
         }
         
         public EventCalendarDTO UpdateEvent(EventCalendarDTO eventCalendarDto)
         {
-            EventCalendar eventCalendar = EventCalendarMapper.eventCalendarDtoToDomainObject(eventCalendarDto);
+            EventCalendar eventCalendar = EventCalendarMapper.EventCalendarDtoToDomainObject(eventCalendarDto);
             eventCalendar = calendarNotifiTime.UpdateEventById(eventCalendar);
             if(eventCalendar == null)
             {
                 return null;
             }
-            eventCalendarDto = EventCalendarMapper.eventCalendarToDTO(eventCalendar);
+            eventCalendarDto = EventCalendarMapper.EventCalendarToDTO(eventCalendar);
             return eventCalendarDto;
         }
     }

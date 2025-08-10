@@ -24,71 +24,71 @@ namespace NotifiTime_API.application.services
             walletCalendar = await taskWalletCalendar;
         }
         
-        public Exception addCalendarNotifiTime(CalendarNotifiTimeDTO newCalendarNotifiTime)
+        public Exception AddCalendarNotifiTime(CalendarNotifiTimeDTO newCalendarNotifiTime)
         {
-            return walletCalendar.addCalendarNotifiTime(
-                CalendarNotifiTimeMapper.calendarNotifiTimeDTOToDomainObject(
+            return walletCalendar.AddCalendarNotifiTime(
+                CalendarNotifiTimeMapper.CalendarNotifiTimeDTOToDomainObject(
                     newCalendarNotifiTime
                 )
             );
         }
 
-        public CalendarNotifiTimeService createCalendarNotifiTime(string name)
+        public CalendarNotifiTimeService CreateCalendarNotifiTime(string name)
         {
             CalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime(name);
-            walletCalendar.addCalendarNotifiTime(calendarNotifiTime);
+            walletCalendar.AddCalendarNotifiTime(calendarNotifiTime);
             return new CalendarNotifiTimeService(calendarNotifiTime);
         }
 
-        public Exception deleteCalendarNotifiTimeById(Guid id)
+        public Exception DeleteCalendarNotifiTimeById(Guid id)
         {
-            return walletCalendar.deleteCalendarNotifiTimeById(id);
+            return walletCalendar.DeleteCalendarNotifiTimeById(id);
         }
-        public EventCalendarDTO findEventCalendarByIdOnAllCalendars(Guid eventId)
+        public EventCalendarDTO FindEventCalendarByIdOnAllCalendars(Guid eventId)
         {
-            EventCalendar eventCalendar = (EventCalendar)walletCalendar.findEventCalendarByIdOnAllCalendars(eventId);
-            return EventCalendarMapper.eventCalendarToDTO(eventCalendar);
+            EventCalendar eventCalendar = (EventCalendar)walletCalendar.FindEventCalendarByIdOnAllCalendars(eventId);
+            return EventCalendarMapper.EventCalendarToDTO(eventCalendar);
         }
 
-        public CalendarNotifiTimeService findCalendarNotifiTimeById(Guid id)
+        public CalendarNotifiTimeService FindCalendarNotifiTimeById(Guid id)
         {
             CalendarNotifiTime calendarNotifiTime 
-                = (CalendarNotifiTime)walletCalendar.findCalendarNotifiTimeById(id);
+                = (CalendarNotifiTime)walletCalendar.FindCalendarNotifiTimeById(id);
             return new CalendarNotifiTimeService(calendarNotifiTime);
         }
 
-        public CalendarNotifiTimeService[] findCalendarNotifiTimeByName(string name)
+        public CalendarNotifiTimeService[] FindCalendarNotifiTimeByName(string name)
         {
             CalendarNotifiTime[] calendarNotifiTimeArray 
-                = (CalendarNotifiTime[])walletCalendar.findCalendarNotifiTimeByName(name);
+                = (CalendarNotifiTime[])walletCalendar.FindCalendarNotifiTimeByName(name);
             return CalendarNotifiTimeMapper.DomainCalendarArrayToCalendarServiceArray(calendarNotifiTimeArray);
         }
 
-        public CalendarNotifiTimeService[] getCalendarNotifiTimeArray()
+        public CalendarNotifiTimeService[] GetCalendarNotifiTimeArray()
         {
-            CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.getCalendarNotifiTimeArray();
+            CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.GetCalendarNotifiTimeArray();
             return CalendarNotifiTimeMapper.DomainCalendarArrayToCalendarServiceArray(calendarNotifiTimeArray);
         }
 
-        public CalendarNotifiTimeService[] sortCalendarNotifiTimeListByCreationDate(bool ascending)
+        public CalendarNotifiTimeService[] SortCalendarNotifiTimeListByCreationDate(bool ascending)
         {
-            CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.sortCalendarNotifiTimeListByCreationDate(ascending);
+            CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.SortCalendarNotifiTimeListByCreationDate(ascending);
             return CalendarNotifiTimeMapper.DomainCalendarArrayToCalendarServiceArray(calendarNotifiTimeArray);
         }
 
-        public CalendarNotifiTimeService[] sortCalendarNotifiTimeListByName(bool ascending)
+        public CalendarNotifiTimeService[] SortCalendarNotifiTimeListByName(bool ascending)
         {
-            CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.sortCalendarNotifiTimeListByName(ascending);
+            CalendarNotifiTime[] calendarNotifiTimeArray = (CalendarNotifiTime[])walletCalendar.SortCalendarNotifiTimeListByName(ascending);
             return CalendarNotifiTimeMapper.DomainCalendarArrayToCalendarServiceArray(calendarNotifiTimeArray);
         }
 
-        public Exception updateCalendarsOfUser(CalendarNotifiTimeDTO[] calendarNotifiTimeDtoArray)
+        public Exception UpdateCalendarsOfUser(CalendarNotifiTimeDTO[] calendarNotifiTimeDtoArray)
         {
             try
             {
                 if(calendarNotifiTimeDtoArray != null)
                 {
-                    CalendarNotifiTime[] calendarNotifiTimes = CalendarNotifiTimeMapper.calendarNotifiTimesDtoToDomainObjectArray(calendarNotifiTimeDtoArray);
+                    CalendarNotifiTime[] calendarNotifiTimes = CalendarNotifiTimeMapper.CalendarNotifiTimesDtoToDomainObjectArray(calendarNotifiTimeDtoArray);
                     walletCalendar = new WalletCalendar(calendarNotifiTimes);
                 }
             } catch(Exception e)

@@ -39,15 +39,15 @@ namespace NotifiTime_API.domain.entities
             this.creationDate = creationDate;
         }
 
-        public EventCalendar createEvent(DateTime date, string name, TimeIteration timeIteration)
+        public EventCalendar CreateEvent(DateTime date, string name, TimeIteration timeIteration)
         {
             EventCalendar eventCalendar = new EventCalendar();
-            eventCalendar.setDateTime(date).setName(name).setTimeIteration(timeIteration);
-            eventCalendarDictionary.TryAdd(eventCalendar.getId(), eventCalendar);
+            eventCalendar.SetDateTime(date).SetName(name).SetTimeIteration(timeIteration);
+            eventCalendarDictionary.TryAdd(eventCalendar.GetId(), eventCalendar);
             return eventCalendar;
         }
 
-        public bool deleteEventById(Guid id)
+        public bool DeleteEventById(Guid id)
         {
             bool exist = false;
             try 
@@ -65,7 +65,7 @@ namespace NotifiTime_API.domain.entities
             return !exist;
         }
 
-        public EventCalendar getEventById(Guid id)
+        public EventCalendar GetEventById(Guid id)
         {
             EventCalendar eventCalendarFound = null;
             try
@@ -75,12 +75,12 @@ namespace NotifiTime_API.domain.entities
             return eventCalendarFound;
         }
 
-        public Guid getId()
+        public Guid GetId()
         {
             return id;
         }
 
-        public string getName()
+        public string GetName()
         {
             return name;
         }
@@ -90,23 +90,23 @@ namespace NotifiTime_API.domain.entities
             return creationDate;
         }
         
-        public CalendarNotifiTime setName(string newName)
+        public CalendarNotifiTime SetName(string newName)
         {
             name = newName;
             return this;
         }
 
-        public EventCalendar[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
+        public EventCalendar[] SortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
         {
             List<EventCalendar> eventCalendarDictionaryAsList = eventCalendarDictionary.Values.ToList<EventCalendar>();
             EventCalendar[] sortedEventsCalendarByDate;
             
             eventCalendarDictionaryAsList = eventCalendarDictionaryAsList.Where
             (
-                currentEventCalendar => currentEventCalendar.getDateTime() >= fromDate && currentEventCalendar.getDateTime() <= toDate
+                currentEventCalendar => currentEventCalendar.GetDateTime() >= fromDate && currentEventCalendar.GetDateTime() <= toDate
             ).ToList();
             
-            eventCalendarDictionaryAsList.Sort((EventCalendar oneEvent, EventCalendar otherEvent) => otherEvent.getDateTime().CompareTo(oneEvent.getDateTime()));
+            eventCalendarDictionaryAsList.Sort((EventCalendar oneEvent, EventCalendar otherEvent) => otherEvent.GetDateTime().CompareTo(oneEvent.GetDateTime()));
             sortedEventsCalendarByDate = eventCalendarDictionaryAsList.ToArray();
             
             if (ascending)
@@ -116,7 +116,7 @@ namespace NotifiTime_API.domain.entities
             return sortedEventsCalendarByDate;
         }
         
-        public int eventsCalendarLength()
+        public int EventsCalendarLength()
         {
             return eventCalendarDictionary.ToArray().Length;
         }
@@ -130,12 +130,12 @@ namespace NotifiTime_API.domain.entities
         {
             try
             {
-                eventCalendarDictionary[eventCalendar.getId()].setDateTime(eventCalendar.getDateTime());
-                eventCalendarDictionary[eventCalendar.getId()].setMessage(eventCalendar.getMessage());
-                eventCalendarDictionary[eventCalendar.getId()].setName(eventCalendar.getName());
-                eventCalendarDictionary[eventCalendar.getId()].setSupportedPlatformList(eventCalendar.getSupportedPlatformList());
-                eventCalendarDictionary[eventCalendar.getId()].setTimeIteration(eventCalendar.getTimeIteration());
-                return eventCalendarDictionary[eventCalendar.getId()];
+                eventCalendarDictionary[eventCalendar.GetId()].SetDateTime(eventCalendar.GetDateTime());
+                eventCalendarDictionary[eventCalendar.GetId()].SetMessage(eventCalendar.GetMessage());
+                eventCalendarDictionary[eventCalendar.GetId()].SetName(eventCalendar.GetName());
+                eventCalendarDictionary[eventCalendar.GetId()].SetSupportedPlatformList(eventCalendar.GetSupportedPlatformList());
+                eventCalendarDictionary[eventCalendar.GetId()].SetTimeIteration(eventCalendar.GetTimeIteration());
+                return eventCalendarDictionary[eventCalendar.GetId()];
             } catch (Exception) 
             {
                 return null;
