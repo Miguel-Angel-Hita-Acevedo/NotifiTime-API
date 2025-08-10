@@ -25,7 +25,7 @@ namespace NotifiTime_API.Test
         {
             string name = "Test calendar";
             CalendarNotifiTime testCalendar = new CalendarNotifiTime(name);
-            IEventCalendar testEvent = testCalendar.createEvent(
+            EventCalendar testEvent = testCalendar.createEvent(
                 new DateTime(2024, 3, 7, 14, 45, 0),
                 "Test event",
                 TimeIteration.None
@@ -44,7 +44,7 @@ namespace NotifiTime_API.Test
                 TimeIteration.None
             );
 
-            IEventCalendar testEvent = testCalendar.createEvent(
+            EventCalendar testEvent = testCalendar.createEvent(
                 new DateTime(2023, 4, 5, 0, 45, 0),
                 "Test event 2",
                 TimeIteration.None
@@ -72,7 +72,7 @@ namespace NotifiTime_API.Test
                 TimeIteration.None
             );
 
-            IEventCalendar testEvent = testCalendar.createEvent(
+            EventCalendar testEvent = testCalendar.createEvent(
                 new DateTime(2023, 4, 5, 0, 45, 0),
                 "Test event 2",
                 TimeIteration.None
@@ -118,7 +118,7 @@ namespace NotifiTime_API.Test
                 TimeIteration.None
             );
 
-            IEventCalendar[] testEventSortedArray = testCalendar.sortEventsByDate(
+            EventCalendar[] testEventSortedArray = testCalendar.sortEventsByDate(
                 new DateTime(1, 1, 1),
                 new DateTime(9999, 1, 1),
                 false
@@ -153,7 +153,7 @@ namespace NotifiTime_API.Test
                 TimeIteration.None
             );
 
-            IEventCalendar[] testEventSortedArray = testCalendar.sortEventsByDate(
+            EventCalendar[] testEventSortedArray = testCalendar.sortEventsByDate(
                 new DateTime(1, 1, 1),
                 new DateTime(9999, 1, 1),
                 true
@@ -188,7 +188,7 @@ namespace NotifiTime_API.Test
                 TimeIteration.None
             );
 
-            IEventCalendar[] eventsCalendarTestArray = testCalendar.sortEventsByDate(
+            EventCalendar[] eventsCalendarTestArray = testCalendar.sortEventsByDate(
                 new DateTime(2024, 1, 1),
                 new DateTime(9999, 1, 1),
                 false
@@ -222,7 +222,7 @@ namespace NotifiTime_API.Test
 
             eventCalendar.setMessage("Texto cambiado!");
 
-            IEventCalendar updatedEventCalendar = testCalendar.UpdateEventById(eventCalendar);
+            EventCalendar updatedEventCalendar = testCalendar.UpdateEventById(eventCalendar);
 
             Assert.Equal(updatedEventCalendar.getMessage(), "Texto cambiado!");
         }

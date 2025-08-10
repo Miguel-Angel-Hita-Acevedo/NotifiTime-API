@@ -10,7 +10,7 @@ namespace NotifiTime_API.application.mappers
 {
     public static class CalendarNotifiTimeMapper
     {
-        public static CalendarNotifiTimeDTO calendarNotifiTimeToDTO(ICalendarNotifiTime domainCalendarNotifiTime)
+        public static CalendarNotifiTimeDTO calendarNotifiTimeToDTO(CalendarNotifiTime domainCalendarNotifiTime)
         {
             CalendarNotifiTimeDTO calendarNotifiTimeDTO = new CalendarNotifiTimeDTO();
             calendarNotifiTimeDTO.Id = domainCalendarNotifiTime.getId();
@@ -20,7 +20,7 @@ namespace NotifiTime_API.application.mappers
             return calendarNotifiTimeDTO;
         }
         
-        public static CalendarNotifiTimeDTO[] calendarNotifiTimesToDtoArray(ICalendarNotifiTime[] domainCalendarNotifiTimeArray)
+        public static CalendarNotifiTimeDTO[] calendarNotifiTimesToDtoArray(CalendarNotifiTime[] domainCalendarNotifiTimeArray)
         {
             List<CalendarNotifiTimeDTO> calendarNotifiTimeDTOList = new List<CalendarNotifiTimeDTO>();
             foreach(CalendarNotifiTime calendarNotifiTime in domainCalendarNotifiTimeArray)

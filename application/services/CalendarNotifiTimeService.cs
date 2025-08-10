@@ -11,9 +11,9 @@ namespace NotifiTime_API.application.services
 {
     public class CalendarNotifiTimeService
     {
-        private ICalendarNotifiTime calendarNotifiTime;
+        private CalendarNotifiTime calendarNotifiTime;
         
-        public CalendarNotifiTimeService(ICalendarNotifiTime calendarNotifiTime)
+        public CalendarNotifiTimeService(CalendarNotifiTime calendarNotifiTime)
         {
             this.calendarNotifiTime = calendarNotifiTime;
         }

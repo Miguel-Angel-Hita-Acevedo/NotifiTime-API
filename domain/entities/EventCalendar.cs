@@ -8,7 +8,7 @@ using System.Runtime.Versioning;
 
 namespace NotifiTime_API.domain.entities
 {
-    public class EventCalendar : IEventCalendar
+    public class EventCalendar
     {
         private readonly Guid id;
         private string name;
@@ -116,37 +116,37 @@ namespace NotifiTime_API.domain.entities
             return stringAndTimeIterationCast[stringTimeIteration.ToLower()];
         }
 
-        public IEventCalendar setDateTime(DateTime newDateTime)
+        public EventCalendar setDateTime(DateTime newDateTime)
         {
             dateTime = newDateTime;
             return this;
         }
 
-        public IEventCalendar setMessage(string newMessage)
+        public EventCalendar setMessage(string newMessage)
         {
             message = newMessage;
             return this;
         }
 
-        public IEventCalendar setName(string newName)
+        public EventCalendar setName(string newName)
         {
             name = newName;
             return this;
         }
 
-        public IEventCalendar setSupportedPlatformList(List<SupportedPlatform> newSupportedPlatformList)
+        public EventCalendar setSupportedPlatformList(List<SupportedPlatform> newSupportedPlatformList)
         {
             supportedPlatformList = newSupportedPlatformList;
             return this;
         }
 
-        public IEventCalendar setTimeIteration(TimeIteration newTimeIteration)
+        public EventCalendar setTimeIteration(TimeIteration newTimeIteration)
         {
             timeIteration = newTimeIteration;
             return this;
         }
 
-        public IEventCalendar addSupportedPlatform(SupportedPlatform newSupportedPlatform)
+        public EventCalendar addSupportedPlatform(SupportedPlatform newSupportedPlatform)
         {
             supportedPlatformList.Add(newSupportedPlatform);
             return this;

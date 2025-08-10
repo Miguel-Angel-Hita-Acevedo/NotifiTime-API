@@ -10,7 +10,7 @@ using System.Reflection.Metadata.Ecma335;
 
 namespace NotifiTime_API.domain.entities
 {
-    public class CalendarNotifiTime : ICalendarNotifiTime
+    public class CalendarNotifiTime
     {
         private Guid id;
         private string name;
@@ -39,7 +39,7 @@ namespace NotifiTime_API.domain.entities
             this.creationDate = creationDate;
         }
 
-        public IEventCalendar createEvent(DateTime date, string name, TimeIteration timeIteration)
+        public EventCalendar createEvent(DateTime date, string name, TimeIteration timeIteration)
         {
             EventCalendar eventCalendar = new EventCalendar();
             eventCalendar.setDateTime(date).setName(name).setTimeIteration(timeIteration);
@@ -65,7 +65,7 @@ namespace NotifiTime_API.domain.entities
             return !exist;
         }
 
-        public IEventCalendar getEventById(Guid id)
+        public EventCalendar getEventById(Guid id)
         {
             EventCalendar eventCalendarFound = null;
             try
@@ -90,23 +90,23 @@ namespace NotifiTime_API.domain.entities
             return creationDate;
         }
         
-        public ICalendarNotifiTime setName(string newName)
+        public CalendarNotifiTime setName(string newName)
         {
             name = newName;
             return this;
         }
 
-        public IEventCalendar[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
+        public EventCalendar[] sortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
         {
-            List<IEventCalendar> eventCalendarDictionaryAsList = eventCalendarDictionary.Values.ToList<IEventCalendar>();
-            IEventCalendar[] sortedEventsCalendarByDate;
+            List<EventCalendar> eventCalendarDictionaryAsList = eventCalendarDictionary.Values.ToList<EventCalendar>();
+            EventCalendar[] sortedEventsCalendarByDate;
             
             eventCalendarDictionaryAsList = eventCalendarDictionaryAsList.Where
             (
                 currentEventCalendar => currentEventCalendar.getDateTime() >= fromDate && currentEventCalendar.getDateTime() <= toDate
             ).ToList();
             
-            eventCalendarDictionaryAsList.Sort((IEventCalendar oneEvent, IEventCalendar otherEvent) => otherEvent.getDateTime().CompareTo(oneEvent.getDateTime()));
+            eventCalendarDictionaryAsList.Sort((EventCalendar oneEvent, EventCalendar otherEvent) => otherEvent.getDateTime().CompareTo(oneEvent.getDateTime()));
             sortedEventsCalendarByDate = eventCalendarDictionaryAsList.ToArray();
             
             if (ascending)
@@ -121,7 +121,7 @@ namespace NotifiTime_API.domain.entities
             return eventCalendarDictionary.ToArray().Length;
         }
         
-        public IEventCalendar[] GetAllEvents()
+        public EventCalendar[] GetAllEvents()
         {
             return eventCalendarDictionary.Values.ToArray();
         }

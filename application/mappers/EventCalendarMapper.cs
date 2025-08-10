@@ -9,7 +9,7 @@ namespace NotifiTime_API.application.mappers
 {
     public static class EventCalendarMapper
     {
-        public static EventCalendarDTO eventCalendarToDTO(IEventCalendar domainEventCalendar)
+        public static EventCalendarDTO eventCalendarToDTO(EventCalendar domainEventCalendar)
         {
             EventCalendarDTO eventCalendarDTO = new EventCalendarDTO();
             eventCalendarDTO.Id = domainEventCalendar.getId();
@@ -34,7 +34,7 @@ namespace NotifiTime_API.application.mappers
             return eventCalendar;
         }
         
-        public static EventCalendarDTO[] eventCalendarArrayToDtoArray(IEventCalendar[] eventCalendarArray)
+        public static EventCalendarDTO[] eventCalendarArrayToDtoArray(EventCalendar[] eventCalendarArray)
         {
             List<EventCalendarDTO> eventCalendarDTOList = new List<EventCalendarDTO>();
             foreach(EventCalendar currentEvent in eventCalendarArray)

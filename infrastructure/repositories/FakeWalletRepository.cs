@@ -78,13 +78,13 @@ namespace NotifiTime_API.infrastructure.repositories
                             TimeIteration.Monthly
                         ));
                         
-            ICalendarNotifiTime mockCalendarUno = new CalendarNotifiTime(
+            CalendarNotifiTime mockCalendarUno = new CalendarNotifiTime(
                     Guid.Parse("fff295d3-850a-4d3c-b43e-f98adcd55d48"),
                     "Mock Calendar 1",
                     CalendarUnoDictionary,
                     DateTime.Today
             );
-            ICalendarNotifiTime mockCalendarDos = new CalendarNotifiTime(
+            CalendarNotifiTime mockCalendarDos = new CalendarNotifiTime(
                     Guid.Parse("2ac7b6c3-2c4d-43cb-a4f4-832858f17523"),
                     "Mock Calendar 2",
                     CalendarDosDictionary, 
