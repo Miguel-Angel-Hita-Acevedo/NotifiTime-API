@@ -12,7 +12,7 @@ namespace NotifiTime_API.Test.domain
     public class WalletCalendarTest
     {
         [Fact]
-        public void AddCalendarNotifiTimeToEmptyDictionaryReturnTrue()
+        public void AddCalendarNotifiTime_EmptyDictionary_ReturnTrue()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime("test calendar");
@@ -23,7 +23,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void AddCalendarNotifiTimeToDictionaryWithExistingGuidReturnFalse()
+        public void AddCalendarNotifiTime_DictionaryWithExistingGuid_ReturnFalse()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
@@ -41,7 +41,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void AddCalendarNotifiTimeToDictionaryWithOneDifferentElementReturnTrue()
+        public void AddCalendarNotifiTime_DictionaryWithOneDifferentElement_ReturnTrue()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
@@ -54,7 +54,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void DeleteCalendarNotifiTimeByIdThatExistsReturnTrue()
+        public void DeleteCalendarNotifiTimeById_Exists_ReturnTrue()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime calendarNotifiTime = new CalendarNotifiTime("test calendar");
@@ -66,7 +66,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void DeleteCalendarNotifiTimeByIdThatDoesntExistsReturnFalse()
+        public void DeleteCalendarNotifiTimeById_DoesntExists_ReturnFalse()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
@@ -80,7 +80,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void findEventsCalendarByIdOn3CalendarsThatExists()
+        public void findEventsCalendarById_3CalendarsThatExists_ReturnTrue()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
@@ -108,7 +108,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void findEventsCalendarByIdOn3CalendarsThatDoesntExists()
+        public void findEventsCalendarById_3CalendarsThatDoesntExists_ReturnFalse()
         {
             
             WalletCalendar walletCalendar = new WalletCalendar();
@@ -130,7 +130,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void FindCalendarNotifiTimeByIdThatExistsReturnElement()
+        public void FindCalendarNotifiTimeById_ExistsOn3Elements_ReturnElement()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
@@ -147,7 +147,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void FindCalendarNotifiTimeByIdThatDoesntExistsReturnNull()
+        public void FindCalendarNotifiTimeById_DoesntExists_ReturnNull()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
@@ -163,7 +163,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void FindCalendarNotifiTimeByNameThatExistsReturnElement()
+        public void FindCalendarNotifiTimeByName_ExistsOn3Elements_ReturnElement()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
@@ -186,7 +186,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void FindCalendarNotifiTimeByNameThatDoesntExistsReturnNull()
+        public void FindCalendarNotifiTimeByName_DoesntExists_ReturnNull()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
@@ -202,7 +202,7 @@ namespace NotifiTime_API.Test.domain
         }
 
         [Fact]
-        public void sortCalendarNotifiTimeByCreationDateAscending()
+        public void SortCalendarNotifiTimeByCreationDate_Ascending3Elements_FirstPositionRight()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
@@ -231,7 +231,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void sortCalendarNotifiTimeByCreationDateDescending()
+        public void SortCalendarNotifiTimeByCreationDate_Descending3Elements_FirstPositionRight()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
@@ -260,7 +260,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void sortCalendarNotifiTimeByNameAscending()
+        public void SortCalendarNotifiTimeByName_Ascending3Elements_FirstPositionRight()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(
@@ -289,7 +289,7 @@ namespace NotifiTime_API.Test.domain
         }
         
         [Fact]
-        public void sortCalendarNotifiTimeByNameDescending()
+        public void SortCalendarNotifiTimeByName_Descending3Elements_FirstPositionRight()
         {
             WalletCalendar walletCalendar = new WalletCalendar();
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime(

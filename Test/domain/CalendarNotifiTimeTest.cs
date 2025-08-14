@@ -13,7 +13,7 @@ namespace NotifiTime_API.Test
     {
 
         [Fact]
-        public void createCalendarByName()
+        public void CalendarNotifiTime_CreateCalendarByName_CorrectCalendarName()
         {
             string name = "Test calendar";
             CalendarNotifiTime testCalendar = new CalendarNotifiTime(name);
@@ -21,7 +21,7 @@ namespace NotifiTime_API.Test
         }
 
         [Fact]
-        public void CreateEventOnCalendarAndFindById()
+        public void GetEventById_CreateEventAndFindIt_SameIdAsCreation()
         {
             string name = "Test calendar";
             CalendarNotifiTime testCalendar = new CalendarNotifiTime(name);
@@ -34,7 +34,7 @@ namespace NotifiTime_API.Test
         }
 
         [Fact]
-        public void CreateEventOnCalendarAndDeleteAnEvent()
+        public void DeleteEventById_Create3EventsAndDeleteOne_CalendarLengthEqual2()
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
 
@@ -62,7 +62,7 @@ namespace NotifiTime_API.Test
         }
 
         [Fact]
-        public void CreateEventsOnCalendarAndCheckIfDeletedIsCorrect()
+        public void DeleteEventById_Create3EventsAndDeleteOne_GetEventByIdReturnNull()
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
 
@@ -96,7 +96,7 @@ namespace NotifiTime_API.Test
         }
 
         [Fact]
-        public void SortEventsByDateDescending()
+        public void SortEventsByDate_Create3EventsAndSortAscending_CorrectOrder()
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
 
@@ -131,7 +131,7 @@ namespace NotifiTime_API.Test
         }
 
         [Fact]
-        public void SortEventsByDateAscending()
+        public void SortEventsByDate_Create3EventsAndSortDescending_CorrectOrder()
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
 
@@ -166,7 +166,7 @@ namespace NotifiTime_API.Test
         }
 
         [Fact]
-        public void SortEventsByDateWithSomeEventsOutOfRange()
+        public void SortEventsByDate_Create3EventsAndSortDescending_Found2Events()
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
 
@@ -198,7 +198,7 @@ namespace NotifiTime_API.Test
         }
 
         [Fact]
-        public void UpdateEventByIdMessageUpdated()
+        public void UpdateEventById_ChangeMessage_ReturnedEventHaveTheNewMessage()
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar with event updated!");
 
@@ -228,7 +228,7 @@ namespace NotifiTime_API.Test
         }
         
         [Fact]
-        public void UpdateEventByIdMessageUpdatedAndFindById()
+        public void UpdateEventById_ChangeMessage_FindEventAndHaveTheNewMessage()
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar with event updated!");
             
