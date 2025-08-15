@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text.Json.Nodes;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using NotifiTime_API.application.DTOs;
+using NotifiTime_API.application.Dtos;
 using NotifiTime_API.infrastructure.configuration;
 
 namespace NotifiTime_API.infrastructure.adapters
@@ -19,28 +19,28 @@ namespace NotifiTime_API.infrastructure.adapters
         
         public string GetAllCalendars()
         {
-            CalendarNotifiTimeDTO[] calendarNotifiTimeDtoArray = walletConfiguration.GetAllCalendars();
+            CalendarNotifiTimeDto[] calendarNotifiTimeDtoArray = walletConfiguration.GetAllCalendars();
             string strobj = JsonConvert.SerializeObject(calendarNotifiTimeDtoArray, Formatting.Indented);
             return strobj;
         }
         
         public string GetEventsInCalendar(Guid calendarId)
         {
-            EventCalendarDTO[] eventsOfCalendar = walletConfiguration.GetEventsInCalendar(calendarId);
+            EventCalendarDto[] eventsOfCalendar = walletConfiguration.GetEventsInCalendar(calendarId);
             string strobj = JsonConvert.SerializeObject(eventsOfCalendar, Formatting.Indented);
             return strobj;
         }
         
         public string UpdateCalendarName(Guid calendarId, string newName)
         {
-            CalendarNotifiTimeDTO eventsOfCalendar = walletConfiguration.UpdateCalendarName(calendarId, newName);
+            CalendarNotifiTimeDto eventsOfCalendar = walletConfiguration.UpdateCalendarName(calendarId, newName);
             string strobj = JsonConvert.SerializeObject(eventsOfCalendar, Formatting.Indented);
             return strobj;
         }
         
-        public string UpdateEvent(Guid calendarId, EventCalendarDTO eventCalendarDto)
+        public string UpdateEvent(Guid calendarId, EventCalendarDto eventCalendarDto)
         {
-            EventCalendarDTO eventCalendarDtoEdited = walletConfiguration.UpdateEventCalendar(calendarId, eventCalendarDto);
+            EventCalendarDto eventCalendarDtoEdited = walletConfiguration.UpdateEventCalendar(calendarId, eventCalendarDto);
             string strobj = JsonConvert.SerializeObject(eventCalendarDtoEdited, Formatting.Indented);
             return strobj;
         }

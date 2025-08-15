@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NotifiTime_API.application.DTOs;
+using NotifiTime_API.application.Dtos;
 using NotifiTime_API.application.services;
 using NotifiTime_API.domain.entities;
 
@@ -10,34 +10,34 @@ namespace NotifiTime_API.application.mappers
 {
     public static class CalendarNotifiTimeMapper
     {
-        public static CalendarNotifiTimeDTO CalendarNotifiTimeToDTO(CalendarNotifiTime domainCalendarNotifiTime)
+        public static CalendarNotifiTimeDto CalendarNotifiTimeToDto(CalendarNotifiTime domainCalendarNotifiTime)
         {
-            CalendarNotifiTimeDTO calendarNotifiTimeDTO = new CalendarNotifiTimeDTO();
-            calendarNotifiTimeDTO.Id = domainCalendarNotifiTime.GetId();
-            calendarNotifiTimeDTO.Name = domainCalendarNotifiTime.GetName();
-            calendarNotifiTimeDTO.EventCalendarList = EventCalendarMapper.EventCalendarArrayToDtoArray(domainCalendarNotifiTime.GetAllEvents()).ToList();
-            calendarNotifiTimeDTO.CreationDate = domainCalendarNotifiTime.getCreationDate();
-            return calendarNotifiTimeDTO;
+            CalendarNotifiTimeDto calendarNotifiTimeDto = new CalendarNotifiTimeDto();
+            calendarNotifiTimeDto.Id = domainCalendarNotifiTime.GetId();
+            calendarNotifiTimeDto.Name = domainCalendarNotifiTime.GetName();
+            calendarNotifiTimeDto.EventCalendarList = EventCalendarMapper.EventCalendarArrayToDtoArray(domainCalendarNotifiTime.GetAllEvents()).ToList();
+            calendarNotifiTimeDto.CreationDate = domainCalendarNotifiTime.getCreationDate();
+            return calendarNotifiTimeDto;
         }
         
-        public static CalendarNotifiTimeDTO[] CalendarNotifiTimesToDtoArray(CalendarNotifiTime[] domainCalendarNotifiTimeArray)
+        public static CalendarNotifiTimeDto[] CalendarNotifiTimesToDtoArray(CalendarNotifiTime[] domainCalendarNotifiTimeArray)
         {
-            List<CalendarNotifiTimeDTO> calendarNotifiTimeDTOList = new List<CalendarNotifiTimeDTO>();
+            List<CalendarNotifiTimeDto> calendarNotifiTimeDtoList = new List<CalendarNotifiTimeDto>();
             foreach(CalendarNotifiTime calendarNotifiTime in domainCalendarNotifiTimeArray)
             {
-                calendarNotifiTimeDTOList.Add(
-                    CalendarNotifiTimeToDTO(
+                calendarNotifiTimeDtoList.Add(
+                    CalendarNotifiTimeToDto(
                         calendarNotifiTime
                     )
                 );
             }
-            return calendarNotifiTimeDTOList.ToArray();
+            return calendarNotifiTimeDtoList.ToArray();
         }
         
-        public static CalendarNotifiTime CalendarNotifiTimeDTOToDomainObject(CalendarNotifiTimeDTO calendarDto)
+        public static CalendarNotifiTime CalendarNotifiTimeDtoToDomainObject(CalendarNotifiTimeDto calendarDto)
         {
             Dictionary<Guid, EventCalendar> eventCalendarsDictionary = new Dictionary<Guid, EventCalendar>();
-            foreach(EventCalendarDTO currentEventDto in calendarDto.EventCalendarList)
+            foreach(EventCalendarDto currentEventDto in calendarDto.EventCalendarList)
             {
                 eventCalendarsDictionary.Add(
                     currentEventDto.Id,
@@ -53,13 +53,13 @@ namespace NotifiTime_API.application.mappers
             return calendarNotifiTime;
         }
 
-        public static CalendarNotifiTime[] CalendarNotifiTimesDtoToDomainObjectArray(CalendarNotifiTimeDTO[] domainCalendarNotifiTimeDtoArray)
+        public static CalendarNotifiTime[] CalendarNotifiTimesDtoToDomainObjectArray(CalendarNotifiTimeDto[] domainCalendarNotifiTimeDtoArray)
         {
             List<CalendarNotifiTime> calendarNotifiTimeList = new List<CalendarNotifiTime>();
-            foreach(CalendarNotifiTimeDTO calendarNotifiTimeDto in domainCalendarNotifiTimeDtoArray)
+            foreach(CalendarNotifiTimeDto calendarNotifiTimeDto in domainCalendarNotifiTimeDtoArray)
             {
                 calendarNotifiTimeList.Add(
-                    CalendarNotifiTimeDTOToDomainObject(
+                    CalendarNotifiTimeDtoToDomainObject(
                         calendarNotifiTimeDto
                     )
                 );
@@ -77,9 +77,9 @@ namespace NotifiTime_API.application.mappers
             return calendarNotifiTimeServiceList.ToArray();
         }
         
-        public static CalendarNotifiTimeDTO[] CalendarServiceArrayToCalendarDtoArray(CalendarNotifiTimeService[] calendarNotifiTimeServiceArray)
+        public static CalendarNotifiTimeDto[] CalendarServiceArrayToCalendarDtoArray(CalendarNotifiTimeService[] calendarNotifiTimeServiceArray)
         {
-            List<CalendarNotifiTimeDTO> calendarNotifiTimeDtoList = new List<CalendarNotifiTimeDTO>();
+            List<CalendarNotifiTimeDto> calendarNotifiTimeDtoList = new List<CalendarNotifiTimeDto>();
             foreach(CalendarNotifiTimeService currentCalendarService in calendarNotifiTimeServiceArray)
             {
                 calendarNotifiTimeDtoList.Add(currentCalendarService.GetDto());

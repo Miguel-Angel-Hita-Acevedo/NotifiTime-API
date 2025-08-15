@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using NotifiTime_API.application.DTOs;
+using NotifiTime_API.application.Dtos;
 using NotifiTime_API.infrastructure.adapters;
 
 [ApiController]
@@ -17,7 +17,7 @@ public class UpdateController : ControllerBase
     }
     
     [HttpPost("Event/{calendarId}", Name = "UpdateEvent")]
-    public IActionResult UpdateEvent(Guid calendarId, [FromBody] EventCalendarDTO eventJson)
+    public IActionResult UpdateEvent(Guid calendarId, [FromBody] EventCalendarDto eventJson)
     {
         return Ok(new CalendarJsonAdapter().UpdateEvent(calendarId, eventJson));
     }

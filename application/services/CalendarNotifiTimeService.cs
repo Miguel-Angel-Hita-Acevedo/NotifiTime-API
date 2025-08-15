@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NotifiTime_API.application.DTOs;
+using NotifiTime_API.application.Dtos;
 using NotifiTime_API.application.mappers;
 using NotifiTime_API.domain.entities;
 using NotifiTime_API.domain.Enum;
@@ -18,9 +18,9 @@ namespace NotifiTime_API.application.services
             this.calendarNotifiTime = calendarNotifiTime;
         }
         
-        public CalendarNotifiTimeDTO GetDto()
+        public CalendarNotifiTimeDto GetDto()
         {
-            return CalendarNotifiTimeMapper.CalendarNotifiTimeToDTO(calendarNotifiTime);
+            return CalendarNotifiTimeMapper.CalendarNotifiTimeToDto(calendarNotifiTime);
         }
     
         public int EventsCalendarLength()
@@ -28,13 +28,13 @@ namespace NotifiTime_API.application.services
             return calendarNotifiTime.EventsCalendarLength();
         }
 
-        public EventCalendarDTO AddEvent(EventCalendarDTO eventCalendarDto)
+        public EventCalendarDto AddEvent(EventCalendarDto eventCalendarDto)
         {
             calendarNotifiTime.AddEvent(EventCalendarMapper.EventCalendarDtoToDomainObject(eventCalendarDto));
             return eventCalendarDto;
         }
         
-        public CalendarNotifiTimeDTO UpdateName(string newName)
+        public CalendarNotifiTimeDto UpdateName(string newName)
         {
             calendarNotifiTime.SetName(newName);
             return GetDto();
@@ -45,29 +45,29 @@ namespace NotifiTime_API.application.services
             return calendarNotifiTime.DeleteEventById(id);
         }
 
-        public EventCalendarDTO GetEventById(Guid id)
+        public EventCalendarDto GetEventById(Guid id)
         {
             EventCalendar eventCalendar = (EventCalendar)calendarNotifiTime.GetEventById(id);
-            return EventCalendarMapper.EventCalendarToDTO (eventCalendar);
+            return EventCalendarMapper.EventCalendarToDto (eventCalendar);
         }
 
-        public EventCalendarDTO[] SortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
+        public EventCalendarDto[] SortEventsByDate(DateTime fromDate, DateTime toDate, bool ascending)
         {
             EventCalendar[] eventCalendar = (EventCalendar[])calendarNotifiTime.SortEventsByDate(fromDate, toDate, ascending);
-            List<EventCalendarDTO> returnEventCalendarDTO = new List<EventCalendarDTO>();
+            List<EventCalendarDto> returnEventCalendarDto = new List<EventCalendarDto>();
             foreach(EventCalendar currentEventCalendar in eventCalendar)
             {
-                returnEventCalendarDTO.Add(EventCalendarMapper.EventCalendarToDTO(currentEventCalendar));
+                returnEventCalendarDto.Add(EventCalendarMapper.EventCalendarToDto(currentEventCalendar));
             }
-            return returnEventCalendarDTO.ToArray();
+            return returnEventCalendarDto.ToArray();
         }
         
-        public EventCalendarDTO[] GetAllEvents()
+        public EventCalendarDto[] GetAllEvents()
         {
             return EventCalendarMapper.EventCalendarArrayToDtoArray(calendarNotifiTime.GetAllEvents());
         }
         
-        public EventCalendarDTO UpdateEvent(EventCalendarDTO eventCalendarDto)
+        public EventCalendarDto UpdateEvent(EventCalendarDto eventCalendarDto)
         {
             EventCalendar eventCalendar = EventCalendarMapper.EventCalendarDtoToDomainObject(eventCalendarDto);
             eventCalendar = calendarNotifiTime.UpdateEventById(eventCalendar);
@@ -75,7 +75,7 @@ namespace NotifiTime_API.application.services
             {
                 return null;
             }
-            eventCalendarDto = EventCalendarMapper.EventCalendarToDTO(eventCalendar);
+            eventCalendarDto = EventCalendarMapper.EventCalendarToDto(eventCalendar);
             return eventCalendarDto;
         }
     }

@@ -2,26 +2,26 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NotifiTime_API.application.DTOs;
+using NotifiTime_API.application.Dtos;
 using NotifiTime_API.domain.entities;
 
 namespace NotifiTime_API.application.mappers
 {
     public static class EventCalendarMapper
     {
-        public static EventCalendarDTO EventCalendarToDTO(EventCalendar domainEventCalendar)
+        public static EventCalendarDto EventCalendarToDto(EventCalendar domainEventCalendar)
         {
-            EventCalendarDTO eventCalendarDTO = new EventCalendarDTO();
-            eventCalendarDTO.Id = domainEventCalendar.GetId();
-            eventCalendarDTO.Name = domainEventCalendar.GetName();
-            eventCalendarDTO.DateTime = domainEventCalendar.GetDateTime();
-            eventCalendarDTO.SupportedPlatformList = domainEventCalendar.GetSupportedPlatformList();
-            eventCalendarDTO.Message = domainEventCalendar.GetMessage();
-            eventCalendarDTO.TimeIteration = domainEventCalendar.GetTimeIteration();
-            return eventCalendarDTO;
+            EventCalendarDto eventCalendarDto = new EventCalendarDto();
+            eventCalendarDto.Id = domainEventCalendar.GetId();
+            eventCalendarDto.Name = domainEventCalendar.GetName();
+            eventCalendarDto.DateTime = domainEventCalendar.GetDateTime();
+            eventCalendarDto.SupportedPlatformList = domainEventCalendar.GetSupportedPlatformList();
+            eventCalendarDto.Message = domainEventCalendar.GetMessage();
+            eventCalendarDto.TimeIteration = domainEventCalendar.GetTimeIteration();
+            return eventCalendarDto;
         }
         
-        public static EventCalendar EventCalendarDtoToDomainObject(EventCalendarDTO eventCalendarDto)
+        public static EventCalendar EventCalendarDtoToDomainObject(EventCalendarDto eventCalendarDto)
         {
             EventCalendar eventCalendar = new EventCalendar(
                 eventCalendarDto.Id,
@@ -34,18 +34,18 @@ namespace NotifiTime_API.application.mappers
             return eventCalendar;
         }
         
-        public static EventCalendarDTO[] EventCalendarArrayToDtoArray(EventCalendar[] eventCalendarArray)
+        public static EventCalendarDto[] EventCalendarArrayToDtoArray(EventCalendar[] eventCalendarArray)
         {
-            List<EventCalendarDTO> eventCalendarDTOList = new List<EventCalendarDTO>();
+            List<EventCalendarDto> eventCalendarDtoList = new List<EventCalendarDto>();
             foreach(EventCalendar currentEvent in eventCalendarArray)
             {
-                eventCalendarDTOList.Add(
-                    EventCalendarToDTO(
+                eventCalendarDtoList.Add(
+                    EventCalendarToDto(
                         currentEvent
                     )
                 );
             }
-            return eventCalendarDTOList.ToArray();
+            return eventCalendarDtoList.ToArray();
         }
     }
 }

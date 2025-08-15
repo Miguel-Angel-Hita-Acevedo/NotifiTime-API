@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NotifiTime_API.application.DTOs;
+using NotifiTime_API.application.Dtos;
 using NotifiTime_API.application.mappers;
 using NotifiTime_API.application.services;
 using NotifiTime_API.domain.entities;
@@ -43,21 +43,21 @@ namespace NotifiTime_API.infrastructure.configuration
             return null;
         }
         
-        public CalendarNotifiTimeDTO[] GetAllCalendars()
+        public CalendarNotifiTimeDto[] GetAllCalendars()
         {
             return CalendarNotifiTimeMapper.CalendarServiceArrayToCalendarDtoArray(walletCalendarService.GetCalendarNotifiTimeArray());
         }
         
-        public EventCalendarDTO[] GetEventsInCalendar(Guid calendarId)
+        public EventCalendarDto[] GetEventsInCalendar(Guid calendarId)
         {
             CalendarNotifiTimeService calendarFound = walletCalendarService.FindCalendarNotifiTimeById(calendarId);
             return calendarFound != null ? calendarFound.GetAllEvents() : null;
         }
         
-        public CalendarNotifiTimeDTO UpdateCalendarName(Guid calendarId, string newName)
+        public CalendarNotifiTimeDto UpdateCalendarName(Guid calendarId, string newName)
         {
             CalendarNotifiTimeService calendarFound = walletCalendarService.FindCalendarNotifiTimeById(calendarId);
-            CalendarNotifiTimeDTO returnCalendarDto = null;
+            CalendarNotifiTimeDto returnCalendarDto = null;
             if(calendarFound != null)
             {
                 returnCalendarDto = calendarFound.UpdateName(newName);
@@ -65,7 +65,7 @@ namespace NotifiTime_API.infrastructure.configuration
             return returnCalendarDto;
         }
         
-        public EventCalendarDTO UpdateEventCalendar(Guid calendarId, EventCalendarDTO eventCalendarDto)
+        public EventCalendarDto UpdateEventCalendar(Guid calendarId, EventCalendarDto eventCalendarDto)
         {
             CalendarNotifiTimeService calendarService = walletCalendarService.FindCalendarNotifiTimeById(calendarId);
             return calendarService.UpdateEvent(eventCalendarDto);

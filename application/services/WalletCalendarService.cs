@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NotifiTime_API.application.DTOs;
+using NotifiTime_API.application.Dtos;
 using NotifiTime_API.application.mappers;
 using NotifiTime_API.domain.entities;
 using NotifiTime_API.domain.Interfaces;
@@ -11,7 +11,7 @@ namespace NotifiTime_API.application.services
 {
     public class WalletCalendarService
     {
-        // Dictionary<Guid, CalendarNotifiTimeDTO> calendarDictionary = new Dictionary<Guid, CalendarNotifiTimeDTO>();
+        // Dictionary<Guid, CalendarNotifiTimeDto> calendarDictionary = new Dictionary<Guid, CalendarNotifiTimeDto>();
         private WalletCalendar walletCalendar = null;
         
         public WalletCalendarService(IWalletRepository repository)
@@ -24,10 +24,10 @@ namespace NotifiTime_API.application.services
             walletCalendar = await taskWalletCalendar;
         }
         
-        public Exception AddCalendarNotifiTime(CalendarNotifiTimeDTO newCalendarNotifiTime)
+        public Exception AddCalendarNotifiTime(CalendarNotifiTimeDto newCalendarNotifiTime)
         {
             return walletCalendar.AddCalendarNotifiTime(
-                CalendarNotifiTimeMapper.CalendarNotifiTimeDTOToDomainObject(
+                CalendarNotifiTimeMapper.CalendarNotifiTimeDtoToDomainObject(
                     newCalendarNotifiTime
                 )
             );
@@ -44,10 +44,10 @@ namespace NotifiTime_API.application.services
         {
             return walletCalendar.DeleteCalendarNotifiTimeById(id);
         }
-        public EventCalendarDTO FindEventCalendarByIdOnAllCalendars(Guid eventId)
+        public EventCalendarDto FindEventCalendarByIdOnAllCalendars(Guid eventId)
         {
             EventCalendar eventCalendar = (EventCalendar)walletCalendar.FindEventCalendarByIdOnAllCalendars(eventId);
-            return EventCalendarMapper.EventCalendarToDTO(eventCalendar);
+            return EventCalendarMapper.EventCalendarToDto(eventCalendar);
         }
 
         public CalendarNotifiTimeService FindCalendarNotifiTimeById(Guid id)
@@ -82,7 +82,7 @@ namespace NotifiTime_API.application.services
             return CalendarNotifiTimeMapper.DomainCalendarArrayToCalendarServiceArray(calendarNotifiTimeArray);
         }
 
-        public Exception UpdateCalendarsOfUser(CalendarNotifiTimeDTO[] calendarNotifiTimeDtoArray)
+        public Exception UpdateCalendarsOfUser(CalendarNotifiTimeDto[] calendarNotifiTimeDtoArray)
         {
             try
             {

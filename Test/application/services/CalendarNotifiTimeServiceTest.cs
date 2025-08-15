@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using NotifiTime_API.application.DTOs;
+using NotifiTime_API.application.Dtos;
 using NotifiTime_API.application.services;
 using NotifiTime_API.domain.entities;
 using NotifiTime_API.domain.Enum;
@@ -18,7 +18,7 @@ namespace NotifiTime_API.Test.application
             CalendarNotifiTime calendar = new CalendarNotifiTime("Test calendar");
             CalendarNotifiTimeService calendarService = new CalendarNotifiTimeService(calendar);
 
-            EventCalendarDTO eventCalendarDto = calendarService.
+            EventCalendarDto eventCalendarDto = calendarService.
                 CreateEvent(
                     new DateTime(10, 10, 10),
                     "Test event",

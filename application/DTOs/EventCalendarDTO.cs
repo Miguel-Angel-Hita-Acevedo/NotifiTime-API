@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using NotifiTime_API.domain.entities;
 using NotifiTime_API.domain.Enum;
 
-namespace NotifiTime_API.application.DTOs
+namespace NotifiTime_API.application.Dtos
 {
-    public class EventCalendarDTO
+    public class EventCalendarDto
     {
         private Guid id;
         private string name;
