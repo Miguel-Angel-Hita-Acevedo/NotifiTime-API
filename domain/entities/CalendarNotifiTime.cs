@@ -39,10 +39,8 @@ namespace NotifiTime_API.domain.entities
             this.creationDate = creationDate;
         }
 
-        public EventCalendar CreateEvent(DateTime date, string name, TimeIteration timeIteration)
+        public EventCalendar AddEvent(EventCalendar eventCalendar)
         {
-            EventCalendar eventCalendar = new EventCalendar();
-            eventCalendar.SetDateTime(date).SetName(name).SetTimeIteration(timeIteration);
             eventCalendarDictionary.TryAdd(eventCalendar.GetId(), eventCalendar);
             return eventCalendar;
         }

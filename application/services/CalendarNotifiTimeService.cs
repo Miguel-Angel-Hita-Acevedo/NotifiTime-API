@@ -28,10 +28,10 @@ namespace NotifiTime_API.application.services
             return calendarNotifiTime.EventsCalendarLength();
         }
 
-        public EventCalendarDTO CreateEvent(DateTime date, string name, TimeIteration timeIteration)
+        public EventCalendarDTO AddEvent(EventCalendarDTO eventCalendarDto)
         {
-            EventCalendar eventCalendar = (EventCalendar)calendarNotifiTime.CreateEvent(date, name, timeIteration);
-            return EventCalendarMapper.EventCalendarToDTO(eventCalendar);
+            calendarNotifiTime.AddEvent(EventCalendarMapper.EventCalendarDtoToDomainObject(eventCalendarDto));
+            return eventCalendarDto;
         }
         
         public CalendarNotifiTimeDTO UpdateName(string newName)
