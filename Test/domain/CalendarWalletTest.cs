@@ -86,15 +86,28 @@ namespace NotifiTime_API.Test.domain
             CalendarNotifiTime firstCalendarNotifiTime = new CalendarNotifiTime("first test calendar");
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             CalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime("third test calendar");
+
+            EventCalendar firstEvent = new EventCalendar();
+            firstEvent.SetDateTime(DateTime.Now);
+            firstEvent.SetName("first event");
             
-            firstCalendarNotifiTime.CreateEvent(DateTime.Now, "first event", TimeIteration.None);
-            firstCalendarNotifiTime.CreateEvent(DateTime.Now, "second event", TimeIteration.None);
+            firstCalendarNotifiTime.AddEvent(firstEvent);
+            
+            EventCalendar secondEvent = new EventCalendar();
+            secondEvent.SetDateTime(DateTime.Now);
+            secondEvent.SetName("second event");
+            
+            firstCalendarNotifiTime.AddEvent(secondEvent);
+            
+            EventCalendar thirdEvent = new EventCalendar();
+            thirdEvent.SetDateTime(DateTime.Now);
+            thirdEvent.SetName("third event");
             
             walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
             walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);
             walletCalendar.AddCalendarNotifiTime(thirdCalendarNotifiTime);
             
-            EventCalendar eventCalendarToFind = thirdCalendarNotifiTime.CreateEvent(DateTime.Now, "third event", TimeIteration.None);
+            EventCalendar eventCalendarToFind = thirdCalendarNotifiTime.AddEvent(thirdEvent);
             
             EventCalendar found = walletCalendar.FindEventCalendarByIdOnAllCalendars(eventCalendarToFind.GetId());
             
@@ -116,7 +129,11 @@ namespace NotifiTime_API.Test.domain
             CalendarNotifiTime secondCalendarNotifiTime = new CalendarNotifiTime("second test calendar");
             CalendarNotifiTime thirdCalendarNotifiTime = new CalendarNotifiTime("third test calendar");
             
-            firstCalendarNotifiTime.CreateEvent(DateTime.Now, "event", TimeIteration.None);
+            EventCalendar firstEvent = new EventCalendar();
+            firstEvent.SetDateTime(DateTime.Now);
+            firstEvent.SetName("first event");
+            
+            firstCalendarNotifiTime.AddEvent(firstEvent);
             
             walletCalendar.AddCalendarNotifiTime(firstCalendarNotifiTime);
             walletCalendar.AddCalendarNotifiTime(secondCalendarNotifiTime);

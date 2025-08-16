@@ -13,23 +13,27 @@ namespace NotifiTime_API.Test.application
     public class CalendarNotifiTimeServiceTest
     {
         [Fact]
-        public void CreateEvent_FullParametersOfEvent_ReturnFullParametersOnDto()
+        public void GetEventById_FullParametersOfEvent_ReturnFullParametersOnDtoFound()
         {
             CalendarNotifiTime calendar = new CalendarNotifiTime("Test calendar");
             CalendarNotifiTimeService calendarService = new CalendarNotifiTimeService(calendar);
 
-            EventCalendarDto eventCalendarDto = calendarService.
-                CreateEvent(
-                    new DateTime(10, 10, 10),
-                    "Test event",
-                    TimeIteration.Annually
-                );
-            
+            EventCalendarDto eventCalendarDto = new EventCalendarDto();
+            eventCalendarDto.Id = new Guid();
+            eventCalendarDto.DateTime = new DateTime(10, 10, 10);
+            eventCalendarDto.Name = "Test event";
+            eventCalendarDto.Message = "Message test event";
+            eventCalendarDto.TimeIteration = TimeIteration.Annually;
+
+            calendarService.AddEvent(eventCalendarDto);
+
+            EventCalendarDto eventCalendarDtoFound = calendarService.GetEventById(eventCalendarDto.Id);
             
             Assert.True(
-                    eventCalendarDto.DateTime == new DateTime(10, 10, 10) &&
-                    eventCalendarDto.Name == "Test event" &&
-                    eventCalendarDto.TimeIteration == TimeIteration.Annually
+                    eventCalendarDto.DateTime == eventCalendarDtoFound.DateTime &&
+                    eventCalendarDto.Name == eventCalendarDtoFound.Name &&
+                    eventCalendarDto.Message == eventCalendarDtoFound.Message &&
+                    eventCalendarDto.TimeIteration == eventCalendarDtoFound.TimeIteration
                 );
         }
     }

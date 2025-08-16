@@ -41,7 +41,7 @@ namespace NotifiTime_API.domain.entities
 
         public EventCalendar AddEvent(EventCalendar eventCalendar)
         {
-            eventCalendarDictionary.TryAdd(eventCalendar.GetId(), eventCalendar);
+            bool added = eventCalendarDictionary.TryAdd(eventCalendar.GetId(), eventCalendar);
             return eventCalendar;
         }
 

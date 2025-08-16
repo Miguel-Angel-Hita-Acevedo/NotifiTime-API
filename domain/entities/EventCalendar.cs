@@ -35,6 +35,26 @@ namespace NotifiTime_API.domain.entities
             id = SequentialGuidGenerator.Instance.NewGuid();
         }
         
+        public EventCalendar(string name, DateTime dateTime, List<SupportedPlatform> supportedPlatformList, string message, TimeIteration timeIteration)
+        {
+            this.id = SequentialGuidGenerator.Instance.NewGuid();
+            this.name = name;
+            this.dateTime = dateTime;
+            this.supportedPlatformList = supportedPlatformList;
+            this.message = message;
+            this.timeIteration = timeIteration;
+        }
+        
+        public EventCalendar(string name, DateTime dateTime, List<string> supportedPlatformStringList, string message, string timeIterationString)
+        {
+            this.id = SequentialGuidGenerator.Instance.NewGuid();
+            this.name = name;
+            this.dateTime = dateTime;
+            this.supportedPlatformList = CastStringListToSupportedPlatformsList(supportedPlatformStringList);
+            this.message = message;
+            this.timeIteration = CastStringToTimeIteration(timeIterationString);
+        }
+        
         public EventCalendar(Guid id, string name, DateTime dateTime, List<SupportedPlatform> supportedPlatformList, string message, TimeIteration timeIteration)
         {
             this.id = id;

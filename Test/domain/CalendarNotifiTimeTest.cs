@@ -25,11 +25,16 @@ namespace NotifiTime_API.Test
         {
             string name = "Test calendar";
             CalendarNotifiTime testCalendar = new CalendarNotifiTime(name);
-            EventCalendar testEvent = testCalendar.CreateEvent(
-                new DateTime(2024, 3, 7, 14, 45, 0),
+            
+            List<SupportedPlatform> supportedPlatformList = new List<SupportedPlatform>();
+            supportedPlatformList.Add(SupportedPlatform.Mail);
+            EventCalendar testEvent = testCalendar.AddEvent( new EventCalendar(
                 "Test event",
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
             Assert.NotNull(testCalendar.GetEventById(testEvent.GetId()));
         }
 
@@ -38,23 +43,31 @@ namespace NotifiTime_API.Test
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 3, 7, 14, 45, 0),
+            List<SupportedPlatform> supportedPlatformList = new List<SupportedPlatform>();
+            supportedPlatformList.Add(SupportedPlatform.Mail);
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 1",
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            EventCalendar testEvent = testCalendar.CreateEvent(
-                new DateTime(2023, 4, 5, 0, 45, 0),
+            EventCalendar testEvent = testCalendar.AddEvent( new EventCalendar(
                 "Test event 2",
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 1, 6, 16, 30, 0),
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 3",
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
             testCalendar.DeleteEventById(testEvent.GetId());
 
@@ -66,23 +79,32 @@ namespace NotifiTime_API.Test
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 3, 7, 14, 45, 0),
+            List<SupportedPlatform> supportedPlatformList = new List<SupportedPlatform>();
+            supportedPlatformList.Add(SupportedPlatform.Mail);
+
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 1",
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            EventCalendar testEvent = testCalendar.CreateEvent(
-                new DateTime(2023, 4, 5, 0, 45, 0),
+            EventCalendar testEvent = testCalendar.AddEvent( new EventCalendar(
                 "Test event 2",
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 1, 6, 16, 30, 0),
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 3",
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
             if (testCalendar.GetEventById(testEvent.GetId()) != null)
             {
@@ -100,23 +122,32 @@ namespace NotifiTime_API.Test
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 3, 7, 14, 45, 0),
+            List<SupportedPlatform> supportedPlatformList = new List<SupportedPlatform>();
+            supportedPlatformList.Add(SupportedPlatform.Mail);
+
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 1",
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            testCalendar.CreateEvent(
-                new DateTime(2023, 4, 5, 0, 45, 0),
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 2",
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 1, 6, 16, 30, 0),
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 3",
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
             EventCalendar[] testEventSortedArray = testCalendar.SortEventsByDate(
                 new DateTime(1, 1, 1),
@@ -135,23 +166,32 @@ namespace NotifiTime_API.Test
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 3, 7, 14, 45, 0),
+            List<SupportedPlatform> supportedPlatformList = new List<SupportedPlatform>();
+            supportedPlatformList.Add(SupportedPlatform.Mail);
+
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 1",
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            testCalendar.CreateEvent(
-                new DateTime(2023, 4, 5, 0, 45, 0),
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 2",
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 1, 6, 16, 30, 0),
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 3",
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
             EventCalendar[] testEventSortedArray = testCalendar.SortEventsByDate(
                 new DateTime(1, 1, 1),
@@ -170,23 +210,32 @@ namespace NotifiTime_API.Test
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar");
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 3, 7, 14, 45, 0),
+            List<SupportedPlatform> supportedPlatformList = new List<SupportedPlatform>();
+            supportedPlatformList.Add(SupportedPlatform.Mail);
+
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 1",
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            testCalendar.CreateEvent(
-                new DateTime(2023, 4, 5, 0, 45, 0),
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 2",
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 1, 6, 16, 30, 0),
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 3",
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
             EventCalendar[] eventsCalendarTestArray = testCalendar.SortEventsByDate(
                 new DateTime(2024, 1, 1),
@@ -202,23 +251,31 @@ namespace NotifiTime_API.Test
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar with event updated!");
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 3, 7, 14, 45, 0),
+            List<SupportedPlatform> supportedPlatformList = new List<SupportedPlatform>();
+            supportedPlatformList.Add(SupportedPlatform.Mail);
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 1",
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            EventCalendar eventCalendar = (EventCalendar)testCalendar.CreateEvent(
-                new DateTime(2023, 4, 5, 0, 45, 0),
+            EventCalendar eventCalendar = (EventCalendar)testCalendar.AddEvent( new EventCalendar(
                 "Test event 2",
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
-            testCalendar.CreateEvent(
-                new DateTime(2024, 1, 6, 16, 30, 0),
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 3",
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
 
             eventCalendar.SetMessage("Texto cambiado!");
 
@@ -232,23 +289,31 @@ namespace NotifiTime_API.Test
         {
             CalendarNotifiTime testCalendar = new CalendarNotifiTime("Test calendar with event updated!");
             
-            testCalendar.CreateEvent(
-                new DateTime(2024, 3, 7, 14, 45, 0),
+            List<SupportedPlatform> supportedPlatformList = new List<SupportedPlatform>();
+            supportedPlatformList.Add(SupportedPlatform.Mail);
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 1",
+                new DateTime(2024, 3, 7, 14, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
             
-            EventCalendar eventCalendar = (EventCalendar)testCalendar.CreateEvent(
-                new DateTime(2023, 4, 5, 0, 45, 0),
+            EventCalendar eventCalendar = (EventCalendar)testCalendar.AddEvent( new EventCalendar(
                 "Test event 2",
+                new DateTime(2023, 4, 5, 0, 45, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
             
-            testCalendar.CreateEvent(
-                new DateTime(2024, 1, 6, 16, 30, 0),
+            testCalendar.AddEvent( new EventCalendar(
                 "Test event 3",
+                new DateTime(2024, 1, 6, 16, 30, 0),
+                supportedPlatformList,
+                "Custom message",
                 TimeIteration.None
-            );
+            ));
             
             eventCalendar.SetMessage("Texto cambiado!");
 
